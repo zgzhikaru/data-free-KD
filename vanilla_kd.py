@@ -20,6 +20,9 @@ import torch.utils.data.distributed
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import torchvision.models as models
+from datafree.utils._utils import prepare_ood_data
+
+from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 # Basic
@@ -28,6 +31,9 @@ parser.add_argument('--teacher', default='wrn40_2')
 parser.add_argument('--student', default='wrn16_1')
 parser.add_argument('--dataset', default='cifar100')
 parser.add_argument('--transfer_set', default='cifar10')
+parser.add_argument('--ood_subset', action='store_true',
+                    help='use ood subset')
+
 parser.add_argument('--lr', '--learning_rate', default=0.1, type=float,
                     metavar='LR', help='initial learning rate', dest='lr')
 parser.add_argument('--lr_decay_milestones', default="120,150,180", type=str,
@@ -167,7 +173,7 @@ def main_worker(gpu, ngpus_per_node, args):
     else:
         _, train_dataset, _ = registry.get_dataset(name=args.transfer_set, data_root=args.data_root)
     train_dataset.transforms = train_dataset.transform = ori_dataset.transform
-    print(train_dataset)
+    #print(train_dataset)
     cudnn.benchmark = True
     if args.distributed:
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
@@ -223,6 +229,11 @@ def main_worker(gpu, ngpus_per_node, args):
             return model
     student = prepare_model(student)
     teacher = prepare_model(teacher)
+
+    if args.ood_subset and args.transfer_set in ['imagenet_32x32', 'places365_32x32']:
+        ood_index = prepare_ood_data(train_dataset, teacher, ood_size=len(ori_dataset), args=args)
+        train_dataset.samples = [ train_dataset.samples[i] for i in ood_index]
+
     
     ############################################
     # Setup optimizer

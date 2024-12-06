@@ -1,10 +1,10 @@
 python datafree_kd.py \
 --method dfq \
---dataset  \
+--dataset cifar10 \
 --batch_size 256 \
---teacher resnet34 \
---student resnet18 \
---lr 0.05 \
+--teacher wrn40_2 \
+--student wrn16_1 \
+--lr 0.1 \
 --epochs 200 \
 --kd_steps 10 \
 --ep_steps 400 \
@@ -15,6 +15,7 @@ python datafree_kd.py \
 --bn 1 \
 --oh 1 \
 --act 0 \
---balance 20 \
+--balance 10 \
 --gpu 0 \
 --seed 0 \
+--log_tag 'T_balance'

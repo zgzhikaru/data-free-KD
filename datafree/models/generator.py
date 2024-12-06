@@ -172,6 +172,7 @@ class DCGAN_CondGenerator(nn.Module):
         output = self.main(proj)
         return output
 
+
 class Discriminator(nn.Module):
     def __init__(self, nc=3, img_size=32):
         super(Discriminator, self).__init__()
@@ -199,6 +200,7 @@ class Discriminator(nn.Module):
         validity = self.adv_layer(out)
         return validity
 
+
 class DCGAN_Discriminator(nn.Module):
     def __init__(self, nc=3, ndf=64):
         super(DCGAN_Discriminator, self).__init__()
@@ -225,3 +227,26 @@ class DCGAN_Discriminator(nn.Module):
 
     def forward(self, input):
         return self.main(input)
+    
+
+class PatchDiscriminator(nn.Module):
+    def __init__(self, nc=3, ndf=128, output_stride=1):
+        super(PatchDiscriminator, self).__init__()
+        self.output_stride = output_stride
+        self.main = nn.Sequential(
+            # input is (nc) x 32 x 32
+            nn.Conv2d(nc, ndf, 4, 2, 1),
+            nn.LeakyReLU(0.2, inplace=True),
+            # state size. (ndf) x 16 x 16
+
+            nn.Conv2d(ndf, ndf * 2, 4, 2, 1, bias=False),
+            nn.BatchNorm2d(ndf * 2),
+            nn.LeakyReLU(0.2, inplace=True),
+
+            # state size. (ndf*4) x 8 x 8
+            nn.Conv2d(ndf * 2, 1, 1, 1, 0, bias=False),
+            nn.Sigmoid()
+        )
+    
+    def forward(self, input):
+        return self.main(input)[:, :, ::self.output_stride, ::self.output_stride]

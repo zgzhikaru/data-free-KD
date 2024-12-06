@@ -259,3 +259,37 @@ def dummy_ctx(*args, **kwds):
         yield None
     finally:
         pass
+
+
+def prepare_ood_data(train_dataset, model, ood_size, args):
+    model.eval()
+    train_loader = torch.utils.data.DataLoader(
+        train_dataset, batch_size=args.batch_size, shuffle=False,
+        num_workers=args.workers)
+    if os.path.exists('checkpoints/ood_index/%s-%s-%s-ood-index.pth'%(args.dataset, args.transfer_set, args.teacher)):
+        ood_index = torch.load('checkpoints/ood_index/%s-%s-%s-ood-index.pth'%(args.dataset, args.transfer_set, args.teacher))
+    else:
+        with torch.no_grad():
+            entropy_list = []
+            model.cuda(args.gpu)
+            model.eval()
+            for i, (images, target) in enumerate(tqdm(train_loader)):
+                if args.gpu is not None:
+                    images = images.cuda(args.gpu, non_blocking=True)
+                if torch.cuda.is_available():
+                    target = target.cuda(args.gpu, non_blocking=True)
+
+                # compute output
+                output = model(images)
+                p = torch.nn.functional.softmax(output, dim=1)
+                ent = -(p*torch.log(p)).sum(dim=1)
+                entropy_list.append(ent)
+
+            entropy_list = torch.cat(entropy_list, dim=0)
+            ood_index = torch.argsort(entropy_list, descending=True)[:ood_size].cpu().tolist()
+
+            model.cpu()
+            os.makedirs('checkpoints/ood_index', exist_ok=True)
+            torch.save(ood_index, 'checkpoints/ood_index/%s-%s-%s-ood-index.pth'%(args.dataset, args.transfer_set, args.teacher))
+    
+    return ood_index

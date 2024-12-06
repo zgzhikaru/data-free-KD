@@ -1,6 +1,6 @@
 python datafree_kd.py \
 --method dfq \
---dataset  \
+--dataset cifar100 \
 --batch_size 256 \
 --teacher resnet34 \
 --student resnet18 \
@@ -11,10 +11,11 @@ python datafree_kd.py \
 --g_steps 1 \
 --lr_g 1e-3 \
 --adv 1 \
---T 1 \
+--T 20 \
 --bn 1 \
 --oh 1 \
 --act 0 \
 --balance 20 \
 --gpu 0 \
 --seed 0 \
+--log_tag T20
