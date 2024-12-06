@@ -186,8 +186,8 @@ def main_worker(gpu, ngpus_per_node, args):
     if args.log_tag != '':
         args.log_tag = '-'+args.log_tag
     log_name = 'R%d-%s-%s-%s%s'%(args.rank, args.dataset, args.teacher, args.student, args.log_tag) if args.multiprocessing_distributed else '%s-%s-%s'%(args.dataset, args.teacher, args.student)
-    args.logger = datafree.utils.logger.get_logger(log_name, output='checkpoints/datafree-%s/log-%s-%s-%s%s.txt'%(args.method, args.dataset, args.teacher, args.student, args.log_tag))
-    args.tb = SummaryWriter('tb_log/datafree-%s/tensorboard-%s-%s-%s%s'%(args.method, args.dataset, args.teacher, args.student, args.log_tag))
+    args.logger = datafree.utils.logger.get_logger(log_name, output='checkpoints/datafree-bkd-%s/log-%s-%s-%s%s.txt'%(args.method, args.dataset, args.teacher, args.student, args.log_tag))
+    args.tb = SummaryWriter('tb_log/datafree-bkd-%s/tensorboard-%s-%s-%s%s'%(args.method, args.dataset, args.teacher, args.student, args.log_tag))
     if args.rank<=0:
         for k, v in datafree.utils.flatten_dict( vars(args) ).items(): # print args
             args.logger.info( "%s: %s"%(k,v) )
@@ -352,7 +352,7 @@ def main_worker(gpu, ngpus_per_node, args):
             train( synthesizer, [student, teacher], criterion, optimizer, args) # # kd_steps
         
         for vis_name, vis_image in vis_results.items():
-            datafree.utils.save_image_batch( vis_image, 'checkpoints/datafree-%s/%s%s.png'%(args.method, vis_name, args.log_tag) )
+            datafree.utils.save_image_batch( vis_image, 'checkpoints/datafree-bkd-%s/%s%s.png'%(args.method, vis_name, args.log_tag) )
         
         student.eval()
         eval_results = evaluator(student, device=args.gpu)
@@ -366,7 +366,7 @@ def main_worker(gpu, ngpus_per_node, args):
         scheduler.step()
         is_best = acc1 > best_acc1
         best_acc1 = max(acc1, best_acc1)
-        _best_ckpt = 'checkpoints/datafree-%s/%s-%s-%s%s.pth'%(args.method, args.dataset, args.teacher, args.student, args.log_tag)
+        _best_ckpt = 'checkpoints/datafree-bkd-%s/%s-%s-%s%s.pth'%(args.method, args.dataset, args.teacher, args.student, args.log_tag)
         if not args.multiprocessing_distributed or (args.multiprocessing_distributed
                 and args.rank % ngpus_per_node == 0):
             save_checkpoint({
@@ -397,6 +397,13 @@ def train(synthesizer, model, criterion, optimizer, args):
                 t_out, t_feat = teacher(images, return_features=True)
             s_out = student(images.detach())
             loss_s = criterion(s_out, t_out.detach())
+
+            # t_pred = t_out.max(1)[1]
+            # s_pred = s_out.max(1)[1]
+            # same_pred_mask = (t_pred == s_pred)
+            # if same_pred_mask.sum() > 0:
+            #     loss_s += F.cross_entropy(s_out[same_pred_mask], t_pred[same_pred_mask])
+            
         optimizer.zero_grad()
         if args.fp16:
             scaler_s = args.scaler_s

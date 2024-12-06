@@ -1,9 +1,9 @@
 python datafree_kd.py \
 --method cmi \
---dataset cifar10 \
+--dataset cifar100 \
 --batch_size 256 \
---teacher wrn40_2 \
---student wrn16_1 \
+--teacher vgg11 \
+--student resnet18 \
 --lr 0.1 \
 --kd_steps 400 \
 --ep_steps 400 \
@@ -20,4 +20,3 @@ python datafree_kd.py \
 --seed 0 \
 --T 20 \
 --save_dir run/cmi \
---log_tag cmi

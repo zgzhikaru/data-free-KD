@@ -214,8 +214,8 @@ def get_dataset(name: str, data_root: str='data', return_transform=False, split=
             T.Normalize(**NORMALIZE_DICT[name]),
         ])
         data_root = os.path.join( data_root, 'ImageNet_32x32' ) 
-        train_dst = datasets.ImageFolder(os.path.join(data_root, 'train'), transform=train_transform)
-        val_dst = datasets.ImageFolder(os.path.join(data_root, 'val'), transform=val_transform)
+        train_dst = datasets.ImageFolder(os.path.join(data_root, 'train/box'), transform=train_transform)
+        val_dst = datasets.ImageFolder(os.path.join(data_root, 'val/box'), transform=val_transform)
     elif name=='places365_32x32':
         num_classes=365
         train_transform = T.Compose([
