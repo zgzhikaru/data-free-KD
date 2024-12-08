@@ -6,8 +6,11 @@ import shutil
 import time
 import warnings
 
+from tqdm import tqdm
+
 import registry
 import datafree
+from datafree.criterions import kldiv
 
 import torch
 import torch.nn as nn
@@ -29,23 +32,34 @@ from torch.utils.tensorboard import SummaryWriter
 parser = argparse.ArgumentParser(description='Data-free Knowledge Distillation')
 
 # Data Free
-parser.add_argument('--method', required=True, choices=['zskt', 'dfad', 'dafl', 'deepinv', 'dfq', 'cmi'])
+parser.add_argument('--method', required=True, choices=['dfnd', 'mosaic'])
 parser.add_argument('--adv', default=0, type=float, help='scaling factor for adversarial distillation')
 parser.add_argument('--bn', default=0, type=float, help='scaling factor for BN regularization')
 parser.add_argument('--oh', default=0, type=float, help='scaling factor for one hot loss (cross entropy)')
 parser.add_argument('--act', default=0, type=float, help='scaling factor for activation loss used in DAFL')
 parser.add_argument('--balance', default=0, type=float, help='scaling factor for class balance')
+
+parser.add_argument('--entropy', default=0, type=float, help='scaling factor for entropy loss')
+parser.add_argument('--local', default=0, type=float, help='scaling factor for discriminator loss')
 parser.add_argument('--save_dir', default='run/synthesis', type=str)
 
-parser.add_argument('--cr', default=1, type=float, help='scaling factor for contrastive model inversion')
-parser.add_argument('--cr_T', default=0.5, type=float, help='temperature for contrastive model inversion')
-parser.add_argument('--cmi_init', default=None, type=str, help='path to pre-inverted data')
+# parser.add_argument('--cr', default=1, type=float, help='scaling factor for contrastive model inversion')
+# parser.add_argument('--cr_T', default=0.5, type=float, help='temperature for contrastive model inversion')
+# parser.add_argument('--cmi_init', default=None, type=str, help='path to pre-inverted data')
 
 # Basic
 parser.add_argument('--data_root', default='data')
 parser.add_argument('--teacher', default='wrn40_2')
 parser.add_argument('--student', default='wrn16_1')
 parser.add_argument('--dataset', default='cifar100')
+parser.add_argument('--transfer_set', default='cifar10')
+parser.add_argument('--ood_subset', action='store_true',
+                    help='use ood subset')
+parser.add_argument('--shared_normalizer', default=True,
+                    help='Whether to share the same normalization between transfer set and orig train set')
+parser.add_argument('--include_raw', action='store_true',
+                    help='include unlabeled transfer set as raw data into distillation training')
+
 parser.add_argument('--lr', default=0.1, type=float,
                     help='initial learning rate for KD')
 parser.add_argument('--lr_decay_milestones', default="30,60,120,160", type=str,
@@ -122,6 +136,17 @@ parser.add_argument('--pretrained', dest='pretrained', action='store_true',
                     help='use pre-trained model')
 best_acc1 = 0
 
+## Data loading utils
+def unwrap(data):
+    try:
+        data, _ = data
+        return data
+    except:
+        return data
+
+def get_data(iterator, args):
+    return unwrap(next(iterator)).cuda(args.gpu) if args.transfer_set else None
+
 
 def main():
     args = parser.parse_args()
@@ -187,9 +212,12 @@ def main_worker(gpu, ngpus_per_node, args):
     ############################################
     if args.log_tag != '':
         args.log_tag = '-'+args.log_tag
-    log_name = 'R%d-%s-%s-%s%s'%(args.rank, args.dataset, args.teacher, args.student, args.log_tag) if args.multiprocessing_distributed else '%s-%s-%s'%(args.dataset, args.teacher, args.student)
-    args.logger = datafree.utils.logger.get_logger(log_name, output='checkpoints/datafree-%s/log-%s-%s-%s%s.txt'%(args.method, args.dataset, args.teacher, args.student, args.log_tag))
-    args.tb = SummaryWriter('tb_log/datafree-%s/tensorboard-%s-%s-%s%s'%(args.method, args.dataset, args.teacher, args.student, args.log_tag))
+    log_name = 'R%d-%s-%s-%s%s'%(args.rank, args.dataset, args.teacher, args.student, args.log_tag) \
+        if args.multiprocessing_distributed else '%s-%s-%s'%(args.dataset, args.teacher, args.student)
+    args.logger = datafree.utils.logger.get_logger(log_name, output='checkpoints/ood_kd-%s/log-%s-%s-%s%s.txt'\
+                                                   %(args.method, args.dataset, args.teacher, args.student, args.log_tag))
+    args.tb = SummaryWriter('tb_log/ood_kd-%s/tensorboard-%s-%s-%s%s'\
+                            %(args.method, args.dataset, args.teacher, args.student, args.log_tag))
     if args.rank<=0:
         for k, v in datafree.utils.flatten_dict( vars(args) ).items(): # print args
             args.logger.info( "%s: %s"%(k,v) )
@@ -197,7 +225,7 @@ def main_worker(gpu, ngpus_per_node, args):
     ############################################
     # Setup dataset
     ############################################
-    num_classes, ori_dataset, val_dataset = registry.get_dataset(name=args.dataset, data_root=args.data_root)
+    num_classes, ori_dataset, val_dataset, train_transform, val_transform = registry.get_dataset(name=args.dataset, data_root=args.data_root, return_transform=True)
     val_loader = torch.utils.data.DataLoader(
         val_dataset,
         batch_size=args.batch_size, shuffle=False,
@@ -240,10 +268,39 @@ def main_worker(gpu, ngpus_per_node, args):
     student = registry.get_model(args.student, num_classes=num_classes)
     teacher = registry.get_model(args.teacher, num_classes=num_classes, pretrained=True).eval()
     args.normalizer = normalizer = datafree.utils.Normalizer(**registry.NORMALIZE_DICT[args.dataset])
+    args.ulb_normalizer = args.normalizer 
+    if args.transfer_set is not None and not args.shared_normalizer:
+        args.ulb_normalizer = datafree.utils.Normalizer(**registry.NORMALIZE_DICT[args.transfer_set])
     teacher.load_state_dict(torch.load('checkpoints/pretrained/%s_%s.pth'%(args.dataset, args.teacher), map_location='cpu')['state_dict'])
     student = prepare_model(student)
     teacher = prepare_model(teacher)
     criterion = datafree.criterions.KLDiv(T=args.T)
+
+    cudnn.benchmark = True
+    ############################################
+    # Setup ulb_dataset
+    ############################################
+    if args.transfer_set is not None:
+        _, raw_dataset, _ = registry.get_dataset(name=args.transfer_set, data_root=args.data_root,train_transform=train_transform)
+        _, train_dataset, _ = registry.get_dataset(name=args.transfer_set, data_root=args.data_root,train_transform=val_transform)
+    
+    if args.ood_subset and args.transfer_set in ['imagenet_32x32', 'places365_32x32']:
+        ood_index = prepare_ood_data(train_dataset, teacher, ood_size=len(ori_dataset), args=args)
+        train_dataset.samples = [ train_dataset.samples[i] for i in ood_index]
+        raw_dataset.samples = [ raw_dataset.samples[i] for i in ood_index]
+
+    train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset) if args.distributed else None
+    train_loader = torch.utils.data.DataLoader(
+        train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None),
+        num_workers=args.workers, pin_memory=True, sampler=train_sampler)
+    
+    raw_sampler = torch.utils.data.distributed.DistributedSampler(raw_dataset) if args.distributed else None
+    raw_loader = torch.utils.data.DataLoader(
+        raw_dataset, batch_size=args.batch_size, shuffle=(raw_sampler is None),
+        num_workers=args.workers, pin_memory=True, sampler=raw_sampler)
+    
+
+    
     
     ############################################
     # Setup data-free synthesizers
@@ -251,42 +308,27 @@ def main_worker(gpu, ngpus_per_node, args):
     if args.synthesis_batch_size is None:
         args.synthesis_batch_size = args.batch_size
     
-    if args.method=='deepinv':
-        synthesizer = datafree.synthesis.DeepInvSyntheiszer(
-                 teacher=teacher, student=student, num_classes=num_classes, 
-                 img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g,
-                 synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, 
-                 adv=args.adv, bn=args.bn, oh=args.oh, tv=0.001, l2=0.0,
-                 save_dir=args.save_dir, transform=ori_dataset.transform,
-                 normalizer=args.normalizer, device=args.gpu)
-    elif args.method in ['zskt', 'dfad', 'dfq', 'dafl']:
+    if args.method in ['dfnd', 'mosaic']:
         # nz = 512 if args.method=='dafl' else 256
         nz = args.z_dim
         generator = datafree.models.generator.LargeGenerator(nz=nz, ngf=64, img_size=32, nc=3)
         generator = prepare_model(generator)
+
+        discriminator = None
+        if args.method == 'degan':
+            discriminator = datafree.models.generator.Discriminator(nc=3, img_size=32)
+            discriminator = prepare_model(discriminator)
+        elif args.method == 'mosaic':
+            discriminator = datafree.models.generator.PatchDiscriminator(nc=3, ndf=128)
+            discriminator = prepare_model(discriminator)
+
         criterion = torch.nn.L1Loss() if args.method=='dfad' else datafree.criterions.KLDiv()
         synthesizer = datafree.synthesis.GenerativeSynthesizer(
-                 teacher=teacher, student=student, generator=generator, nz=nz, 
+                 teacher=teacher, student=student, generator=generator, nz=nz, discriminator=discriminator,
                  img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g,
-                 synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, 
+                 synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, entropy=args.entropy,
                  adv=args.adv, bn=args.bn, oh=args.oh, act=args.act, balance=args.balance, criterion=criterion,
-                 normalizer=args.normalizer, device=args.gpu)
-    elif args.method=='cmi':
-        nz = 256
-        generator = datafree.models.generator.Generator(nz=nz, ngf=64, img_size=32, nc=3)
-        generator = prepare_model(generator)
-        feature_layers = None # use all conv layers
-        if args.teacher=='resnet34': # only use blocks
-            feature_layers = [teacher.layer1, teacher.layer2, teacher.layer3, teacher.layer4]
-        synthesizer = datafree.synthesis.CMISynthesizer(teacher, student, generator, 
-                 nz=nz, num_classes=num_classes, img_size=(3, 32, 32), 
-                 # if feature layers==None, all convolutional layers will be used by CMI.
-                 feature_layers=feature_layers, bank_size=40960, n_neg=4096, head_dim=256, init_dataset=args.cmi_init,
-                 iterations=args.g_steps, lr_g=args.lr_g, progressive_scale=False,
-                 synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, 
-                 adv=args.adv, bn=args.bn, oh=args.oh, cr=args.cr, cr_T=args.cr_T,
-                 save_dir=args.save_dir, transform=ori_dataset.transform,
-                 normalizer=args.normalizer, device=args.gpu)
+                 normalizer=args.normalizer, ulb_normalizer=args.ulb_normalizer, device=args.gpu)
     else: raise NotImplementedError
         
     ############################################
@@ -350,14 +392,25 @@ def main_worker(gpu, ngpus_per_node, args):
         #    train_sampler.set_epoch(epoch)
         args.current_epoch=epoch
 
-        for _ in range( args.ep_steps//args.kd_steps ): # total kd_steps < ep_steps
+        if args.transfer_set is not None:
+            #args.ep_steps = len(train_loader)
+            train_iter = iter(train_loader)
+            #if args.include_raw:
+            raw_iter = iter(raw_loader)
+        # for _ in range( args.ep_steps//args.kd_steps ): # total kd_steps < ep_steps
+        for it in tqdm(range( args.ep_steps )): # total kd_steps < ep_steps
+            args.n_iter = epoch * args.ep_steps + it
+
+            #data = unwrap(next(train_iter)).cuda(args.gpu) if args.transfer_set else None
+            data = get_data(train_iter, args)
             # 1. Data synthesis
-            vis_results = synthesizer.synthesize(args=args) # g_steps
+            vis_results = synthesizer.synthesize(data, args) # g_steps
             # 2. Knowledge distillation
-            train( synthesizer, [student, teacher], criterion, optimizer, args) # # kd_steps
+            data = get_data(raw_iter, args) if args.include_raw else None
+            train( synthesizer, [student, teacher], criterion, optimizer, data, args) # # kd_steps
         
         for vis_name, vis_image in vis_results.items():
-            datafree.utils.save_image_batch( vis_image, 'checkpoints/datafree-%s/%s%s.png'%(args.method, vis_name, args.log_tag) )
+            datafree.utils.save_image_batch( vis_image, 'checkpoints/ood_kd-%s/%s%s.png'%(args.method, vis_name, args.log_tag) )
         
         student.eval()
         eval_results = evaluator(student, device=args.gpu)
@@ -371,7 +424,7 @@ def main_worker(gpu, ngpus_per_node, args):
         scheduler.step()
         is_best = acc1 > best_acc1
         best_acc1 = max(acc1, best_acc1)
-        _best_ckpt = 'checkpoints/datafree-%s/%s-%s-%s%s.pth'%(args.method, args.dataset, args.teacher, args.student, args.log_tag)
+        _best_ckpt = 'checkpoints/ood_kd-%s/%s-%s-%s%s.pth'%(args.method, args.dataset, args.teacher, args.student, args.log_tag)
         if not args.multiprocessing_distributed or (args.multiprocessing_distributed
                 and args.rank % ngpus_per_node == 0):
             save_checkpoint({
@@ -386,7 +439,7 @@ def main_worker(gpu, ngpus_per_node, args):
         args.logger.info("Best: %.4f"%best_acc1)
 
 
-def train(synthesizer, model, criterion, optimizer, args):
+def train(synthesizer, model, criterion, optimizer, data, args):
     loss_metric = datafree.metrics.RunningLoss(datafree.criterions.KLDiv(reduction='sum'))
     acc_metric = datafree.metrics.TopkAccuracy(topk=(1,5))
     student, teacher = model
@@ -395,13 +448,26 @@ def train(synthesizer, model, criterion, optimizer, args):
     teacher.eval()
     for i in range(args.kd_steps):
         images = synthesizer.sample()
+        if data is not None:
+            images = torch.cat([images, data], dim=0)
         if args.gpu is not None:
             images = images.cuda(args.gpu, non_blocking=True)
         with args.autocast():
             with torch.no_grad():
                 t_out, t_feat = teacher(images, return_features=True)
             s_out = student(images.detach())
-            loss_s = criterion(s_out, t_out.detach())
+            if data is not None:
+                loss_s = kldiv(s_out, t_out.detach(), reduction='none')
+                
+                loss_syn = loss_s[:args.synthesis_batch_size]
+                loss_data = loss_s[args.synthesis_batch_size:]
+
+                loss_syn = loss_syn.sum()/len(loss_syn)
+                loss_data = loss_data.sum()/len(loss_data)
+                
+                loss_s = loss_s.sum()/len(loss_s)
+            else:
+                loss_s = criterion(s_out, t_out.detach())
         optimizer.zero_grad()
         if args.fp16:
             scaler_s = args.scaler_s
@@ -418,6 +484,46 @@ def train(synthesizer, model, criterion, optimizer, args):
             args.logger.info('[Train] Epoch={current_epoch} Iter={i}/{total_iters}, train_acc@1={train_acc1:.4f}, train_acc@5={train_acc5:.4f}, train_Loss={train_loss:.4f}, Lr={lr:.4f}'
               .format(current_epoch=args.current_epoch, i=i, total_iters=len(args.kd_steps), train_acc1=train_acc1, train_acc5=train_acc5, train_loss=train_loss, lr=optimizer.param_groups[0]['lr']))
             loss_metric.reset(), acc_metric.reset()
+
+    n_iter = args.n_iter #* args.kd_steps + i
+    lr_s = optimizer.param_groups[0]['lr']
+    args.tb.add_scalar('train/lr_s', lr_s, n_iter)
+    args.tb.add_scalar('train/loss_s', loss_s.data.item(), n_iter)
+    
+    if data is not None:
+        args.tb.add_scalar('train/loss_syn', loss_syn.data.item(), n_iter)
+        args.tb.add_scalar('train/loss_data', loss_data.data.item(), n_iter)
+
+def prepare_ood_data(train_dataset, model, ood_size, args):
+    if os.path.exists('checkpoints/ood_index/%s-%s-%s-ood-index.pth'%(args.dataset, args.transfer_set, args.teacher)):
+        print("has ood index")
+        ood_index = torch.load('checkpoints/ood_index/%s-%s-%s-ood-index.pth'%(args.dataset, args.transfer_set, args.teacher))
+        return ood_index
+    model.eval()
+    train_loader = torch.utils.data.DataLoader(
+        train_dataset, batch_size=args.batch_size, shuffle=False,
+        num_workers=args.workers)
+    print("no ood index")
+    with torch.no_grad():
+        entropy_list = []
+        model.cuda(args.gpu)
+        model.eval()
+        for i, (images, target) in enumerate(tqdm(train_loader)):
+            if args.gpu is not None:
+                images = images.cuda(args.gpu, non_blocking=True)
+            if torch.cuda.is_available():
+                target = target.cuda(args.gpu, non_blocking=True)
+            # compute output
+            output = model(images)
+            p = torch.nn.functional.softmax(output, dim=1)
+            ent = -(p*torch.log(p)).sum(dim=1)
+            entropy_list.append(ent)
+        entropy_list = torch.cat(entropy_list, dim=0)
+        ood_index = torch.argsort(entropy_list, descending=True)[:ood_size].cpu().tolist()
+        model.cpu()
+        os.makedirs('checkpoints/ood_index', exist_ok=True)
+        torch.save(ood_index, 'checkpoints/ood_index/%s-%s-%s-ood-index.pth'%(args.dataset, args.unlabeled, args.teacher))
+    return ood_index
     
 def save_checkpoint(state, is_best, filename='checkpoint.pth'):
     if is_best:

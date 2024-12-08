@@ -88,69 +88,79 @@ def get_model(name: str, num_classes, pretrained=False, **kwargs):
     return model 
 
 
-def get_dataset(name: str, data_root: str='data', return_transform=False, split=['A', 'B', 'C', 'D']):
+def get_dataset(name: str, data_root: str='data', return_transform=False, 
+                train_transform=None, val_transform=None,
+                split=['A', 'B', 'C', 'D']):
     name = name.lower()
     data_root = os.path.expanduser( data_root )
 
     if name=='mnist':
         num_classes = 10
-        train_transform = T.Compose([
-            T.Resize((32, 32)),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] ),
-        ])
-        val_transform = T.Compose([
-            T.Resize((32, 32)),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] ),
-        ])      
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.Resize((32, 32)),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] ),
+            ])
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.Resize((32, 32)),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] ),
+            ])      
         data_root = os.path.join( data_root, 'torchdata' ) 
         train_dst = datasets.MNIST(data_root, train=True, download=True, transform=train_transform)
         val_dst = datasets.MNIST(data_root, train=False, download=True, transform=val_transform)
     elif name=='cifar10':
         num_classes = 10
-        train_transform = T.Compose([
-            #T.Resize((224, 224), Image.BICUBIC),
-            T.RandomCrop(32, padding=4),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] ),
-        ])
-        val_transform = T.Compose([
-            #T.Resize((224, 224), Image.BICUBIC),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] ),
-        ])
+        if train_transform is None:
+            train_transform = T.Compose([
+                #T.Resize((224, 224), Image.BICUBIC),
+                T.RandomCrop(32, padding=4),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] ),
+            ])
+        if val_transform is None:
+            val_transform = T.Compose([
+                #T.Resize((224, 224), Image.BICUBIC),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] ),
+            ])
         data_root = os.path.join( data_root, 'torchdata' ) 
         train_dst = datasets.CIFAR10(data_root, train=True, download=True, transform=train_transform)
         val_dst = datasets.CIFAR10(data_root, train=False, download=True, transform=val_transform)
     elif name=='c10+p365':
         num_classes = 10
-        train_transform = T.Compose([
-            T.RandomCrop(32, padding=4),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] ),
-        ])
-        val_transform = T.Compose([
-            #T.Resize((224, 224), Image.BICUBIC),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] ),
-        ])
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.RandomCrop(32, padding=4),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] ),
+            ])
+        if val_transform is None:
+            val_transform = T.Compose([
+                #T.Resize((224, 224), Image.BICUBIC),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] ),
+            ])
         data_root = os.path.join( data_root, 'torchdata' ) 
         train_dst_1 = datasets.CIFAR10(data_root, train=True, download=True, transform=train_transform)
         val_dst_1 = datasets.CIFAR10(data_root, train=False, download=True, transform=val_transform)
         
-        train_transform = T.Compose([
-            T.RandomCrop(32, padding=4),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
-        val_transform = T.Compose([
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.RandomCrop(32, padding=4),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize(**NORMALIZE_DICT[name]),
+            ])
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.ToTensor(),
+                T.Normalize(**NORMALIZE_DICT[name]),
+            ])
         data_root = os.path.join( data_root, 'Places365_32x32' ) 
         train_dst_2 = datasets.ImageFolder(os.path.join(data_root, 'train'), transform=train_transform)
         val_dst_2 = datasets.ImageFolder(os.path.join(data_root, 'val'), transform=val_transform)
@@ -158,177 +168,199 @@ def get_dataset(name: str, data_root: str='data', return_transform=False, split=
         val_dst = torch.utils.data.ConcatDataset([val_dst_1, val_dst_2])
     elif name=='cifar100':
         num_classes = 100
-        train_transform = T.Compose([
-            T.RandomCrop(32, padding=4),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] ),
-        ])
-        val_transform = T.Compose([
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] ),
-        ])
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.RandomCrop(32, padding=4),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] ),
+            ])
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] ),
+            ])
         data_root = os.path.join( data_root, 'torchdata' ) 
         train_dst = datasets.CIFAR100(data_root, train=True, download=True, transform=train_transform)
         val_dst = datasets.CIFAR100(data_root, train=False, download=True, transform=val_transform)
     elif name=='svhn':
         num_classes = 10
-        train_transform = T.Compose([
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] ),
-        ])
-        val_transform = T.Compose([
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] ),
-        ])
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] ),
+            ])
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] ),
+            ])
         data_root = os.path.join( data_root, 'torchdata' ) 
         train_dst = datasets.SVHN(data_root, split='train', download=True, transform=train_transform)
         val_dst = datasets.SVHN(data_root, split='test', download=True, transform=val_transform)
     elif name=='imagenet' or name=='imagenet-0.5':
         num_classes=1000
-        train_transform = T.Compose([
-            T.RandomResizedCrop(224),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
-        val_transform = T.Compose([
-            T.Resize(256),
-            T.CenterCrop(224),
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.RandomResizedCrop(224),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize(**NORMALIZE_DICT[name]),
+            ])
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.Resize(256),
+                T.CenterCrop(224),
+                T.ToTensor(),
+                T.Normalize(**NORMALIZE_DICT[name]),
+            ])
         data_root = os.path.join( data_root, 'ILSVRC2012' ) 
         train_dst = datasets.ImageNet(data_root, split='train', transform=train_transform)
         val_dst = datasets.ImageNet(data_root, split='val', transform=val_transform)
     elif name=='imagenet_32x32':
         num_classes=1000
-        train_transform = T.Compose([
-            T.RandomCrop(32, padding=4),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
-        val_transform = T.Compose([
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.RandomCrop(32, padding=4),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize(**NORMALIZE_DICT[name]),
+            ])
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.ToTensor(),
+                T.Normalize(**NORMALIZE_DICT[name]),
+            ])
         data_root = os.path.join( data_root, 'ImageNet_32x32' ) 
         train_dst = datasets.ImageFolder(os.path.join(data_root, 'train/box'), transform=train_transform)
         val_dst = datasets.ImageFolder(os.path.join(data_root, 'val/box'), transform=val_transform)
     elif name=='places365_32x32':
         num_classes=365
-        train_transform = T.Compose([
-            T.RandomCrop(32, padding=4),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
-        val_transform = T.Compose([
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.RandomCrop(32, padding=4),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize(**NORMALIZE_DICT[name]),
+            ])
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.ToTensor(),
+                T.Normalize(**NORMALIZE_DICT[name]),
+            ])
         data_root = os.path.join( data_root, 'Places365_32x32' ) 
         train_dst = datasets.ImageFolder(os.path.join(data_root, 'train'), transform=train_transform)
         val_dst = datasets.ImageFolder(os.path.join(data_root, 'val'), transform=val_transform)
     elif name=='places365_64x64':
         num_classes=365
-        train_transform = T.Compose([
-            T.RandomCrop(64, padding=8),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
-        val_transform = T.Compose([
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.RandomCrop(64, padding=8),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize(**NORMALIZE_DICT[name]),
+            ])
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.ToTensor(),
+                T.Normalize(**NORMALIZE_DICT[name]),
+            ])
         data_root = os.path.join( data_root, 'Places365_64x64' ) 
         train_dst = datasets.ImageFolder(os.path.join(data_root, 'train'), transform=train_transform)
         val_dst = None #datasets.ImageFolder(os.path.join(data_root, 'val'), transform=val_transform)
     elif name=='places365':
         num_classes=365
-        train_transform = T.Compose([
-            T.RandomResizedCrop(224),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
-        val_transform = T.Compose([
-            T.Resize(256),
-            T.CenterCrop(224),
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.RandomResizedCrop(224),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize(**NORMALIZE_DICT[name]),
+            ])
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.Resize(256),
+                T.CenterCrop(224),
+                T.ToTensor(),
+                T.Normalize(**NORMALIZE_DICT[name]),
+            ])
         data_root = os.path.join( data_root, 'Places365' ) 
         train_dst = datasets.ImageFolder(os.path.join(data_root, 'train'), transform=train_transform)
         val_dst = datasets.ImageFolder(os.path.join(data_root, 'val'), transform=val_transform)
     elif name=='cub200':
         num_classes=200
-        train_transform = T.Compose([
-            T.Resize(64),
-            T.RandomCrop(64, padding=8),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] )]
-        )
-        val_transform = T.Compose([
-            T.Resize(64),
-            T.CenterCrop(64),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] )]
-        )       
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.Resize(64),
+                T.RandomCrop(64, padding=8),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] )]
+            )
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.Resize(64),
+                T.CenterCrop(64),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] )]
+            )       
         data_root = os.path.join(data_root, 'CUB200')
         train_dst = datafree.datasets.CUB200(data_root, split='train', transform=train_transform)
         val_dst = datafree.datasets.CUB200(data_root, split='val', transform=val_transform)
     elif name=='stanford_dogs':
         num_classes=120
-        train_transform = T.Compose([
-            T.Resize(64),
-            T.RandomCrop(64, padding=8),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] )]
-        )
-        val_transform = T.Compose([
-            T.Resize(64),
-            T.CenterCrop(64),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] )]
-        )       
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.Resize(64),
+                T.RandomCrop(64, padding=8),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] )]
+            )
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.Resize(64),
+                T.CenterCrop(64),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] )]
+            )       
         data_root = os.path.join(data_root, 'StanfordDogs')
         train_dst = datafree.datasets.StanfordDogs(data_root, split='train', transform=train_transform)
         val_dst = datafree.datasets.StanfordDogs(data_root, split='test', transform=val_transform)
     elif name=='stanford_cars':
         num_classes=196
-        train_transform = T.Compose([
-            T.Resize(64),
-            T.RandomCrop(64, padding=8),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] )]
-        )
-        val_transform = T.Compose([
-            T.Resize(64),
-            T.CenterCrop(64),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] )]
-        )       
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.Resize(64),
+                T.RandomCrop(64, padding=8),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] )]
+            )
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.Resize(64),
+                T.CenterCrop(64),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] )]
+            )       
         data_root = os.path.join(data_root, 'StanfordCars')
         train_dst = datafree.datasets.StanfordCars(data_root, split='train', transform=train_transform)
         val_dst = datafree.datasets.StanfordCars(data_root, split='test', transform=val_transform)
     elif name=='tiny_imagenet':
         num_classes=200
-        train_transform = T.Compose([
-            T.RandomCrop(64, padding=4),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] )]
-        )
-        val_transform = T.Compose([
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] )]
-        )       
+        if train_transform is None:
+            train_transform = T.Compose([
+                T.RandomCrop(64, padding=4),
+                T.RandomHorizontalFlip(),
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] )]
+            )
+        if val_transform is None:
+            val_transform = T.Compose([
+                T.ToTensor(),
+                T.Normalize( **NORMALIZE_DICT[name] )]
+            )       
         data_root = os.path.join(data_root, 'tiny-imagenet-200')
         train_dst = datafree.datasets.TinyImageNet(data_root, split='train', transform=train_transform)
         val_dst = datafree.datasets.TinyImageNet(data_root, split='val', transform=val_transform)
@@ -336,19 +368,21 @@ def get_dataset(name: str, data_root: str='data', return_transform=False, split=
     # For semantic segmentation
     elif name=='nyuv2':
         num_classes=13
-        train_transform = sT.Compose([
-            sT.Multi( sT.Resize(256), sT.Resize(256, interpolation=Image.NEAREST)),
-            #sT.Multi( sT.ColorJitter(0.2, 0.2, 0.2), None),
-            sT.Sync(  sT.RandomCrop(128),  sT.RandomCrop(128)),
-            sT.Sync(  sT.RandomHorizontalFlip(), sT.RandomHorizontalFlip() ),
-            sT.Multi( sT.ToTensor(), sT.ToTensor( normalize=False, dtype=torch.uint8) ),
-            sT.Multi( sT.Normalize( **NORMALIZE_DICT[name] ), None) #, sT.Lambda(lambd=lambda x: (x.squeeze()-1).to(torch.long)) )
-        ])
-        val_transform = sT.Compose([
-            sT.Multi( sT.Resize(256), sT.Resize(256, interpolation=Image.NEAREST)),
-            sT.Multi( sT.ToTensor(),  sT.ToTensor( normalize=False, dtype=torch.uint8 ) ),
-            sT.Multi( sT.Normalize( **NORMALIZE_DICT[name] ), None)#sT.Lambda(lambd=lambda x: (x.squeeze()-1).to(torch.long)) )
-        ])
+        if train_transform is None:
+            train_transform = sT.Compose([
+                sT.Multi( sT.Resize(256), sT.Resize(256, interpolation=Image.NEAREST)),
+                #sT.Multi( sT.ColorJitter(0.2, 0.2, 0.2), None),
+                sT.Sync(  sT.RandomCrop(128),  sT.RandomCrop(128)),
+                sT.Sync(  sT.RandomHorizontalFlip(), sT.RandomHorizontalFlip() ),
+                sT.Multi( sT.ToTensor(), sT.ToTensor( normalize=False, dtype=torch.uint8) ),
+                sT.Multi( sT.Normalize( **NORMALIZE_DICT[name] ), None) #, sT.Lambda(lambd=lambda x: (x.squeeze()-1).to(torch.long)) )
+            ])
+        if val_transform is None:
+            val_transform = sT.Compose([
+                sT.Multi( sT.Resize(256), sT.Resize(256, interpolation=Image.NEAREST)),
+                sT.Multi( sT.ToTensor(),  sT.ToTensor( normalize=False, dtype=torch.uint8 ) ),
+                sT.Multi( sT.Normalize( **NORMALIZE_DICT[name] ), None)#sT.Lambda(lambd=lambda x: (x.squeeze()-1).to(torch.long)) )
+            ])
         data_root = os.path.join( data_root, 'NYUv2' )
         train_dst = datafree.datasets.NYUv2(data_root, split='train', transforms=train_transform)
         val_dst = datafree.datasets.NYUv2(data_root, split='test', transforms=val_transform)
