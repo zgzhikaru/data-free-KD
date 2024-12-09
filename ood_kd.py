@@ -393,7 +393,7 @@ def main_worker(gpu, ngpus_per_node, args):
         args.current_epoch=epoch
 
         if args.transfer_set is not None:
-            #args.ep_steps = len(train_loader)
+            args.ep_steps = len(train_loader)
             train_iter = iter(train_loader)
             #if args.include_raw:
             raw_iter = iter(raw_loader)
@@ -402,11 +402,26 @@ def main_worker(gpu, ngpus_per_node, args):
             args.n_iter = epoch * args.ep_steps + it
 
             #data = unwrap(next(train_iter)).cuda(args.gpu) if args.transfer_set else None
-            data = get_data(train_iter, args)
+            # data = get_data(train_iter, args)
+            
+            try:
+                data = get_data(train_iter, args)
+                # 处理数据
+            except StopIteration:
+                train_iter = iter(train_loader)  # 重新创建迭代器
+                data = get_data(train_iter, args)
+
             # 1. Data synthesis
             vis_results = synthesizer.synthesize(data, args) # g_steps
             # 2. Knowledge distillation
-            data = get_data(raw_iter, args) if args.include_raw else None
+            if args.include_raw:
+                try:
+                    data = get_data(raw_iter, args) 
+                except StopIteration:
+                    train_iter = iter(raw_loader)  # 重新创建迭代器
+                    data = get_data(train_iter, args)
+            else:
+                data = None
             train( synthesizer, [student, teacher], criterion, optimizer, data, args) # # kd_steps
         
         for vis_name, vis_image in vis_results.items():

@@ -38,7 +38,10 @@ class Generator(nn.Module):
         img = self.conv_blocks(out)
         return img
 
-
+# 总结图像尺寸变化路径：
+# (8,8)→(16,16)→(32,32)
+# 通道数变化：
+# 256→128→64→3
 class LargeGenerator(nn.Module):
     def __init__(self, nz=100, ngf=64, img_size=32, nc=3):
         super(LargeGenerator, self).__init__()
