@@ -32,12 +32,13 @@ from torch.utils.tensorboard import SummaryWriter
 parser = argparse.ArgumentParser(description='Data-free Knowledge Distillation')
 
 # Data Free
-parser.add_argument('--method', required=True, choices=['dfnd', 'mosaic'])
+parser.add_argument('--method', required=True, choices=['dfnd', 'mosaic', 'ae_mosaic'])
 parser.add_argument('--adv', default=0, type=float, help='scaling factor for adversarial distillation')
 parser.add_argument('--bn', default=0, type=float, help='scaling factor for BN regularization')
 parser.add_argument('--oh', default=0, type=float, help='scaling factor for one hot loss (cross entropy)')
 parser.add_argument('--act', default=0, type=float, help='scaling factor for activation loss used in DAFL')
 parser.add_argument('--balance', default=0, type=float, help='scaling factor for class balance')
+parser.add_argument('--recon', default=0, type=float, help='scaling factor for encoder loss')
 
 parser.add_argument('--entropy', default=0, type=float, help='scaling factor for entropy loss')
 parser.add_argument('--local', default=0, type=float, help='scaling factor for discriminator loss')
@@ -308,7 +309,7 @@ def main_worker(gpu, ngpus_per_node, args):
     if args.synthesis_batch_size is None:
         args.synthesis_batch_size = args.batch_size
     
-    if args.method in ['dfnd', 'mosaic']:
+    if args.method in ['dfnd', 'mosaic', 'ae_mosaic']:
         # nz = 512 if args.method=='dafl' else 256
         nz = args.z_dim
         generator = datafree.models.generator.LargeGenerator(nz=nz, ngf=64, img_size=32, nc=3)
@@ -321,11 +322,16 @@ def main_worker(gpu, ngpus_per_node, args):
         elif args.method == 'mosaic':
             discriminator = datafree.models.generator.PatchDiscriminator(nc=3, ndf=128)
             discriminator = prepare_model(discriminator)
+        elif args.method == 'ae_mosaic':
+            discriminator = datafree.models.generator.PatchDiscriminator(nc=3, ndf=128)
+            discriminator = prepare_model(discriminator)
+            encoder = datafree.models.generator.Encoder(nc=3, nz=nz)
+            encoder = prepare_model(encoder)
 
         criterion = torch.nn.L1Loss() if args.method=='dfad' else datafree.criterions.KLDiv()
         synthesizer = datafree.synthesis.GenerativeSynthesizer(
                  teacher=teacher, student=student, generator=generator, nz=nz, discriminator=discriminator,
-                 img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g,
+                 img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g, recon=args.recon, encoder=encoder,
                  synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, entropy=args.entropy,
                  adv=args.adv, bn=args.bn, oh=args.oh, act=args.act, balance=args.balance, criterion=criterion,
                  normalizer=args.normalizer, ulb_normalizer=args.ulb_normalizer, device=args.gpu)
@@ -401,27 +407,13 @@ def main_worker(gpu, ngpus_per_node, args):
         for it in tqdm(range( args.ep_steps )): # total kd_steps < ep_steps
             args.n_iter = epoch * args.ep_steps + it
 
-            #data = unwrap(next(train_iter)).cuda(args.gpu) if args.transfer_set else None
-            # data = get_data(train_iter, args)
+            data = get_data(train_iter, args)
             
-            try:
-                data = get_data(train_iter, args)
-                # 处理数据
-            except StopIteration:
-                train_iter = iter(train_loader)  # 重新创建迭代器
-                data = get_data(train_iter, args)
-
             # 1. Data synthesis
             vis_results = synthesizer.synthesize(data, args) # g_steps
             # 2. Knowledge distillation
-            if args.include_raw:
-                try:
-                    data = get_data(raw_iter, args) 
-                except StopIteration:
-                    train_iter = iter(raw_loader)  # 重新创建迭代器
-                    data = get_data(train_iter, args)
-            else:
-                data = None
+            data = get_data(raw_iter, args) if args.include_raw else None
+            
             train( synthesizer, [student, teacher], criterion, optimizer, data, args) # # kd_steps
         
         for vis_name, vis_image in vis_results.items():

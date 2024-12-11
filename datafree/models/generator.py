@@ -75,10 +75,11 @@ class LargeGenerator(nn.Module):
 class Encoder(nn.Module):
     def __init__(self, nz=100, ndf=64, img_size=32, nc=3):
         super(Encoder, self).__init__()
+        self.init_size = img_size // 4
 
         
         self.conv_blocks = nn.Sequential(
-            torch.logit,
+            # torch.logit,
             nn.Conv2d(nc, ndf, 3, stride=1, padding=1),
             nn.LeakyReLU(0.2, inplace=True),
             nn.BatchNorm2d(ndf),
@@ -94,11 +95,13 @@ class Encoder(nn.Module):
         )
 
         self.l1 = nn.Sequential(nn.Linear(ndf * 4 * self.init_size ** 2, nz))
+        self.log_var = nn.Sequential(nn.Linear(ndf * 4 * self.init_size ** 2, nz))
     def forward(self, img):
         out = self.conv_blocks(img)
         out = out.view(out.shape[0], -1)
         z = self.l1(out)
-        return z
+        log_var = self.log_var(out)
+        return z, log_var
 
 class DCGAN_Generator(nn.Module):
     """ Generator from DCGAN: https://arxiv.org/abs/1511.06434

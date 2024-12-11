@@ -10,8 +10,8 @@ from datafree.utils import ImagePool, DataIter, clip_images
 
 class GenerativeSynthesizer(BaseSynthesis):
     def __init__(self, teacher, student, generator, nz, img_size, iterations=1,
-                 lr_g=1e-3, synthesis_batch_size=128, sample_batch_size=128, 
-                 adv=0, bn=0, oh=0, act=0, balance=0, criterion=None,
+                 lr_g=1e-3, synthesis_batch_size=128, sample_batch_size=128, recon = 0,
+                 adv=0, bn=0, oh=0, act=0, balance=0, criterion=None, encoder = None,
                  entropy=0, discriminator=None, local=0, total_steps=None, 
                  normalizer=None, ulb_normalizer=None, device='cpu',
                  # TODO: FP16 and distributed training 
@@ -38,6 +38,7 @@ class GenerativeSynthesizer(BaseSynthesis):
         self.act = act
         self.entropy = entropy
         self.local = local
+        self.recon = recon
 
 
         #if discriminator is not None:
@@ -45,9 +46,15 @@ class GenerativeSynthesizer(BaseSynthesis):
         if self.discriminator is not None:
             self.discriminator = self.discriminator.to(device).train()
             self.optimizer_d = torch.optim.Adam(self.discriminator.parameters(), lr=self.lr_g, betas=(0.5,0.999))
+        
+        self.encoder = encoder 
+        if self.encoder is not None:
+            self.encoder = self.encoder.to(device).train()
+            self.optimizer_e = torch.optim.Adam(self.encoder.parameters(), lr=self.lr_g, betas=(0.5,0.999))
             
         # generator
         self.generator = generator.to(device).train()
+        
         self.optimizer = torch.optim.Adam(self.generator.parameters(), lr=self.lr_g, betas=(0.5,0.999))
         self.distributed = distributed
         self.use_fp16 = use_fp16
@@ -60,6 +67,12 @@ class GenerativeSynthesizer(BaseSynthesis):
             if isinstance(m, nn.BatchNorm2d):
                 self.hooks.append( DeepInversionHook(m) )
 
+    def _sample_gauss(self, mu, std):
+        # Reparametrization trick
+        # Sample N(0, I)
+        eps = torch.randn_like(std)
+        return mu + eps * std, eps
+
     def synthesize(self, data = None, args = None):
         self.student.eval()
         self.generator.train()
@@ -71,6 +84,7 @@ class GenerativeSynthesizer(BaseSynthesis):
         data_batch_size = data.shape[0]
         synthesis_batch_size = self.synthesis_batch_size
         
+        # 判别器的更新
         if self.discriminator is not None:
             # Discriminator update
             self.discriminator.train()
@@ -96,7 +110,34 @@ class GenerativeSynthesizer(BaseSynthesis):
                 loss_d.backward()
                 self.optimizer_d.step()
 
+        # Encoder 更新
+        if self.encoder is not None:
+            self.encoder.train()
+            for it in range(self.iterations):
+                mu, log_var = self.encoder(data)
+                z_enc, _ = self._sample_gauss(mu, log_var)
+                
+                score_r = self.discriminator(data.detach())
+                score_enc = self.discriminator(self.ulb_normalizer(self.generator(z_enc)).detach())
 
+                # KLD = -0.5 * torch.sum(1 + log_var - mu.pow(2) - log_var.exp(), dim=-1)
+                # KLD = KLD.mean(dim=0)
+                loss_recon = 0.5 * F.mse_loss(score_r.reshape(synthesis_batch_size, -1), \
+                                              score_enc.reshape(synthesis_batch_size, -1), \
+                                                reduction="none").sum(dim=-1)
+                loss_recon = loss_recon.mean(dim=0)
+                # print("KLD: ", KLD)
+                # print("loss_recon: ", loss_recon)
+                loss_enc =  loss_recon
+
+                self.optimizer_e.zero_grad()
+                loss_enc.backward()
+                self.optimizer_e.step()
+
+                args.tb.add_scalar('train/loss_recon', loss_recon.data.item(), args.n_iter)
+                args.tb.add_scalar('train/loss_enc', loss_enc.data.item(), args.n_iter)
+                
+        # 生成器更新
         for it in range(self.iterations):
             if output_g is None:
                 z = torch.randn( size=(self.synthesis_batch_size, self.nz), device=self.device )
@@ -109,6 +150,7 @@ class GenerativeSynthesizer(BaseSynthesis):
                 #loss_g = F.binary_cross_entropy_with_logits(score, torch.ones_like(score), reduction='sum') / len(score)
             else:
                 loss_g = 0
+                
 
             inputs = self.normalizer(output_g)
             t_out, t_feat = self.teacher(inputs, return_features=True)
@@ -128,14 +170,30 @@ class GenerativeSynthesizer(BaseSynthesis):
             p = pyx.mean(0)
             loss_balance = (p * torch.log(p)).sum() # maximization
             loss_tc = self.bn * loss_bn + self.oh * loss_oh + self.entropy * loss_ent \
-                + self.adv * loss_adv + self.balance * loss_balance + self.act * loss_act
+                + self.adv * loss_adv + self.balance * loss_balance + self.act * loss_act \
+                
             
-            loss = self.local * loss_g + loss_tc
+            loss = self.local * loss_g + loss_tc 
+            
+            if self.encoder is not None:
+                score_r = self.discriminator(data.detach())
+                score_enc = self.discriminator(self.ulb_normalizer(self.generator(z_enc)).detach())
+
+                # KLD = -0.5 * torch.sum(1 + log_var - mu.pow(2) - log_var.exp(), dim=-1)
+                # KLD = KLD.mean(dim=0)
+                loss_recon = 0.5 * F.mse_loss(score_r.reshape(synthesis_batch_size, -1), \
+                                              score_enc.reshape(synthesis_batch_size, -1), \
+                                                reduction="none").sum(dim=-1)
+                loss_recon = loss_recon.mean(dim=0)
+                loss += self.recon * loss_recon 
+
 
             self.optimizer.zero_grad()
             loss.backward()
             self.optimizer.step()
+                
 
+            
         args.tb.add_scalar('train/loss_g', loss_g.data.item(), args.n_iter)
         args.tb.add_scalar('train/loss_oh', loss_oh.data.item(), args.n_iter)
         args.tb.add_scalar('train/loss_ent', loss_ent.data.item(), args.n_iter)
@@ -143,11 +201,18 @@ class GenerativeSynthesizer(BaseSynthesis):
         args.tb.add_scalar('train/loss_adv', loss_adv.data.item(), args.n_iter)
         args.tb.add_scalar('train/loss_bn', loss_bn.data.item(), args.n_iter)
         args.tb.add_scalar('train/loss_tc', loss_tc.data.item(), args.n_iter)
-        
+        if self.encoder is not None:
+            
+            lr_e = self.optimizer_e.param_groups[0]['lr']
+            args.tb.add_scalar('train/lr_e', lr_e, args.n_iter)
+
         lr_g = self.optimizer.param_groups[0]['lr']
         lr_d = self.optimizer_d.param_groups[0]['lr']
+        
+
         args.tb.add_scalar('train/lr_g', lr_g, args.n_iter)
         args.tb.add_scalar('train/lr_d', lr_d, args.n_iter)
+        
 
         return { 'synthetic': self.normalizer(inputs.detach(), reverse=True) }
     
