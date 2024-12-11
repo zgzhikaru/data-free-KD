@@ -71,6 +71,34 @@ class LargeGenerator(nn.Module):
         img = self.conv_blocks(out)
         return img
         
+# 通道变化与LargeGenerator相反  从图片到特征
+class Encoder(nn.Module):
+    def __init__(self, nz=100, ndf=64, img_size=32, nc=3):
+        super(Encoder, self).__init__()
+
+        
+        self.conv_blocks = nn.Sequential(
+            torch.logit,
+            nn.Conv2d(nc, ndf, 3, stride=1, padding=1),
+            nn.LeakyReLU(0.2, inplace=True),
+            nn.BatchNorm2d(ndf),
+
+            nn.Conv2d(ndf, ndf * 2, 3, stride=1, padding=1, bias=False),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.LeakyReLU(0.2, inplace=True),
+            nn.BatchNorm2d(ndf * 2),
+            
+            nn.Conv2d(ndf * 2, ndf * 4, 3, stride=1, padding=1, bias=False),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.BatchNorm2d(ndf * 4),
+        )
+
+        self.l1 = nn.Sequential(nn.Linear(ndf * 4 * self.init_size ** 2, nz))
+    def forward(self, img):
+        out = self.conv_blocks(img)
+        out = out.view(out.shape[0], -1)
+        z = self.l1(out)
+        return z
 
 class DCGAN_Generator(nn.Module):
     """ Generator from DCGAN: https://arxiv.org/abs/1511.06434

@@ -258,7 +258,7 @@ class CMISynthesizer(BaseSynthesis):
 
         #self.contrast_loss = ContrastLoss(temperature=self.cr_T, contrast_mode='one')
 
-    def synthesize(self, targets=None):
+    def synthesize(self, targets=None, args=None):
         self.student.eval()
         self.teacher.eval()
         best_cost = 1e6
