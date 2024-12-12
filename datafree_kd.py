@@ -107,7 +107,7 @@ parser.add_argument('--fp16', action='store_true',
 parser.add_argument('--seed', default=None, type=int,
                     help='seed for initializing training.')
 parser.add_argument('--log_tag', default='')
-parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
+parser.add_argument('-j', '--workers', default=12, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--start_epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
@@ -268,7 +268,7 @@ def main_worker(gpu, ngpus_per_node, args):
         synthesizer = datafree.synthesis.GenerativeSynthesizer(
                  teacher=teacher, student=student, generator=generator, nz=nz, 
                  img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g,
-                 synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, 
+                 synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, enc=args.enc,
                  adv=args.adv, bn=args.bn, oh=args.oh, act=args.act, balance=args.balance, criterion=criterion,
                  normalizer=args.normalizer, device=args.gpu)
     elif args.method=='cmi':

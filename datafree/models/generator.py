@@ -227,9 +227,11 @@ class Discriminator(nn.Module):
         ds_size = img_size // 2 ** 4
         self.adv_layer = nn.Sequential(nn.Linear(128 * ds_size ** 2, 1), nn.Sigmoid())
 
-    def forward(self, img):
+    def forward(self, img, return_features=False):
         out = self.model(img)
         out = out.view(out.shape[0], -1)
+        if return_features:
+            return out
         validity = self.adv_layer(out)
         return validity
 
