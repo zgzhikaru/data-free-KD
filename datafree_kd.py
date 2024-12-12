@@ -340,7 +340,7 @@ def main_worker(gpu, ngpus_per_node, args):
                  teacher=teacher, student=student, num_classes=num_classes, 
                  img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g,
                  synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, 
-                 adv=args.adv, bn=args.bn, oh=args.oh, tv=0.001, l2=0.0,
+                 adv=args.adv, bn=args.bn, oh=args.oh, ent=args.ent, tv=0.001, l2=0.0,
                  save_dir=args.save_dir, transform=ori_dataset.transform,
                  normalizer=args.normalizer, device=args.gpu)
         
@@ -363,7 +363,7 @@ def main_worker(gpu, ngpus_per_node, args):
                  teacher=teacher, student=student, generator=generator, nz=nz, discriminator=discriminator,
                  img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g,
                  synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, 
-                 adv=args.adv, bn=args.bn, oh=args.oh, act=args.act, balance=args.balance, local=args.local, 
+                 adv=args.adv, bn=args.bn, oh=args.oh, ent=args.ent, act=args.act, balance=args.balance, local=args.local, 
                  criterion=criterion, normalizer=args.normalizer, ulb_normalizer=args.ulb_normalizer, 
                  total_steps=args.epochs * args.ep_steps, 
                  device=args.gpu)

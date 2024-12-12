@@ -1,0 +1,254 @@
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: method: mosaic
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: adv: 1.0
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: bn: 0.0
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: oh: 0.0
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: ent: 1.0
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: act: 0.0
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: balance: 10.0
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: save_dir: run/synthesis
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: cr: 1
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: cr_T: 0.5
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: cmi_init: None
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: local: 1.0
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: data_root: data
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: teacher: resnet34
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: student: resnet18
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: dataset: cifar100
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: transfer_set: imagenet_32x32
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: ood_subset: True
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: shared_normalizer: True
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: include_raw: True
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: lr: 0.1
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: lr_decay_milestones: 120,150,180
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: lr_g: 0.001
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: T: 1.0
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: z_dim: 256
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: epochs: 200
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: g_steps: 1
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: kd_steps: 5
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: ep_steps: 400
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: resume: 
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: evaluate_only: False
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: batch_size: 256
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: synthesis_batch_size: None
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: gpu: 0
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: world_size: -1
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: rank: -1
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: dist_url: tcp://224.66.41.62:23456
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: dist_backend: nccl
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: multiprocessing_distributed: False
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: fp16: False
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: seed: 0
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: log_tag: 
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: workers: 8
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: start_epoch: 0
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: momentum: 0.9
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: weight_decay: 0.0001
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: print_freq: 0
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: pretrained: False
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: distributed: False
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: ngpus_per_node: 2
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: autocast: <function dummy_ctx at 0x72523e168040>
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: logger: <Logger cifar100-imagenet_32x32-resnet34-resnet18-mosaic (DEBUG)>
+[12/08 10:06:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: tb: <torch.utils.tensorboard.writer.SummaryWriter object at 0x7251cd9cbe80>
+[12/08 10:08:33] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=0 Acc@1=3.6200 Acc@5=14.5900 Loss=4.4790 Lr=0.1000
+[12/08 10:10:25] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=1 Acc@1=8.6900 Acc@5=27.3400 Loss=4.1076 Lr=0.1000
+[12/08 10:12:16] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=2 Acc@1=18.5900 Acc@5=45.7800 Loss=3.4928 Lr=0.1000
+[12/08 10:14:08] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=3 Acc@1=22.7400 Acc@5=51.7600 Loss=3.3195 Lr=0.0999
+[12/08 10:15:59] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=4 Acc@1=31.5400 Acc@5=64.3800 Loss=2.9840 Lr=0.0999
+[12/08 10:17:50] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=5 Acc@1=38.0100 Acc@5=71.0100 Loss=2.7365 Lr=0.0998
+[12/08 10:19:42] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=6 Acc@1=45.8400 Acc@5=77.5200 Loss=2.4233 Lr=0.0998
+[12/08 10:21:33] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=7 Acc@1=48.4800 Acc@5=80.5600 Loss=2.1558 Lr=0.0997
+[12/08 10:23:25] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=8 Acc@1=49.7000 Acc@5=81.9700 Loss=2.1194 Lr=0.0996
+[12/08 10:25:16] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=9 Acc@1=53.5400 Acc@5=83.1900 Loss=1.9741 Lr=0.0995
+[12/08 10:27:08] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=10 Acc@1=57.5500 Acc@5=85.9600 Loss=1.8163 Lr=0.0994
+[12/08 10:28:59] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=11 Acc@1=59.0500 Acc@5=87.1200 Loss=1.7018 Lr=0.0993
+[12/08 10:30:50] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=12 Acc@1=61.0200 Acc@5=89.0500 Loss=1.5987 Lr=0.0991
+[12/08 10:32:42] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=13 Acc@1=62.6000 Acc@5=89.3900 Loss=1.5436 Lr=0.0990
+[12/08 10:34:33] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=14 Acc@1=62.1200 Acc@5=88.7000 Loss=1.5397 Lr=0.0988
+[12/08 10:36:25] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=15 Acc@1=63.4500 Acc@5=89.1200 Loss=1.5008 Lr=0.0986
+[12/08 10:38:16] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=16 Acc@1=64.1300 Acc@5=89.5200 Loss=1.4803 Lr=0.0984
+[12/08 10:40:07] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=17 Acc@1=63.0500 Acc@5=88.8500 Loss=1.5527 Lr=0.0982
+[12/08 10:41:59] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=18 Acc@1=64.3600 Acc@5=89.1800 Loss=1.4858 Lr=0.0980
+[12/08 10:43:50] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=19 Acc@1=66.6100 Acc@5=90.6000 Loss=1.3716 Lr=0.0978
+[12/08 10:45:42] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=20 Acc@1=64.8900 Acc@5=89.6800 Loss=1.4604 Lr=0.0976
+[12/08 10:47:33] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=21 Acc@1=66.1400 Acc@5=90.0200 Loss=1.4174 Lr=0.0973
+[12/08 10:49:24] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=22 Acc@1=67.3700 Acc@5=91.2600 Loss=1.3614 Lr=0.0970
+[12/08 10:51:16] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=23 Acc@1=65.9200 Acc@5=89.9600 Loss=1.4082 Lr=0.0968
+[12/08 10:53:07] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=24 Acc@1=65.2600 Acc@5=89.9700 Loss=1.4213 Lr=0.0965
+[12/08 10:54:59] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=25 Acc@1=66.7500 Acc@5=91.0100 Loss=1.3522 Lr=0.0962
+[12/08 10:56:50] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=26 Acc@1=67.3000 Acc@5=90.9900 Loss=1.3549 Lr=0.0959
+[12/08 10:58:41] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=27 Acc@1=66.7100 Acc@5=90.7400 Loss=1.3696 Lr=0.0956
+[12/08 11:00:33] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=28 Acc@1=66.3700 Acc@5=91.1300 Loss=1.3305 Lr=0.0952
+[12/08 11:02:24] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=29 Acc@1=67.0700 Acc@5=91.3000 Loss=1.3301 Lr=0.0949
+[12/08 11:04:15] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=30 Acc@1=68.0500 Acc@5=90.7000 Loss=1.2717 Lr=0.0946
+[12/08 11:06:07] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=31 Acc@1=67.4000 Acc@5=90.9600 Loss=1.3389 Lr=0.0942
+[12/08 11:07:58] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=32 Acc@1=67.9900 Acc@5=91.1600 Loss=1.2877 Lr=0.0938
+[12/08 11:09:50] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=33 Acc@1=67.4500 Acc@5=90.7500 Loss=1.3060 Lr=0.0934
+[12/08 11:11:41] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=34 Acc@1=68.2800 Acc@5=91.2100 Loss=1.2814 Lr=0.0930
+[12/08 11:13:32] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=35 Acc@1=67.9000 Acc@5=90.6100 Loss=1.2938 Lr=0.0926
+[12/08 11:15:24] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=36 Acc@1=68.2700 Acc@5=91.0900 Loss=1.2832 Lr=0.0922
+[12/08 11:17:16] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=37 Acc@1=68.4500 Acc@5=91.1900 Loss=1.2659 Lr=0.0918
+[12/08 11:19:11] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=38 Acc@1=69.1300 Acc@5=91.6300 Loss=1.2505 Lr=0.0914
+[12/08 11:21:06] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=39 Acc@1=69.5200 Acc@5=91.8600 Loss=1.2342 Lr=0.0909
+[12/08 11:22:57] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=40 Acc@1=69.5800 Acc@5=91.5900 Loss=1.2442 Lr=0.0905
+[12/08 11:24:48] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=41 Acc@1=69.6400 Acc@5=91.5300 Loss=1.2282 Lr=0.0900
+[12/08 11:26:38] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=42 Acc@1=68.5200 Acc@5=91.1000 Loss=1.2661 Lr=0.0895
+[12/08 11:28:29] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=43 Acc@1=69.6300 Acc@5=91.4800 Loss=1.2522 Lr=0.0890
+[12/08 11:30:20] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=44 Acc@1=70.4100 Acc@5=91.7300 Loss=1.2119 Lr=0.0885
+[12/08 11:32:10] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=45 Acc@1=68.6300 Acc@5=91.3700 Loss=1.2244 Lr=0.0880
+[12/08 11:34:01] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=46 Acc@1=69.4200 Acc@5=91.5000 Loss=1.2234 Lr=0.0875
+[12/08 11:35:52] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=47 Acc@1=69.0600 Acc@5=91.8900 Loss=1.2306 Lr=0.0870
+[12/08 11:37:42] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=48 Acc@1=69.6900 Acc@5=91.7000 Loss=1.2314 Lr=0.0864
+[12/08 11:39:33] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=49 Acc@1=70.6400 Acc@5=91.9900 Loss=1.1995 Lr=0.0859
+[12/08 11:41:24] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=50 Acc@1=69.9400 Acc@5=91.8000 Loss=1.2174 Lr=0.0854
+[12/08 11:43:14] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=51 Acc@1=70.6000 Acc@5=91.9600 Loss=1.2096 Lr=0.0848
+[12/08 11:45:05] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=52 Acc@1=70.1400 Acc@5=91.7100 Loss=1.2102 Lr=0.0842
+[12/08 11:46:56] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=53 Acc@1=70.0900 Acc@5=91.7100 Loss=1.2178 Lr=0.0837
+[12/08 11:48:46] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=54 Acc@1=70.6300 Acc@5=92.2000 Loss=1.1932 Lr=0.0831
+[12/08 11:50:37] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=55 Acc@1=70.8600 Acc@5=92.2300 Loss=1.2002 Lr=0.0825
+[12/08 11:52:27] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=56 Acc@1=70.1500 Acc@5=91.9300 Loss=1.2072 Lr=0.0819
+[12/08 11:54:18] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=57 Acc@1=69.3000 Acc@5=91.6700 Loss=1.2252 Lr=0.0813
+[12/08 11:56:09] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=58 Acc@1=70.0900 Acc@5=91.7900 Loss=1.1913 Lr=0.0806
+[12/08 11:57:59] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=59 Acc@1=70.0600 Acc@5=91.8600 Loss=1.1935 Lr=0.0800
+[12/08 11:59:50] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=60 Acc@1=69.6800 Acc@5=91.8400 Loss=1.1964 Lr=0.0794
+[12/08 12:01:41] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=61 Acc@1=69.9000 Acc@5=92.0600 Loss=1.1946 Lr=0.0788
+[12/08 12:03:31] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=62 Acc@1=71.1000 Acc@5=92.1100 Loss=1.1796 Lr=0.0781
+[12/08 12:05:22] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=63 Acc@1=70.8000 Acc@5=92.2900 Loss=1.1615 Lr=0.0775
+[12/08 12:07:13] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=64 Acc@1=69.9200 Acc@5=91.9700 Loss=1.1887 Lr=0.0768
+[12/08 12:09:03] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=65 Acc@1=69.8900 Acc@5=91.2600 Loss=1.2229 Lr=0.0761
+[12/08 12:10:54] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=66 Acc@1=70.6600 Acc@5=92.1600 Loss=1.1687 Lr=0.0755
+[12/08 12:12:44] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=67 Acc@1=70.6400 Acc@5=92.4000 Loss=1.1665 Lr=0.0748
+[12/08 12:14:35] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=68 Acc@1=71.1000 Acc@5=91.8800 Loss=1.1610 Lr=0.0741
+[12/08 12:16:26] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=69 Acc@1=70.6200 Acc@5=92.0000 Loss=1.1776 Lr=0.0734
+[12/08 12:18:18] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=70 Acc@1=71.1200 Acc@5=92.0600 Loss=1.1290 Lr=0.0727
+[12/08 12:20:09] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=71 Acc@1=70.2600 Acc@5=91.9000 Loss=1.1688 Lr=0.0720
+[12/08 12:22:00] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=72 Acc@1=70.5200 Acc@5=91.7800 Loss=1.1874 Lr=0.0713
+[12/08 12:23:52] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=73 Acc@1=71.6000 Acc@5=92.4200 Loss=1.1429 Lr=0.0706
+[12/08 12:25:43] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=74 Acc@1=70.8200 Acc@5=92.2100 Loss=1.1513 Lr=0.0699
+[12/08 12:27:34] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=75 Acc@1=71.1200 Acc@5=92.4000 Loss=1.1251 Lr=0.0691
+[12/08 12:29:26] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=76 Acc@1=70.9200 Acc@5=92.2400 Loss=1.1609 Lr=0.0684
+[12/08 12:31:17] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=77 Acc@1=70.9600 Acc@5=91.9900 Loss=1.1618 Lr=0.0677
+[12/08 12:33:08] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=78 Acc@1=71.4600 Acc@5=92.1100 Loss=1.1543 Lr=0.0669
+[12/08 12:34:59] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=79 Acc@1=71.9000 Acc@5=92.7500 Loss=1.1186 Lr=0.0662
+[12/08 12:36:51] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=80 Acc@1=71.2500 Acc@5=92.5200 Loss=1.1203 Lr=0.0655
+[12/08 12:38:42] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=81 Acc@1=70.4000 Acc@5=92.0100 Loss=1.1743 Lr=0.0647
+[12/08 12:40:33] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=82 Acc@1=71.1800 Acc@5=92.1100 Loss=1.1423 Lr=0.0639
+[12/08 12:42:24] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=83 Acc@1=71.7300 Acc@5=92.4500 Loss=1.1353 Lr=0.0632
+[12/08 12:44:16] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=84 Acc@1=70.7600 Acc@5=92.2800 Loss=1.1482 Lr=0.0624
+[12/08 12:46:07] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=85 Acc@1=71.7700 Acc@5=92.3500 Loss=1.1117 Lr=0.0617
+[12/08 12:47:58] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=86 Acc@1=71.9300 Acc@5=92.7400 Loss=1.1256 Lr=0.0609
+[12/08 12:49:49] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=87 Acc@1=71.7500 Acc@5=92.4400 Loss=1.1173 Lr=0.0601
+[12/08 12:51:41] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=88 Acc@1=71.8300 Acc@5=92.3300 Loss=1.1473 Lr=0.0594
+[12/08 12:53:31] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=89 Acc@1=72.5700 Acc@5=92.8000 Loss=1.1019 Lr=0.0586
+[12/08 12:55:22] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=90 Acc@1=71.4400 Acc@5=92.3800 Loss=1.1223 Lr=0.0578
+[12/08 12:57:12] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=91 Acc@1=72.3600 Acc@5=92.7000 Loss=1.0968 Lr=0.0570
+[12/08 12:59:03] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=92 Acc@1=70.8200 Acc@5=92.5500 Loss=1.1423 Lr=0.0563
+[12/08 13:00:54] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=93 Acc@1=71.9900 Acc@5=92.7500 Loss=1.0963 Lr=0.0555
+[12/08 13:02:44] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=94 Acc@1=72.1200 Acc@5=92.6000 Loss=1.1390 Lr=0.0547
+[12/08 13:04:35] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=95 Acc@1=72.8400 Acc@5=92.7600 Loss=1.0694 Lr=0.0539
+[12/08 13:06:26] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=96 Acc@1=71.8400 Acc@5=92.5100 Loss=1.1060 Lr=0.0531
+[12/08 13:08:16] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=97 Acc@1=71.4800 Acc@5=92.4000 Loss=1.1106 Lr=0.0524
+[12/08 13:10:07] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=98 Acc@1=71.4100 Acc@5=92.3900 Loss=1.1373 Lr=0.0516
+[12/08 13:11:58] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=99 Acc@1=72.2500 Acc@5=92.4100 Loss=1.0881 Lr=0.0508
+[12/08 13:13:48] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=100 Acc@1=72.8000 Acc@5=92.6100 Loss=1.0916 Lr=0.0500
+[12/08 13:15:39] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=101 Acc@1=72.3300 Acc@5=92.8300 Loss=1.0703 Lr=0.0492
+[12/08 13:17:29] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=102 Acc@1=72.4700 Acc@5=92.6800 Loss=1.0825 Lr=0.0484
+[12/08 13:19:20] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=103 Acc@1=72.3200 Acc@5=92.6400 Loss=1.0960 Lr=0.0476
+[12/08 13:21:11] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=104 Acc@1=72.3000 Acc@5=92.3300 Loss=1.1151 Lr=0.0469
+[12/08 13:23:01] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=105 Acc@1=72.4500 Acc@5=93.0200 Loss=1.0614 Lr=0.0461
+[12/08 13:24:52] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=106 Acc@1=72.5900 Acc@5=92.6900 Loss=1.0684 Lr=0.0453
+[12/08 13:26:42] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=107 Acc@1=72.2600 Acc@5=92.3900 Loss=1.1138 Lr=0.0445
+[12/08 13:28:33] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=108 Acc@1=73.3200 Acc@5=93.2800 Loss=1.0423 Lr=0.0437
+[12/08 13:30:24] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=109 Acc@1=72.8400 Acc@5=93.0600 Loss=1.0671 Lr=0.0430
+[12/08 13:32:14] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=110 Acc@1=72.6000 Acc@5=92.8600 Loss=1.0954 Lr=0.0422
+[12/08 13:34:05] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=111 Acc@1=72.9600 Acc@5=93.1400 Loss=1.0596 Lr=0.0414
+[12/08 13:35:56] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=112 Acc@1=72.1500 Acc@5=92.8300 Loss=1.0842 Lr=0.0406
+[12/08 13:37:46] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=113 Acc@1=72.9200 Acc@5=92.9600 Loss=1.0705 Lr=0.0399
+[12/08 13:39:37] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=114 Acc@1=72.3600 Acc@5=92.5700 Loss=1.1002 Lr=0.0391
+[12/08 13:41:28] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=115 Acc@1=73.5200 Acc@5=93.0100 Loss=1.0458 Lr=0.0383
+[12/08 13:43:18] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=116 Acc@1=72.3300 Acc@5=92.7400 Loss=1.0710 Lr=0.0376
+[12/08 13:45:09] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=117 Acc@1=73.3800 Acc@5=93.1900 Loss=1.0480 Lr=0.0368
+[12/08 13:46:59] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=118 Acc@1=73.1200 Acc@5=92.8300 Loss=1.0542 Lr=0.0361
+[12/08 13:48:50] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=119 Acc@1=73.2700 Acc@5=93.2500 Loss=1.0396 Lr=0.0353
+[12/08 13:50:41] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=120 Acc@1=73.1600 Acc@5=93.0800 Loss=1.0530 Lr=0.0345
+[12/08 13:52:31] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=121 Acc@1=73.2200 Acc@5=92.9700 Loss=1.0402 Lr=0.0338
+[12/08 13:54:22] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=122 Acc@1=73.5900 Acc@5=93.3500 Loss=1.0392 Lr=0.0331
+[12/08 13:56:13] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=123 Acc@1=73.7600 Acc@5=93.1200 Loss=1.0342 Lr=0.0323
+[12/08 13:58:03] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=124 Acc@1=73.1100 Acc@5=93.0900 Loss=1.0456 Lr=0.0316
+[12/08 13:59:54] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=125 Acc@1=73.2500 Acc@5=93.1400 Loss=1.0524 Lr=0.0309
+[12/08 14:01:44] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=126 Acc@1=73.8500 Acc@5=93.0600 Loss=1.0238 Lr=0.0301
+[12/08 14:03:35] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=127 Acc@1=74.0500 Acc@5=93.0800 Loss=1.0273 Lr=0.0294
+[12/08 14:05:26] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=128 Acc@1=73.6900 Acc@5=93.2000 Loss=1.0300 Lr=0.0287
+[12/08 14:07:16] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=129 Acc@1=74.3700 Acc@5=93.4700 Loss=1.0066 Lr=0.0280
+[12/08 14:09:07] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=130 Acc@1=73.7800 Acc@5=93.0500 Loss=1.0334 Lr=0.0273
+[12/08 14:10:58] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=131 Acc@1=73.5700 Acc@5=92.9600 Loss=1.0273 Lr=0.0266
+[12/08 14:12:48] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=132 Acc@1=74.0700 Acc@5=93.3800 Loss=1.0255 Lr=0.0259
+[12/08 14:14:39] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=133 Acc@1=74.7000 Acc@5=93.3700 Loss=1.0058 Lr=0.0252
+[12/08 14:16:30] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=134 Acc@1=74.3600 Acc@5=93.2400 Loss=1.0138 Lr=0.0245
+[12/08 14:18:20] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=135 Acc@1=74.4600 Acc@5=93.5200 Loss=0.9913 Lr=0.0239
+[12/08 14:20:11] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=136 Acc@1=73.9900 Acc@5=93.4900 Loss=1.0066 Lr=0.0232
+[12/08 14:22:01] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=137 Acc@1=74.1000 Acc@5=93.0100 Loss=1.0356 Lr=0.0225
+[12/08 14:23:52] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=138 Acc@1=74.9400 Acc@5=93.4000 Loss=0.9960 Lr=0.0219
+[12/08 14:25:43] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=139 Acc@1=74.6100 Acc@5=93.4700 Loss=1.0038 Lr=0.0212
+[12/08 14:27:33] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=140 Acc@1=73.7500 Acc@5=93.3000 Loss=1.0188 Lr=0.0206
+[12/08 14:29:24] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=141 Acc@1=74.5800 Acc@5=93.5300 Loss=1.0013 Lr=0.0200
+[12/08 14:31:15] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=142 Acc@1=74.3600 Acc@5=93.5800 Loss=0.9909 Lr=0.0194
+[12/08 14:33:05] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=143 Acc@1=74.5300 Acc@5=93.5100 Loss=0.9827 Lr=0.0187
+[12/08 14:34:56] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=144 Acc@1=74.9400 Acc@5=93.5400 Loss=0.9770 Lr=0.0181
+[12/08 14:36:46] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=145 Acc@1=75.0500 Acc@5=93.5200 Loss=0.9898 Lr=0.0175
+[12/08 14:38:37] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=146 Acc@1=74.6500 Acc@5=93.6400 Loss=0.9830 Lr=0.0169
+[12/08 14:40:28] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=147 Acc@1=74.6400 Acc@5=93.6200 Loss=0.9819 Lr=0.0163
+[12/08 14:42:19] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=148 Acc@1=74.4100 Acc@5=93.5200 Loss=0.9940 Lr=0.0158
+[12/08 14:44:10] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=149 Acc@1=75.0800 Acc@5=93.5600 Loss=0.9863 Lr=0.0152
+[12/08 14:46:00] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=150 Acc@1=75.1000 Acc@5=93.6800 Loss=0.9767 Lr=0.0146
+[12/08 14:47:51] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=151 Acc@1=75.0000 Acc@5=93.6700 Loss=0.9785 Lr=0.0141
+[12/08 14:49:41] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=152 Acc@1=75.0600 Acc@5=93.5000 Loss=0.9788 Lr=0.0136
+[12/08 14:51:32] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=153 Acc@1=75.2100 Acc@5=93.6000 Loss=0.9731 Lr=0.0130
+[12/08 14:53:23] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=154 Acc@1=75.0800 Acc@5=93.8200 Loss=0.9615 Lr=0.0125
+[12/08 14:55:13] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=155 Acc@1=75.0200 Acc@5=93.5700 Loss=0.9698 Lr=0.0120
+[12/08 14:57:04] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=156 Acc@1=75.3800 Acc@5=93.6200 Loss=0.9632 Lr=0.0115
+[12/08 14:58:54] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=157 Acc@1=75.2400 Acc@5=93.7600 Loss=0.9672 Lr=0.0110
+[12/08 15:00:45] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=158 Acc@1=75.2400 Acc@5=93.4800 Loss=0.9673 Lr=0.0105
+[12/08 15:02:36] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=159 Acc@1=74.9900 Acc@5=93.5200 Loss=0.9678 Lr=0.0100
+[12/08 15:04:26] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=160 Acc@1=75.4800 Acc@5=93.7500 Loss=0.9546 Lr=0.0095
+[12/08 15:06:17] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=161 Acc@1=75.2600 Acc@5=93.8000 Loss=0.9620 Lr=0.0091
+[12/08 15:08:08] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=162 Acc@1=75.4600 Acc@5=93.7900 Loss=0.9543 Lr=0.0086
+[12/08 15:09:58] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=163 Acc@1=75.5100 Acc@5=93.8300 Loss=0.9524 Lr=0.0082
+[12/08 15:11:49] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=164 Acc@1=75.4400 Acc@5=93.8300 Loss=0.9535 Lr=0.0078
+[12/08 15:13:40] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=165 Acc@1=75.6300 Acc@5=93.7600 Loss=0.9518 Lr=0.0074
+[12/08 15:15:30] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=166 Acc@1=75.5700 Acc@5=93.8800 Loss=0.9449 Lr=0.0070
+[12/08 15:17:21] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=167 Acc@1=75.7500 Acc@5=93.8100 Loss=0.9410 Lr=0.0066
+[12/08 15:19:11] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=168 Acc@1=75.7500 Acc@5=93.9100 Loss=0.9469 Lr=0.0062
+[12/08 15:21:02] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=169 Acc@1=75.8400 Acc@5=93.7900 Loss=0.9438 Lr=0.0058
+[12/08 15:22:53] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=170 Acc@1=76.0600 Acc@5=93.6500 Loss=0.9388 Lr=0.0054
+[12/08 15:24:43] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=171 Acc@1=76.2100 Acc@5=93.8400 Loss=0.9350 Lr=0.0051
+[12/08 15:26:34] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=172 Acc@1=75.8100 Acc@5=93.7700 Loss=0.9391 Lr=0.0048
+[12/08 15:28:25] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=173 Acc@1=75.9000 Acc@5=93.9700 Loss=0.9400 Lr=0.0044
+[12/08 15:30:15] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=174 Acc@1=75.7200 Acc@5=93.9700 Loss=0.9348 Lr=0.0041
+[12/08 15:32:06] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=175 Acc@1=76.0900 Acc@5=93.9100 Loss=0.9352 Lr=0.0038
+[12/08 15:33:56] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=176 Acc@1=76.3400 Acc@5=93.8700 Loss=0.9280 Lr=0.0035
+[12/08 15:35:47] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=177 Acc@1=76.2000 Acc@5=93.7600 Loss=0.9312 Lr=0.0032
+[12/08 15:37:38] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=178 Acc@1=76.2800 Acc@5=94.0000 Loss=0.9313 Lr=0.0030
+[12/08 15:39:28] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=179 Acc@1=76.1300 Acc@5=93.9300 Loss=0.9282 Lr=0.0027
+[12/08 15:41:19] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=180 Acc@1=76.0300 Acc@5=93.9100 Loss=0.9229 Lr=0.0024
+[12/08 15:43:09] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=181 Acc@1=76.3200 Acc@5=93.9000 Loss=0.9263 Lr=0.0022
+[12/08 15:45:00] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=182 Acc@1=76.1900 Acc@5=93.9600 Loss=0.9238 Lr=0.0020
+[12/08 15:46:50] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=183 Acc@1=76.4700 Acc@5=93.7900 Loss=0.9242 Lr=0.0018
+[12/08 15:48:41] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=184 Acc@1=76.4100 Acc@5=93.9600 Loss=0.9226 Lr=0.0016
+[12/08 15:50:32] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=185 Acc@1=76.3200 Acc@5=94.0300 Loss=0.9218 Lr=0.0014
+[12/08 15:52:22] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=186 Acc@1=76.3100 Acc@5=94.0000 Loss=0.9219 Lr=0.0012
+[12/08 15:54:13] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=187 Acc@1=76.3100 Acc@5=94.0300 Loss=0.9217 Lr=0.0010
+[12/08 15:56:04] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=188 Acc@1=76.4000 Acc@5=93.9900 Loss=0.9222 Lr=0.0009
+[12/08 15:57:54] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=189 Acc@1=76.2800 Acc@5=93.9700 Loss=0.9199 Lr=0.0007
+[12/08 15:59:45] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=190 Acc@1=76.3400 Acc@5=93.9300 Loss=0.9223 Lr=0.0006
+[12/08 16:01:35] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=191 Acc@1=76.3400 Acc@5=93.9400 Loss=0.9209 Lr=0.0005
+[12/08 16:03:26] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=192 Acc@1=76.1200 Acc@5=93.9500 Loss=0.9197 Lr=0.0004
+[12/08 16:05:16] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=193 Acc@1=76.5400 Acc@5=93.9700 Loss=0.9216 Lr=0.0003
+[12/08 16:07:07] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=194 Acc@1=76.4500 Acc@5=93.9900 Loss=0.9203 Lr=0.0002
+[12/08 16:08:58] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=195 Acc@1=76.1600 Acc@5=93.9600 Loss=0.9248 Lr=0.0002
+[12/08 16:10:48] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=196 Acc@1=76.3700 Acc@5=94.0500 Loss=0.9204 Lr=0.0001
+[12/08 16:12:39] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=197 Acc@1=76.4300 Acc@5=93.9300 Loss=0.9201 Lr=0.0001
+[12/08 16:14:30] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=198 Acc@1=76.4700 Acc@5=93.9700 Loss=0.9192 Lr=0.0000
+[12/08 16:16:20] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: [Eval] Epoch=199 Acc@1=76.3200 Acc@5=94.0100 Loss=0.9254 Lr=0.0000
+[12/08 16:16:20] cifar100-imagenet_32x32-resnet34-resnet18-mosaic INFO: Best: 76.5400

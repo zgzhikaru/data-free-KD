@@ -1,0 +1,13 @@
+#!/bin/bash
+
+bash scripts/mosaic/mosaic_cifar100_cifar10_wrn402_wrn161_synth_only.sh
+bash scripts/mosaic/mosaic_cifar100_cifar10_resnet34_resnet18_synth_only.sh
+
+bash scripts/mosaic/mosaic_cifar100_imagenet32x32_wrn402_wrn161_synth_only.sh
+bash scripts/mosaic/mosaic_cifar100_imagenet32x32_resnet34_resnet18_synth_only.sh
+
+#bash scripts/mosaic/mosaic_cifar100_cifar10_wrn402_wrn401.sh
+#bash scripts/mosaic/mosaic_cifar100_cifar10_wrn402_wrn401_synth_only.sh
+
+#bash scripts/mosaic/mosaic_cifar100_imagenet32x32_wrn402_wrn401.sh
+#bash scripts/mosaic/mosaic_cifar100_imagenet32x32_wrn402_wrn401_synth_only.sh

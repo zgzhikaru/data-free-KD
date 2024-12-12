@@ -1,0 +1,254 @@
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: method: mosaic
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: adv: 1.0
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: bn: 0.0
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: oh: 0.0
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: ent: 1.0
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: act: 0.0
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: balance: 10.0
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: save_dir: run/synthesis
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: cr: 1
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: cr_T: 0.5
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: cmi_init: None
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: local: 1.0
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: data_root: data
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: teacher: wrn40_2
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: student: wrn16_1
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: dataset: cifar100
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: transfer_set: cifar10
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: ood_subset: False
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: shared_normalizer: True
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: include_raw: True
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: lr: 0.1
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: lr_decay_milestones: 120,150,180
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: lr_g: 0.001
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: T: 1.0
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: z_dim: 256
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: epochs: 200
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: g_steps: 1
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: kd_steps: 5
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: ep_steps: 400
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: resume: 
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: evaluate_only: False
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: batch_size: 256
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: synthesis_batch_size: None
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: gpu: 0
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: world_size: -1
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: rank: -1
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: dist_url: tcp://224.66.41.62:23456
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: dist_backend: nccl
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: multiprocessing_distributed: False
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: fp16: False
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: seed: 0
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: log_tag: 
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: workers: 4
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: start_epoch: 0
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: momentum: 0.9
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: weight_decay: 0.0001
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: print_freq: 0
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: pretrained: False
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: distributed: False
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: ngpus_per_node: 1
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: autocast: <function dummy_ctx at 0x7a05efc43b80>
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: logger: <Logger cifar100-wrn40_2-wrn16_1 (DEBUG)>
+[12/04 16:37:18] cifar100-wrn40_2-wrn16_1 INFO: tb: <torch.utils.tensorboard.writer.SummaryWriter object at 0x7a057c2892e0>
+[12/04 16:38:02] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=0 Acc@1=4.9300 Acc@5=20.6800 Loss=4.6553 Lr=0.1000
+[12/04 16:38:42] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=1 Acc@1=12.0600 Acc@5=36.0900 Loss=3.8149 Lr=0.1000
+[12/04 16:39:21] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=2 Acc@1=19.5000 Acc@5=48.2800 Loss=3.3068 Lr=0.1000
+[12/04 16:40:00] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=3 Acc@1=23.5300 Acc@5=55.3800 Loss=3.0572 Lr=0.0999
+[12/04 16:40:38] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=4 Acc@1=26.7400 Acc@5=60.2400 Loss=2.8634 Lr=0.0999
+[12/04 16:41:17] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=5 Acc@1=29.1000 Acc@5=62.2700 Loss=2.7926 Lr=0.0998
+[12/04 16:41:56] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=6 Acc@1=33.0600 Acc@5=66.6300 Loss=2.5750 Lr=0.0998
+[12/04 16:42:34] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=7 Acc@1=33.6200 Acc@5=68.4000 Loss=2.5155 Lr=0.0997
+[12/04 16:43:13] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=8 Acc@1=37.0300 Acc@5=72.0900 Loss=2.3631 Lr=0.0996
+[12/04 16:43:51] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=9 Acc@1=36.9300 Acc@5=70.6300 Loss=2.3831 Lr=0.0995
+[12/04 16:44:30] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=10 Acc@1=38.4000 Acc@5=73.4700 Loss=2.2956 Lr=0.0994
+[12/04 16:45:09] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=11 Acc@1=39.6800 Acc@5=74.2100 Loss=2.2539 Lr=0.0993
+[12/04 16:45:47] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=12 Acc@1=35.6500 Acc@5=70.2700 Loss=2.4190 Lr=0.0991
+[12/04 16:46:26] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=13 Acc@1=40.7600 Acc@5=75.5300 Loss=2.1832 Lr=0.0990
+[12/04 16:47:05] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=14 Acc@1=42.5500 Acc@5=77.4900 Loss=2.0974 Lr=0.0988
+[12/04 16:47:43] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=15 Acc@1=43.4800 Acc@5=77.2900 Loss=2.0855 Lr=0.0986
+[12/04 16:48:22] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=16 Acc@1=43.8200 Acc@5=77.1300 Loss=2.0821 Lr=0.0984
+[12/04 16:49:01] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=17 Acc@1=44.3900 Acc@5=77.3400 Loss=2.0729 Lr=0.0982
+[12/04 16:49:39] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=18 Acc@1=38.6100 Acc@5=74.0600 Loss=2.2714 Lr=0.0980
+[12/04 16:50:18] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=19 Acc@1=37.2900 Acc@5=71.2700 Loss=2.3854 Lr=0.0978
+[12/04 16:50:57] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=20 Acc@1=41.8200 Acc@5=76.8900 Loss=2.1177 Lr=0.0976
+[12/04 16:51:36] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=21 Acc@1=44.3000 Acc@5=77.7300 Loss=2.0426 Lr=0.0973
+[12/04 16:52:15] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=22 Acc@1=45.3300 Acc@5=78.8300 Loss=2.0069 Lr=0.0970
+[12/04 16:52:53] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=23 Acc@1=44.5600 Acc@5=79.6500 Loss=2.0131 Lr=0.0968
+[12/04 16:53:32] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=24 Acc@1=44.8000 Acc@5=78.2300 Loss=2.0520 Lr=0.0965
+[12/04 16:54:11] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=25 Acc@1=45.7900 Acc@5=79.4700 Loss=1.9905 Lr=0.0962
+[12/04 16:54:49] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=26 Acc@1=45.7500 Acc@5=79.4700 Loss=1.9793 Lr=0.0959
+[12/04 16:55:28] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=27 Acc@1=46.6000 Acc@5=80.5800 Loss=1.9292 Lr=0.0956
+[12/04 16:56:07] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=28 Acc@1=45.9300 Acc@5=79.5400 Loss=1.9660 Lr=0.0952
+[12/04 16:56:45] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=29 Acc@1=46.0600 Acc@5=78.9700 Loss=1.9820 Lr=0.0949
+[12/04 16:57:24] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=30 Acc@1=45.7400 Acc@5=78.9300 Loss=1.9811 Lr=0.0946
+[12/04 16:58:02] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=31 Acc@1=45.7200 Acc@5=79.2200 Loss=1.9881 Lr=0.0942
+[12/04 16:58:41] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=32 Acc@1=47.9600 Acc@5=81.0400 Loss=1.8894 Lr=0.0938
+[12/04 16:59:20] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=33 Acc@1=46.8400 Acc@5=80.2400 Loss=1.9341 Lr=0.0934
+[12/04 16:59:58] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=34 Acc@1=47.8600 Acc@5=81.2900 Loss=1.8799 Lr=0.0930
+[12/04 17:00:37] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=35 Acc@1=45.2300 Acc@5=79.3800 Loss=1.9908 Lr=0.0926
+[12/04 17:01:15] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=36 Acc@1=45.3900 Acc@5=78.1800 Loss=2.0180 Lr=0.0922
+[12/04 17:01:54] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=37 Acc@1=47.8000 Acc@5=81.2400 Loss=1.8833 Lr=0.0918
+[12/04 17:02:33] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=38 Acc@1=45.3600 Acc@5=79.1400 Loss=2.0011 Lr=0.0914
+[12/04 17:03:11] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=39 Acc@1=49.5700 Acc@5=81.8500 Loss=1.8333 Lr=0.0909
+[12/04 17:03:50] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=40 Acc@1=49.6500 Acc@5=82.5000 Loss=1.8306 Lr=0.0905
+[12/04 17:04:28] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=41 Acc@1=48.4400 Acc@5=80.8500 Loss=1.8871 Lr=0.0900
+[12/04 17:05:07] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=42 Acc@1=51.0700 Acc@5=83.1900 Loss=1.7748 Lr=0.0895
+[12/04 17:05:46] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=43 Acc@1=47.0300 Acc@5=79.7500 Loss=1.9566 Lr=0.0890
+[12/04 17:06:24] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=44 Acc@1=44.8800 Acc@5=77.5200 Loss=2.0489 Lr=0.0885
+[12/04 17:07:03] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=45 Acc@1=48.1000 Acc@5=80.8400 Loss=1.8842 Lr=0.0880
+[12/04 17:07:42] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=46 Acc@1=49.4800 Acc@5=82.8600 Loss=1.8073 Lr=0.0875
+[12/04 17:08:20] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=47 Acc@1=48.2300 Acc@5=81.5600 Loss=1.8576 Lr=0.0870
+[12/04 17:08:59] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=48 Acc@1=50.2700 Acc@5=82.3200 Loss=1.8044 Lr=0.0864
+[12/04 17:09:37] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=49 Acc@1=47.8000 Acc@5=80.8600 Loss=1.9026 Lr=0.0859
+[12/04 17:10:16] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=50 Acc@1=47.2700 Acc@5=79.8300 Loss=1.9137 Lr=0.0854
+[12/04 17:10:55] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=51 Acc@1=47.5200 Acc@5=81.5500 Loss=1.8806 Lr=0.0848
+[12/04 17:11:33] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=52 Acc@1=50.0200 Acc@5=82.3400 Loss=1.8102 Lr=0.0842
+[12/04 17:12:12] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=53 Acc@1=47.0900 Acc@5=80.0600 Loss=1.9466 Lr=0.0837
+[12/04 17:12:50] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=54 Acc@1=48.1800 Acc@5=80.6000 Loss=1.8896 Lr=0.0831
+[12/04 17:13:29] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=55 Acc@1=48.4700 Acc@5=82.3200 Loss=1.8457 Lr=0.0825
+[12/04 17:14:08] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=56 Acc@1=49.3500 Acc@5=82.1300 Loss=1.8145 Lr=0.0819
+[12/04 17:14:46] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=57 Acc@1=49.4100 Acc@5=82.5300 Loss=1.8210 Lr=0.0813
+[12/04 17:15:25] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=58 Acc@1=49.7100 Acc@5=82.2400 Loss=1.8004 Lr=0.0806
+[12/04 17:16:04] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=59 Acc@1=51.5100 Acc@5=83.7600 Loss=1.7522 Lr=0.0800
+[12/04 17:16:42] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=60 Acc@1=50.2200 Acc@5=81.2000 Loss=1.8222 Lr=0.0794
+[12/04 17:17:21] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=61 Acc@1=50.6300 Acc@5=82.3000 Loss=1.8087 Lr=0.0788
+[12/04 17:17:59] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=62 Acc@1=51.6100 Acc@5=83.9500 Loss=1.7399 Lr=0.0781
+[12/04 17:18:38] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=63 Acc@1=51.7800 Acc@5=83.5700 Loss=1.7334 Lr=0.0775
+[12/04 17:19:17] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=64 Acc@1=46.6200 Acc@5=80.3600 Loss=1.9332 Lr=0.0768
+[12/04 17:19:55] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=65 Acc@1=50.6800 Acc@5=83.0100 Loss=1.7786 Lr=0.0761
+[12/04 17:20:34] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=66 Acc@1=51.6600 Acc@5=83.7800 Loss=1.7314 Lr=0.0755
+[12/04 17:21:12] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=67 Acc@1=50.5500 Acc@5=82.6000 Loss=1.7968 Lr=0.0748
+[12/04 17:21:51] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=68 Acc@1=50.9500 Acc@5=83.2200 Loss=1.7621 Lr=0.0741
+[12/04 17:22:30] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=69 Acc@1=52.5500 Acc@5=84.4400 Loss=1.6979 Lr=0.0734
+[12/04 17:23:08] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=70 Acc@1=49.8800 Acc@5=82.1300 Loss=1.8077 Lr=0.0727
+[12/04 17:23:47] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=71 Acc@1=49.0700 Acc@5=81.8600 Loss=1.8449 Lr=0.0720
+[12/04 17:24:26] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=72 Acc@1=50.2600 Acc@5=82.7500 Loss=1.7966 Lr=0.0713
+[12/04 17:25:04] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=73 Acc@1=51.7200 Acc@5=83.9200 Loss=1.7339 Lr=0.0706
+[12/04 17:25:43] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=74 Acc@1=51.4300 Acc@5=83.8100 Loss=1.7320 Lr=0.0699
+[12/04 17:26:21] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=75 Acc@1=51.6700 Acc@5=83.4500 Loss=1.7285 Lr=0.0691
+[12/04 17:27:00] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=76 Acc@1=51.9600 Acc@5=84.5800 Loss=1.7007 Lr=0.0684
+[12/04 17:27:39] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=77 Acc@1=51.2400 Acc@5=83.0400 Loss=1.7610 Lr=0.0677
+[12/04 17:28:17] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=78 Acc@1=52.0400 Acc@5=84.2300 Loss=1.7112 Lr=0.0669
+[12/04 17:28:56] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=79 Acc@1=53.2100 Acc@5=84.6600 Loss=1.6839 Lr=0.0662
+[12/04 17:29:34] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=80 Acc@1=51.5200 Acc@5=83.2900 Loss=1.7374 Lr=0.0655
+[12/04 17:30:13] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=81 Acc@1=51.3700 Acc@5=83.2500 Loss=1.7398 Lr=0.0647
+[12/04 17:30:51] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=82 Acc@1=52.2800 Acc@5=84.2600 Loss=1.7003 Lr=0.0639
+[12/04 17:31:30] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=83 Acc@1=52.1300 Acc@5=83.1000 Loss=1.7262 Lr=0.0632
+[12/04 17:32:09] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=84 Acc@1=52.8100 Acc@5=84.5200 Loss=1.6856 Lr=0.0624
+[12/04 17:32:47] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=85 Acc@1=52.6500 Acc@5=84.3000 Loss=1.6887 Lr=0.0617
+[12/04 17:33:26] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=86 Acc@1=50.5400 Acc@5=83.2900 Loss=1.7665 Lr=0.0609
+[12/04 17:34:05] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=87 Acc@1=52.1700 Acc@5=83.5500 Loss=1.7266 Lr=0.0601
+[12/04 17:34:43] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=88 Acc@1=52.7100 Acc@5=84.1000 Loss=1.7035 Lr=0.0594
+[12/04 17:35:22] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=89 Acc@1=53.5400 Acc@5=84.9700 Loss=1.6668 Lr=0.0586
+[12/04 17:36:00] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=90 Acc@1=51.3900 Acc@5=83.1500 Loss=1.7609 Lr=0.0578
+[12/04 17:36:39] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=91 Acc@1=53.3700 Acc@5=84.5300 Loss=1.6756 Lr=0.0570
+[12/04 17:37:18] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=92 Acc@1=53.4500 Acc@5=84.5600 Loss=1.6624 Lr=0.0563
+[12/04 17:37:56] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=93 Acc@1=51.8700 Acc@5=83.5700 Loss=1.7269 Lr=0.0555
+[12/04 17:38:35] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=94 Acc@1=52.9900 Acc@5=84.4300 Loss=1.6832 Lr=0.0547
+[12/04 17:39:14] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=95 Acc@1=53.3800 Acc@5=83.9500 Loss=1.6726 Lr=0.0539
+[12/04 17:39:52] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=96 Acc@1=53.7400 Acc@5=84.9200 Loss=1.6532 Lr=0.0531
+[12/04 17:40:31] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=97 Acc@1=50.1500 Acc@5=83.1000 Loss=1.7697 Lr=0.0524
+[12/04 17:41:09] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=98 Acc@1=51.7200 Acc@5=84.0900 Loss=1.7260 Lr=0.0516
+[12/04 17:41:48] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=99 Acc@1=53.1600 Acc@5=84.2000 Loss=1.6885 Lr=0.0508
+[12/04 17:42:27] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=100 Acc@1=53.9200 Acc@5=84.5700 Loss=1.6432 Lr=0.0500
+[12/04 17:43:05] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=101 Acc@1=53.7100 Acc@5=84.8400 Loss=1.6457 Lr=0.0492
+[12/04 17:43:44] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=102 Acc@1=51.5800 Acc@5=83.1500 Loss=1.7436 Lr=0.0484
+[12/04 17:44:23] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=103 Acc@1=53.9400 Acc@5=85.3200 Loss=1.6372 Lr=0.0476
+[12/04 17:45:01] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=104 Acc@1=52.6200 Acc@5=83.7800 Loss=1.7059 Lr=0.0469
+[12/04 17:45:40] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=105 Acc@1=52.9800 Acc@5=84.9200 Loss=1.6679 Lr=0.0461
+[12/04 17:46:19] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=106 Acc@1=53.8800 Acc@5=84.5900 Loss=1.6477 Lr=0.0453
+[12/04 17:46:57] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=107 Acc@1=52.5900 Acc@5=83.2900 Loss=1.7204 Lr=0.0445
+[12/04 17:47:36] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=108 Acc@1=52.5900 Acc@5=83.9100 Loss=1.6991 Lr=0.0437
+[12/04 17:48:15] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=109 Acc@1=52.2600 Acc@5=84.0300 Loss=1.6968 Lr=0.0430
+[12/04 17:48:53] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=110 Acc@1=53.4800 Acc@5=84.8100 Loss=1.6468 Lr=0.0422
+[12/04 17:49:32] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=111 Acc@1=53.2000 Acc@5=84.3400 Loss=1.6775 Lr=0.0414
+[12/04 17:50:10] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=112 Acc@1=55.1400 Acc@5=85.2700 Loss=1.6012 Lr=0.0406
+[12/04 17:50:49] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=113 Acc@1=54.8000 Acc@5=85.5300 Loss=1.6160 Lr=0.0399
+[12/04 17:51:28] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=114 Acc@1=54.6700 Acc@5=85.6100 Loss=1.6252 Lr=0.0391
+[12/04 17:52:06] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=115 Acc@1=54.1600 Acc@5=85.3600 Loss=1.6241 Lr=0.0383
+[12/04 17:52:45] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=116 Acc@1=52.9000 Acc@5=84.9800 Loss=1.6592 Lr=0.0376
+[12/04 17:53:24] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=117 Acc@1=55.2200 Acc@5=85.9500 Loss=1.5932 Lr=0.0368
+[12/04 17:54:02] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=118 Acc@1=55.4000 Acc@5=85.8100 Loss=1.5972 Lr=0.0361
+[12/04 17:54:41] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=119 Acc@1=53.9400 Acc@5=85.3600 Loss=1.6297 Lr=0.0353
+[12/04 17:55:19] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=120 Acc@1=55.8900 Acc@5=86.5400 Loss=1.5545 Lr=0.0345
+[12/04 17:55:58] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=121 Acc@1=54.7600 Acc@5=85.9000 Loss=1.5902 Lr=0.0338
+[12/04 17:56:36] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=122 Acc@1=54.9600 Acc@5=86.2100 Loss=1.5949 Lr=0.0331
+[12/04 17:57:15] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=123 Acc@1=55.0800 Acc@5=86.1300 Loss=1.5895 Lr=0.0323
+[12/04 17:57:54] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=124 Acc@1=55.5100 Acc@5=86.0200 Loss=1.5964 Lr=0.0316
+[12/04 17:58:32] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=125 Acc@1=56.3000 Acc@5=86.3000 Loss=1.5733 Lr=0.0309
+[12/04 17:59:11] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=126 Acc@1=56.5700 Acc@5=86.4100 Loss=1.5489 Lr=0.0301
+[12/04 17:59:49] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=127 Acc@1=54.9000 Acc@5=85.4000 Loss=1.6061 Lr=0.0294
+[12/04 18:00:28] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=128 Acc@1=56.3500 Acc@5=86.6000 Loss=1.5516 Lr=0.0287
+[12/04 18:01:07] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=129 Acc@1=56.4300 Acc@5=86.3700 Loss=1.5505 Lr=0.0280
+[12/04 18:01:45] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=130 Acc@1=56.0000 Acc@5=86.3400 Loss=1.5509 Lr=0.0273
+[12/04 18:02:24] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=131 Acc@1=56.3100 Acc@5=85.9700 Loss=1.5637 Lr=0.0266
+[12/04 18:03:02] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=132 Acc@1=55.4200 Acc@5=85.6500 Loss=1.5930 Lr=0.0259
+[12/04 18:03:41] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=133 Acc@1=56.0600 Acc@5=86.5000 Loss=1.5574 Lr=0.0252
+[12/04 18:04:20] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=134 Acc@1=56.6200 Acc@5=86.9400 Loss=1.5424 Lr=0.0245
+[12/04 18:04:58] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=135 Acc@1=56.7900 Acc@5=86.3600 Loss=1.5444 Lr=0.0239
+[12/04 18:05:37] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=136 Acc@1=56.4500 Acc@5=86.7300 Loss=1.5330 Lr=0.0232
+[12/04 18:06:16] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=137 Acc@1=56.7300 Acc@5=86.7800 Loss=1.5263 Lr=0.0225
+[12/04 18:06:54] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=138 Acc@1=56.8200 Acc@5=87.0100 Loss=1.5321 Lr=0.0219
+[12/04 18:07:33] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=139 Acc@1=57.4000 Acc@5=87.0600 Loss=1.5049 Lr=0.0212
+[12/04 18:08:11] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=140 Acc@1=57.1600 Acc@5=87.1500 Loss=1.5112 Lr=0.0206
+[12/04 18:08:50] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=141 Acc@1=57.0400 Acc@5=86.7900 Loss=1.5183 Lr=0.0200
+[12/04 18:09:28] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=142 Acc@1=56.8400 Acc@5=86.7100 Loss=1.5275 Lr=0.0194
+[12/04 18:10:07] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=143 Acc@1=57.0100 Acc@5=87.2200 Loss=1.5095 Lr=0.0187
+[12/04 18:10:46] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=144 Acc@1=57.8600 Acc@5=87.6800 Loss=1.4869 Lr=0.0181
+[12/04 18:11:24] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=145 Acc@1=57.4500 Acc@5=87.6800 Loss=1.4837 Lr=0.0175
+[12/04 18:12:03] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=146 Acc@1=57.7800 Acc@5=87.5400 Loss=1.4900 Lr=0.0169
+[12/04 18:12:42] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=147 Acc@1=58.3300 Acc@5=87.6300 Loss=1.4701 Lr=0.0163
+[12/04 18:13:20] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=148 Acc@1=57.9600 Acc@5=87.2000 Loss=1.4979 Lr=0.0158
+[12/04 18:13:59] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=149 Acc@1=57.6600 Acc@5=87.1300 Loss=1.5056 Lr=0.0152
+[12/04 18:14:37] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=150 Acc@1=57.0400 Acc@5=86.3900 Loss=1.5254 Lr=0.0146
+[12/04 18:15:16] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=151 Acc@1=57.7500 Acc@5=87.5400 Loss=1.4829 Lr=0.0141
+[12/04 18:15:54] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=152 Acc@1=58.1800 Acc@5=87.4200 Loss=1.4783 Lr=0.0136
+[12/04 18:16:33] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=153 Acc@1=58.0800 Acc@5=87.7400 Loss=1.4687 Lr=0.0130
+[12/04 18:17:12] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=154 Acc@1=58.2900 Acc@5=87.8000 Loss=1.4586 Lr=0.0125
+[12/04 18:17:50] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=155 Acc@1=58.4400 Acc@5=88.0100 Loss=1.4542 Lr=0.0120
+[12/04 18:18:29] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=156 Acc@1=58.4100 Acc@5=87.8900 Loss=1.4542 Lr=0.0115
+[12/04 18:19:07] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=157 Acc@1=58.7200 Acc@5=88.0500 Loss=1.4545 Lr=0.0110
+[12/04 18:19:46] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=158 Acc@1=58.8500 Acc@5=87.8000 Loss=1.4513 Lr=0.0105
+[12/04 18:20:25] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=159 Acc@1=57.7700 Acc@5=87.5800 Loss=1.4768 Lr=0.0100
+[12/04 18:21:03] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=160 Acc@1=59.0000 Acc@5=87.8900 Loss=1.4466 Lr=0.0095
+[12/04 18:21:42] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=161 Acc@1=59.0900 Acc@5=88.1600 Loss=1.4438 Lr=0.0091
+[12/04 18:22:20] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=162 Acc@1=59.2800 Acc@5=87.9400 Loss=1.4312 Lr=0.0086
+[12/04 18:22:59] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=163 Acc@1=59.2200 Acc@5=88.1500 Loss=1.4293 Lr=0.0082
+[12/04 18:23:38] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=164 Acc@1=58.4300 Acc@5=87.6500 Loss=1.4623 Lr=0.0078
+[12/04 18:24:16] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=165 Acc@1=58.6800 Acc@5=87.8700 Loss=1.4463 Lr=0.0074
+[12/04 18:24:55] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=166 Acc@1=59.6900 Acc@5=88.1900 Loss=1.4168 Lr=0.0070
+[12/04 18:25:33] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=167 Acc@1=59.0100 Acc@5=88.1100 Loss=1.4315 Lr=0.0066
+[12/04 18:26:12] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=168 Acc@1=59.1700 Acc@5=88.4400 Loss=1.4179 Lr=0.0062
+[12/04 18:26:51] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=169 Acc@1=59.2200 Acc@5=88.1600 Loss=1.4297 Lr=0.0058
+[12/04 18:27:29] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=170 Acc@1=59.6700 Acc@5=88.1600 Loss=1.4144 Lr=0.0054
+[12/04 18:28:08] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=171 Acc@1=60.2600 Acc@5=88.5100 Loss=1.4030 Lr=0.0051
+[12/04 18:28:46] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=172 Acc@1=59.9800 Acc@5=88.3400 Loss=1.4046 Lr=0.0048
+[12/04 18:29:25] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=173 Acc@1=59.8600 Acc@5=88.4900 Loss=1.4019 Lr=0.0044
+[12/04 18:30:04] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=174 Acc@1=59.9600 Acc@5=88.6000 Loss=1.4024 Lr=0.0041
+[12/04 18:30:42] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=175 Acc@1=60.2000 Acc@5=88.9100 Loss=1.3929 Lr=0.0038
+[12/04 18:31:21] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=176 Acc@1=60.6300 Acc@5=88.8400 Loss=1.3852 Lr=0.0035
+[12/04 18:32:00] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=177 Acc@1=60.2500 Acc@5=88.6100 Loss=1.3931 Lr=0.0032
+[12/04 18:32:38] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=178 Acc@1=60.4900 Acc@5=88.8400 Loss=1.3869 Lr=0.0030
+[12/04 18:33:17] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=179 Acc@1=60.6400 Acc@5=88.7600 Loss=1.3858 Lr=0.0027
+[12/04 18:33:55] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=180 Acc@1=60.3000 Acc@5=88.6400 Loss=1.3900 Lr=0.0024
+[12/04 18:34:34] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=181 Acc@1=60.5400 Acc@5=88.8700 Loss=1.3896 Lr=0.0022
+[12/04 18:35:12] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=182 Acc@1=60.3800 Acc@5=88.6300 Loss=1.3919 Lr=0.0020
+[12/04 18:35:51] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=183 Acc@1=60.7100 Acc@5=88.9300 Loss=1.3804 Lr=0.0018
+[12/04 18:36:30] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=184 Acc@1=60.7100 Acc@5=88.8800 Loss=1.3780 Lr=0.0016
+[12/04 18:37:08] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=185 Acc@1=60.6300 Acc@5=88.9000 Loss=1.3813 Lr=0.0014
+[12/04 18:37:47] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=186 Acc@1=60.7100 Acc@5=88.8400 Loss=1.3848 Lr=0.0012
+[12/04 18:38:25] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=187 Acc@1=60.5200 Acc@5=88.8400 Loss=1.3799 Lr=0.0010
+[12/04 18:39:04] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=188 Acc@1=60.6700 Acc@5=88.9300 Loss=1.3745 Lr=0.0009
+[12/04 18:39:42] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=189 Acc@1=60.5100 Acc@5=88.7900 Loss=1.3796 Lr=0.0007
+[12/04 18:40:21] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=190 Acc@1=60.4300 Acc@5=88.8200 Loss=1.3807 Lr=0.0006
+[12/04 18:41:00] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=191 Acc@1=60.6500 Acc@5=88.9000 Loss=1.3775 Lr=0.0005
+[12/04 18:41:38] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=192 Acc@1=60.7300 Acc@5=88.8700 Loss=1.3775 Lr=0.0004
+[12/04 18:42:17] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=193 Acc@1=60.9300 Acc@5=88.8700 Loss=1.3704 Lr=0.0003
+[12/04 18:42:55] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=194 Acc@1=60.7200 Acc@5=88.8700 Loss=1.3793 Lr=0.0002
+[12/04 18:43:34] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=195 Acc@1=61.0400 Acc@5=88.9500 Loss=1.3738 Lr=0.0002
+[12/04 18:44:13] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=196 Acc@1=60.7800 Acc@5=88.9900 Loss=1.3707 Lr=0.0001
+[12/04 18:44:51] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=197 Acc@1=60.5800 Acc@5=88.8300 Loss=1.3793 Lr=0.0001
+[12/04 18:45:30] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=198 Acc@1=60.7100 Acc@5=88.9300 Loss=1.3783 Lr=0.0000
+[12/04 18:46:10] cifar100-wrn40_2-wrn16_1 INFO: [Eval] Epoch=199 Acc@1=60.6500 Acc@5=88.9200 Loss=1.3775 Lr=0.0000
+[12/04 18:46:10] cifar100-wrn40_2-wrn16_1 INFO: Best: 61.0400

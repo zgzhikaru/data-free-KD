@@ -11,6 +11,7 @@ python datafree_kd.py \
 --g_steps 1 \
 --lr_g 1e-3 \
 --z_dim 256 \
+--include_raw \
 --local 1 \
 --adv 1 \
 --T 1 \
@@ -19,7 +20,5 @@ python datafree_kd.py \
 --ent 1 \
 --act 0 \
 --balance 10 \
---include_raw \
 --gpu 0 \
---seed 0 \
---log_tag 'include_raw_ulb'
+--seed 0 

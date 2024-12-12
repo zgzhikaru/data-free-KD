@@ -1,0 +1,254 @@
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: method: degan
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: adv: 1.0
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: bn: 0.0
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: oh: 0.0
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: ent: 1.0
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: act: 0.0
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: balance: 10.0
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: save_dir: run/synthesis
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: cr: 1
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: cr_T: 0.5
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: cmi_init: None
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: local: 1.0
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: data_root: data
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: teacher: resnet34
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: student: resnet18
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: dataset: cifar100
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: transfer_set: cifar10
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: ood_subset: False
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: shared_normalizer: True
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: include_raw: False
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: lr: 0.1
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: lr_decay_milestones: 120,150,180
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: lr_g: 0.001
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: T: 1.0
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: z_dim: 256
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: epochs: 200
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: g_steps: 1
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: kd_steps: 5
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: ep_steps: 400
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: resume: 
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: evaluate_only: False
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: batch_size: 256
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: synthesis_batch_size: None
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: gpu: 0
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: world_size: -1
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: rank: -1
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: dist_url: tcp://224.66.41.62:23456
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: dist_backend: nccl
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: multiprocessing_distributed: False
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: fp16: False
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: seed: 0
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: log_tag: -adv_synth_only
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: workers: 8
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: start_epoch: 0
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: momentum: 0.9
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: weight_decay: 0.0001
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: print_freq: 0
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: pretrained: False
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: distributed: False
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: ngpus_per_node: 1
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: autocast: <function dummy_ctx at 0x717b57c77a60>
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: logger: <Logger cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only (DEBUG)>
+[12/10 19:22:13] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: tb: <torch.utils.tensorboard.writer.SummaryWriter object at 0x717ae4321a00>
+[12/10 19:23:19] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=0 Acc@1=1.4200 Acc@5=5.9000 Loss=7.1474 Lr=0.1000
+[12/10 19:24:22] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=1 Acc@1=1.2600 Acc@5=6.1100 Loss=6.2129 Lr=0.1000
+[12/10 19:25:24] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=2 Acc@1=1.5500 Acc@5=6.6700 Loss=7.3586 Lr=0.1000
+[12/10 19:26:27] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=3 Acc@1=1.4800 Acc@5=6.5900 Loss=7.2790 Lr=0.0999
+[12/10 19:27:30] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=4 Acc@1=1.7900 Acc@5=6.6200 Loss=7.0208 Lr=0.0999
+[12/10 19:28:33] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=5 Acc@1=2.7400 Acc@5=8.1900 Loss=6.7157 Lr=0.0998
+[12/10 19:29:35] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=6 Acc@1=2.7200 Acc@5=8.7400 Loss=6.7399 Lr=0.0998
+[12/10 19:30:38] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=7 Acc@1=3.1200 Acc@5=9.5200 Loss=7.2481 Lr=0.0997
+[12/10 19:31:41] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=8 Acc@1=4.1000 Acc@5=12.5400 Loss=6.2984 Lr=0.0996
+[12/10 19:32:44] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=9 Acc@1=5.3400 Acc@5=14.1600 Loss=6.3145 Lr=0.0995
+[12/10 19:33:46] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=10 Acc@1=5.7500 Acc@5=15.6800 Loss=6.1887 Lr=0.0994
+[12/10 19:34:49] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=11 Acc@1=7.1500 Acc@5=17.5700 Loss=5.7015 Lr=0.0993
+[12/10 19:35:52] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=12 Acc@1=8.5300 Acc@5=20.7600 Loss=5.4932 Lr=0.0991
+[12/10 19:36:55] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=13 Acc@1=8.8700 Acc@5=22.1800 Loss=5.5823 Lr=0.0990
+[12/10 19:37:57] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=14 Acc@1=10.9300 Acc@5=24.4800 Loss=5.5973 Lr=0.0988
+[12/10 19:39:00] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=15 Acc@1=12.8000 Acc@5=27.8800 Loss=5.3345 Lr=0.0986
+[12/10 19:40:03] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=16 Acc@1=13.1500 Acc@5=29.0900 Loss=5.4371 Lr=0.0984
+[12/10 19:41:06] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=17 Acc@1=16.0500 Acc@5=34.2200 Loss=4.6272 Lr=0.0982
+[12/10 19:42:09] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=18 Acc@1=18.6000 Acc@5=38.7200 Loss=4.2833 Lr=0.0980
+[12/10 19:43:11] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=19 Acc@1=19.8700 Acc@5=41.0200 Loss=4.0400 Lr=0.0978
+[12/10 19:44:14] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=20 Acc@1=21.7700 Acc@5=46.0100 Loss=3.8262 Lr=0.0976
+[12/10 19:45:17] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=21 Acc@1=24.6100 Acc@5=51.1100 Loss=3.5334 Lr=0.0973
+[12/10 19:46:20] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=22 Acc@1=28.2000 Acc@5=55.1300 Loss=3.2866 Lr=0.0970
+[12/10 19:47:22] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=23 Acc@1=33.1200 Acc@5=60.8400 Loss=2.9262 Lr=0.0968
+[12/10 19:48:25] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=24 Acc@1=36.2600 Acc@5=64.1400 Loss=2.7063 Lr=0.0965
+[12/10 19:49:28] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=25 Acc@1=38.9000 Acc@5=65.4100 Loss=2.6446 Lr=0.0962
+[12/10 19:50:31] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=26 Acc@1=41.4800 Acc@5=70.5900 Loss=2.3774 Lr=0.0959
+[12/10 19:51:34] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=27 Acc@1=43.4900 Acc@5=72.6100 Loss=2.3089 Lr=0.0956
+[12/10 19:52:36] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=28 Acc@1=46.4500 Acc@5=75.3300 Loss=2.1666 Lr=0.0952
+[12/10 19:53:39] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=29 Acc@1=48.6100 Acc@5=76.5200 Loss=2.0662 Lr=0.0949
+[12/10 19:54:42] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=30 Acc@1=49.8500 Acc@5=78.4900 Loss=1.9537 Lr=0.0946
+[12/10 19:55:45] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=31 Acc@1=51.7900 Acc@5=79.4700 Loss=1.9117 Lr=0.0942
+[12/10 19:56:47] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=32 Acc@1=50.2100 Acc@5=78.7000 Loss=1.9755 Lr=0.0938
+[12/10 19:57:50] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=33 Acc@1=52.1400 Acc@5=80.7400 Loss=1.8570 Lr=0.0934
+[12/10 19:58:53] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=34 Acc@1=54.7100 Acc@5=81.3500 Loss=1.7867 Lr=0.0930
+[12/10 19:59:56] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=35 Acc@1=55.4600 Acc@5=82.4900 Loss=1.7434 Lr=0.0926
+[12/10 20:00:58] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=36 Acc@1=56.6800 Acc@5=83.8100 Loss=1.6900 Lr=0.0922
+[12/10 20:02:01] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=37 Acc@1=56.8900 Acc@5=82.5400 Loss=1.7045 Lr=0.0918
+[12/10 20:03:04] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=38 Acc@1=57.7900 Acc@5=84.3500 Loss=1.6302 Lr=0.0914
+[12/10 20:04:07] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=39 Acc@1=59.0700 Acc@5=84.6200 Loss=1.5913 Lr=0.0909
+[12/10 20:05:09] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=40 Acc@1=59.3400 Acc@5=85.5400 Loss=1.5630 Lr=0.0905
+[12/10 20:06:12] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=41 Acc@1=59.7800 Acc@5=86.4600 Loss=1.5182 Lr=0.0900
+[12/10 20:07:15] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=42 Acc@1=59.9200 Acc@5=86.2500 Loss=1.5168 Lr=0.0895
+[12/10 20:08:18] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=43 Acc@1=60.5700 Acc@5=87.2600 Loss=1.4606 Lr=0.0890
+[12/10 20:09:21] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=44 Acc@1=61.2900 Acc@5=87.2000 Loss=1.4563 Lr=0.0885
+[12/10 20:10:23] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=45 Acc@1=61.8400 Acc@5=88.1900 Loss=1.4052 Lr=0.0880
+[12/10 20:11:26] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=46 Acc@1=61.8200 Acc@5=88.1500 Loss=1.4076 Lr=0.0875
+[12/10 20:12:29] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=47 Acc@1=64.6300 Acc@5=88.8800 Loss=1.3242 Lr=0.0870
+[12/10 20:13:32] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=48 Acc@1=64.8500 Acc@5=89.2400 Loss=1.3131 Lr=0.0864
+[12/10 20:14:34] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=49 Acc@1=63.3500 Acc@5=88.6800 Loss=1.3581 Lr=0.0859
+[12/10 20:15:37] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=50 Acc@1=63.9400 Acc@5=89.1100 Loss=1.3307 Lr=0.0854
+[12/10 20:16:40] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=51 Acc@1=65.1300 Acc@5=89.8800 Loss=1.2762 Lr=0.0848
+[12/10 20:17:42] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=52 Acc@1=64.5100 Acc@5=89.6200 Loss=1.2973 Lr=0.0842
+[12/10 20:18:45] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=53 Acc@1=65.1000 Acc@5=89.9200 Loss=1.2838 Lr=0.0837
+[12/10 20:19:48] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=54 Acc@1=65.7200 Acc@5=90.3700 Loss=1.2575 Lr=0.0831
+[12/10 20:20:51] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=55 Acc@1=63.9000 Acc@5=89.2100 Loss=1.3289 Lr=0.0825
+[12/10 20:21:53] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=56 Acc@1=63.2600 Acc@5=88.5500 Loss=1.3556 Lr=0.0819
+[12/10 20:22:56] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=57 Acc@1=64.9500 Acc@5=90.0400 Loss=1.2898 Lr=0.0813
+[12/10 20:23:59] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=58 Acc@1=65.8200 Acc@5=89.9200 Loss=1.2484 Lr=0.0806
+[12/10 20:25:01] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=59 Acc@1=65.6100 Acc@5=89.8400 Loss=1.2659 Lr=0.0800
+[12/10 20:26:04] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=60 Acc@1=66.1800 Acc@5=90.2000 Loss=1.2529 Lr=0.0794
+[12/10 20:27:07] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=61 Acc@1=66.1400 Acc@5=90.5900 Loss=1.2259 Lr=0.0788
+[12/10 20:28:10] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=62 Acc@1=65.5100 Acc@5=89.9300 Loss=1.2732 Lr=0.0781
+[12/10 20:29:12] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=63 Acc@1=66.5700 Acc@5=90.5900 Loss=1.2114 Lr=0.0775
+[12/10 20:30:15] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=64 Acc@1=66.3000 Acc@5=90.5100 Loss=1.2249 Lr=0.0768
+[12/10 20:31:18] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=65 Acc@1=66.7100 Acc@5=91.0800 Loss=1.1924 Lr=0.0761
+[12/10 20:32:20] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=66 Acc@1=66.7500 Acc@5=90.8600 Loss=1.2212 Lr=0.0755
+[12/10 20:33:23] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=67 Acc@1=68.4800 Acc@5=91.3600 Loss=1.1633 Lr=0.0748
+[12/10 20:34:26] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=68 Acc@1=67.5300 Acc@5=91.0500 Loss=1.1825 Lr=0.0741
+[12/10 20:35:29] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=69 Acc@1=67.5900 Acc@5=90.7200 Loss=1.1885 Lr=0.0734
+[12/10 20:36:32] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=70 Acc@1=68.0700 Acc@5=91.5200 Loss=1.1634 Lr=0.0727
+[12/10 20:37:34] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=71 Acc@1=67.6900 Acc@5=91.3500 Loss=1.1812 Lr=0.0720
+[12/10 20:38:37] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=72 Acc@1=68.2300 Acc@5=91.3300 Loss=1.1685 Lr=0.0713
+[12/10 20:39:40] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=73 Acc@1=67.6800 Acc@5=91.0600 Loss=1.1742 Lr=0.0706
+[12/10 20:40:42] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=74 Acc@1=67.8200 Acc@5=90.8500 Loss=1.1845 Lr=0.0699
+[12/10 20:41:45] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=75 Acc@1=67.5000 Acc@5=91.2400 Loss=1.1793 Lr=0.0691
+[12/10 20:42:48] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=76 Acc@1=67.9900 Acc@5=91.1400 Loss=1.1663 Lr=0.0684
+[12/10 20:43:50] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=77 Acc@1=67.0300 Acc@5=90.7700 Loss=1.1898 Lr=0.0677
+[12/10 20:44:53] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=78 Acc@1=65.6300 Acc@5=89.6800 Loss=1.2632 Lr=0.0669
+[12/10 20:45:56] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=79 Acc@1=66.9100 Acc@5=90.8200 Loss=1.2080 Lr=0.0662
+[12/10 20:46:58] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=80 Acc@1=67.3800 Acc@5=91.2600 Loss=1.1828 Lr=0.0655
+[12/10 20:48:01] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=81 Acc@1=69.0100 Acc@5=92.1300 Loss=1.1286 Lr=0.0647
+[12/10 20:49:04] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=82 Acc@1=69.3100 Acc@5=91.3800 Loss=1.1346 Lr=0.0639
+[12/10 20:50:07] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=83 Acc@1=69.2300 Acc@5=91.9800 Loss=1.1124 Lr=0.0632
+[12/10 20:51:09] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=84 Acc@1=67.7300 Acc@5=91.3200 Loss=1.1661 Lr=0.0624
+[12/10 20:52:12] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=85 Acc@1=69.6800 Acc@5=91.9100 Loss=1.1138 Lr=0.0617
+[12/10 20:53:15] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=86 Acc@1=68.5400 Acc@5=91.4400 Loss=1.1519 Lr=0.0609
+[12/10 20:54:17] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=87 Acc@1=68.4200 Acc@5=91.4200 Loss=1.1485 Lr=0.0601
+[12/10 20:55:20] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=88 Acc@1=69.1400 Acc@5=91.5900 Loss=1.1276 Lr=0.0594
+[12/10 20:56:23] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=89 Acc@1=70.0000 Acc@5=92.0300 Loss=1.0901 Lr=0.0586
+[12/10 20:57:25] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=90 Acc@1=69.3700 Acc@5=91.8400 Loss=1.1081 Lr=0.0578
+[12/10 20:58:28] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=91 Acc@1=68.8900 Acc@5=91.9600 Loss=1.1164 Lr=0.0570
+[12/10 20:59:31] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=92 Acc@1=69.8900 Acc@5=92.1300 Loss=1.0825 Lr=0.0563
+[12/10 21:00:33] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=93 Acc@1=69.7300 Acc@5=92.0000 Loss=1.1122 Lr=0.0555
+[12/10 21:01:36] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=94 Acc@1=70.5200 Acc@5=92.2100 Loss=1.0749 Lr=0.0547
+[12/10 21:02:39] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=95 Acc@1=69.7900 Acc@5=92.1900 Loss=1.0910 Lr=0.0539
+[12/10 21:03:41] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=96 Acc@1=69.7200 Acc@5=91.6700 Loss=1.1145 Lr=0.0531
+[12/10 21:04:44] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=97 Acc@1=69.0400 Acc@5=91.9400 Loss=1.1241 Lr=0.0524
+[12/10 21:05:47] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=98 Acc@1=69.4800 Acc@5=91.9600 Loss=1.1053 Lr=0.0516
+[12/10 21:06:49] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=99 Acc@1=70.7200 Acc@5=92.4300 Loss=1.0703 Lr=0.0508
+[12/10 21:07:52] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=100 Acc@1=70.3300 Acc@5=92.2700 Loss=1.0776 Lr=0.0500
+[12/10 21:08:55] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=101 Acc@1=70.4900 Acc@5=92.3000 Loss=1.0778 Lr=0.0492
+[12/10 21:09:58] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=102 Acc@1=71.0200 Acc@5=92.3800 Loss=1.0608 Lr=0.0484
+[12/10 21:11:00] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=103 Acc@1=71.0100 Acc@5=92.0100 Loss=1.0660 Lr=0.0476
+[12/10 21:12:03] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=104 Acc@1=70.9400 Acc@5=92.3100 Loss=1.0606 Lr=0.0469
+[12/10 21:13:06] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=105 Acc@1=71.1800 Acc@5=92.5600 Loss=1.0580 Lr=0.0461
+[12/10 21:14:09] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=106 Acc@1=71.2200 Acc@5=92.2600 Loss=1.0484 Lr=0.0453
+[12/10 21:15:11] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=107 Acc@1=70.3400 Acc@5=92.4900 Loss=1.0679 Lr=0.0445
+[12/10 21:16:14] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=108 Acc@1=71.4400 Acc@5=92.4800 Loss=1.0445 Lr=0.0437
+[12/10 21:17:17] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=109 Acc@1=71.4700 Acc@5=92.4700 Loss=1.0406 Lr=0.0430
+[12/10 21:18:20] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=110 Acc@1=71.9900 Acc@5=92.6300 Loss=1.0333 Lr=0.0422
+[12/10 21:19:22] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=111 Acc@1=69.7400 Acc@5=92.1500 Loss=1.0919 Lr=0.0414
+[12/10 21:20:25] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=112 Acc@1=71.2500 Acc@5=92.3800 Loss=1.0588 Lr=0.0406
+[12/10 21:21:28] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=113 Acc@1=71.3300 Acc@5=92.8400 Loss=1.0519 Lr=0.0399
+[12/10 21:22:30] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=114 Acc@1=71.8000 Acc@5=92.4900 Loss=1.0314 Lr=0.0391
+[12/10 21:23:33] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=115 Acc@1=71.6300 Acc@5=93.0800 Loss=1.0206 Lr=0.0383
+[12/10 21:24:36] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=116 Acc@1=70.5500 Acc@5=92.0100 Loss=1.0731 Lr=0.0376
+[12/10 21:25:39] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=117 Acc@1=71.9700 Acc@5=92.9000 Loss=1.0209 Lr=0.0368
+[12/10 21:26:41] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=118 Acc@1=71.8100 Acc@5=92.9000 Loss=1.0296 Lr=0.0361
+[12/10 21:27:44] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=119 Acc@1=71.6600 Acc@5=93.1900 Loss=1.0163 Lr=0.0353
+[12/10 21:28:47] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=120 Acc@1=72.6400 Acc@5=93.3100 Loss=0.9898 Lr=0.0345
+[12/10 21:29:49] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=121 Acc@1=71.5800 Acc@5=93.0100 Loss=1.0271 Lr=0.0338
+[12/10 21:30:52] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=122 Acc@1=72.4000 Acc@5=92.8800 Loss=1.0068 Lr=0.0331
+[12/10 21:31:55] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=123 Acc@1=72.6400 Acc@5=93.1800 Loss=1.0000 Lr=0.0323
+[12/10 21:32:57] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=124 Acc@1=72.6400 Acc@5=93.1700 Loss=1.0053 Lr=0.0316
+[12/10 21:34:00] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=125 Acc@1=71.8200 Acc@5=92.7900 Loss=1.0237 Lr=0.0309
+[12/10 21:35:03] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=126 Acc@1=72.7800 Acc@5=93.3300 Loss=0.9855 Lr=0.0301
+[12/10 21:36:06] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=127 Acc@1=72.9900 Acc@5=93.1700 Loss=0.9994 Lr=0.0294
+[12/10 21:37:08] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=128 Acc@1=72.5800 Acc@5=93.1000 Loss=1.0014 Lr=0.0287
+[12/10 21:38:11] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=129 Acc@1=72.3800 Acc@5=92.6600 Loss=1.0245 Lr=0.0280
+[12/10 21:39:14] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=130 Acc@1=72.7700 Acc@5=93.3000 Loss=0.9874 Lr=0.0273
+[12/10 21:40:16] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=131 Acc@1=72.0600 Acc@5=92.8200 Loss=1.0269 Lr=0.0266
+[12/10 21:41:19] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=132 Acc@1=72.9600 Acc@5=93.2300 Loss=0.9902 Lr=0.0259
+[12/10 21:42:22] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=133 Acc@1=73.4100 Acc@5=93.3400 Loss=0.9787 Lr=0.0252
+[12/10 21:43:25] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=134 Acc@1=72.9600 Acc@5=93.2900 Loss=0.9836 Lr=0.0245
+[12/10 21:44:27] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=135 Acc@1=73.1300 Acc@5=93.4700 Loss=0.9781 Lr=0.0239
+[12/10 21:45:30] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=136 Acc@1=73.3400 Acc@5=93.4200 Loss=0.9691 Lr=0.0232
+[12/10 21:46:33] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=137 Acc@1=73.1700 Acc@5=93.5100 Loss=0.9737 Lr=0.0225
+[12/10 21:47:35] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=138 Acc@1=73.4500 Acc@5=93.4300 Loss=0.9729 Lr=0.0219
+[12/10 21:48:38] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=139 Acc@1=73.0000 Acc@5=93.3800 Loss=0.9788 Lr=0.0212
+[12/10 21:49:41] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=140 Acc@1=73.5700 Acc@5=93.6500 Loss=0.9584 Lr=0.0206
+[12/10 21:50:44] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=141 Acc@1=73.5200 Acc@5=93.5600 Loss=0.9665 Lr=0.0200
+[12/10 21:51:47] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=142 Acc@1=73.8000 Acc@5=93.5300 Loss=0.9699 Lr=0.0194
+[12/10 21:52:49] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=143 Acc@1=73.8300 Acc@5=93.5800 Loss=0.9523 Lr=0.0187
+[12/10 21:53:52] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=144 Acc@1=73.5000 Acc@5=93.5800 Loss=0.9629 Lr=0.0181
+[12/10 21:54:55] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=145 Acc@1=73.7200 Acc@5=93.6100 Loss=0.9608 Lr=0.0175
+[12/10 21:55:58] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=146 Acc@1=73.8600 Acc@5=93.6400 Loss=0.9581 Lr=0.0169
+[12/10 21:57:00] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=147 Acc@1=73.8700 Acc@5=93.7500 Loss=0.9586 Lr=0.0163
+[12/10 21:58:03] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=148 Acc@1=74.1500 Acc@5=93.6700 Loss=0.9442 Lr=0.0158
+[12/10 21:59:06] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=149 Acc@1=74.1200 Acc@5=93.8400 Loss=0.9411 Lr=0.0152
+[12/10 22:00:09] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=150 Acc@1=73.9900 Acc@5=93.6300 Loss=0.9506 Lr=0.0146
+[12/10 22:01:11] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=151 Acc@1=74.1400 Acc@5=93.6000 Loss=0.9435 Lr=0.0141
+[12/10 22:02:14] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=152 Acc@1=74.4300 Acc@5=93.6600 Loss=0.9413 Lr=0.0136
+[12/10 22:03:17] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=153 Acc@1=74.4400 Acc@5=93.7900 Loss=0.9401 Lr=0.0130
+[12/10 22:04:20] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=154 Acc@1=74.4200 Acc@5=93.7400 Loss=0.9376 Lr=0.0125
+[12/10 22:05:22] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=155 Acc@1=74.1700 Acc@5=93.7800 Loss=0.9418 Lr=0.0120
+[12/10 22:06:25] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=156 Acc@1=74.7500 Acc@5=93.8100 Loss=0.9353 Lr=0.0115
+[12/10 22:07:28] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=157 Acc@1=74.5000 Acc@5=94.0800 Loss=0.9295 Lr=0.0110
+[12/10 22:08:30] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=158 Acc@1=74.5400 Acc@5=93.8600 Loss=0.9282 Lr=0.0105
+[12/10 22:09:33] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=159 Acc@1=74.4500 Acc@5=93.7800 Loss=0.9352 Lr=0.0100
+[12/10 22:10:36] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=160 Acc@1=74.9700 Acc@5=93.8200 Loss=0.9188 Lr=0.0095
+[12/10 22:11:39] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=161 Acc@1=74.7700 Acc@5=93.9200 Loss=0.9230 Lr=0.0091
+[12/10 22:12:41] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=162 Acc@1=74.7400 Acc@5=93.8000 Loss=0.9241 Lr=0.0086
+[12/10 22:13:44] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=163 Acc@1=74.8700 Acc@5=93.7600 Loss=0.9223 Lr=0.0082
+[12/10 22:14:47] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=164 Acc@1=74.6500 Acc@5=94.0700 Loss=0.9157 Lr=0.0078
+[12/10 22:15:50] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=165 Acc@1=75.0800 Acc@5=94.2100 Loss=0.9096 Lr=0.0074
+[12/10 22:16:52] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=166 Acc@1=75.2200 Acc@5=94.0300 Loss=0.9074 Lr=0.0070
+[12/10 22:17:55] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=167 Acc@1=75.3400 Acc@5=93.9500 Loss=0.9093 Lr=0.0066
+[12/10 22:18:58] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=168 Acc@1=74.8200 Acc@5=94.0900 Loss=0.9089 Lr=0.0062
+[12/10 22:20:01] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=169 Acc@1=74.9600 Acc@5=94.0200 Loss=0.9120 Lr=0.0058
+[12/10 22:21:03] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=170 Acc@1=75.2400 Acc@5=94.1700 Loss=0.9074 Lr=0.0054
+[12/10 22:22:06] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=171 Acc@1=75.2700 Acc@5=93.8600 Loss=0.9056 Lr=0.0051
+[12/10 22:23:09] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=172 Acc@1=75.0400 Acc@5=93.9400 Loss=0.9078 Lr=0.0048
+[12/10 22:24:11] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=173 Acc@1=75.3500 Acc@5=94.0400 Loss=0.9046 Lr=0.0044
+[12/10 22:25:14] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=174 Acc@1=75.4900 Acc@5=94.0500 Loss=0.9059 Lr=0.0041
+[12/10 22:26:17] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=175 Acc@1=75.4100 Acc@5=94.0100 Loss=0.9058 Lr=0.0038
+[12/10 22:27:20] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=176 Acc@1=75.2900 Acc@5=94.1200 Loss=0.9041 Lr=0.0035
+[12/10 22:28:22] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=177 Acc@1=75.4100 Acc@5=94.1200 Loss=0.9009 Lr=0.0032
+[12/10 22:29:25] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=178 Acc@1=75.5700 Acc@5=94.1000 Loss=0.9006 Lr=0.0030
+[12/10 22:30:28] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=179 Acc@1=75.6900 Acc@5=94.1800 Loss=0.8963 Lr=0.0027
+[12/10 22:31:31] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=180 Acc@1=75.6200 Acc@5=94.0900 Loss=0.8998 Lr=0.0024
+[12/10 22:32:33] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=181 Acc@1=75.4800 Acc@5=94.0900 Loss=0.8972 Lr=0.0022
+[12/10 22:33:36] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=182 Acc@1=75.6000 Acc@5=94.1800 Loss=0.8946 Lr=0.0020
+[12/10 22:34:39] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=183 Acc@1=75.5900 Acc@5=94.1900 Loss=0.8991 Lr=0.0018
+[12/10 22:35:41] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=184 Acc@1=75.5100 Acc@5=94.2700 Loss=0.8952 Lr=0.0016
+[12/10 22:36:44] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=185 Acc@1=75.6700 Acc@5=94.0700 Loss=0.8942 Lr=0.0014
+[12/10 22:37:47] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=186 Acc@1=75.5000 Acc@5=94.2100 Loss=0.8957 Lr=0.0012
+[12/10 22:38:49] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=187 Acc@1=75.5700 Acc@5=94.1800 Loss=0.8961 Lr=0.0010
+[12/10 22:39:52] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=188 Acc@1=75.6800 Acc@5=94.2700 Loss=0.8949 Lr=0.0009
+[12/10 22:40:55] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=189 Acc@1=75.5400 Acc@5=94.3000 Loss=0.8955 Lr=0.0007
+[12/10 22:41:58] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=190 Acc@1=75.7500 Acc@5=94.2700 Loss=0.8910 Lr=0.0006
+[12/10 22:43:00] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=191 Acc@1=75.3400 Acc@5=94.2600 Loss=0.8977 Lr=0.0005
+[12/10 22:44:03] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=192 Acc@1=75.5800 Acc@5=94.1100 Loss=0.8980 Lr=0.0004
+[12/10 22:45:06] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=193 Acc@1=75.8400 Acc@5=94.1900 Loss=0.8919 Lr=0.0003
+[12/10 22:46:09] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=194 Acc@1=75.4300 Acc@5=94.0400 Loss=0.8970 Lr=0.0002
+[12/10 22:47:11] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=195 Acc@1=75.7100 Acc@5=94.2100 Loss=0.8928 Lr=0.0002
+[12/10 22:48:15] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=196 Acc@1=75.6500 Acc@5=94.1900 Loss=0.8974 Lr=0.0001
+[12/10 22:49:21] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=197 Acc@1=75.6100 Acc@5=94.0600 Loss=0.8939 Lr=0.0001
+[12/10 22:50:26] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=198 Acc@1=75.7600 Acc@5=94.2200 Loss=0.8930 Lr=0.0000
+[12/10 22:51:30] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: [Eval] Epoch=199 Acc@1=75.4000 Acc@5=94.2200 Loss=0.8989 Lr=0.0000
+[12/10 22:51:30] cifar100-cifar10-resnet34-resnet18-degan-adv_synth_only INFO: Best: 75.8400

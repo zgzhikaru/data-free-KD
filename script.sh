@@ -1,9 +1,7 @@
 #!/bin/bash
 
-bash scripts/mosaic/mosaic_cifar100_imagenet32x32_wrn402_wrn161.sh
+bash scripts/degan/degan_cifar100_cifar10_wrn402_wrn161_adv.sh
+bash scripts/degan/degan_cifar100_cifar10_wrn402_wrn161_adv_synth_only.sh
 
-bash scripts/mosaic/mosaic_cifar100_imagenet32x32_resnet34_resnet18.sh
-bash scripts/mosaic/mosaic_cifar100_imagenet32x32_resnet34_resnet18_synth_only.sh
-
-#bash scripts/dafl/dafl_cifar10_wrn402_wrn161_T_balance.sh
-#bash scripts/dfq/dfq_cifar10_wrn402_wrn161_T_balance.sh
+bash scripts/degan/degan_cifar100_cifar10_resnet34_resnet18_adv.sh
+bash scripts/degan/degan_cifar100_cifar10_resnet34_resnet18_adv_synth_only.sh

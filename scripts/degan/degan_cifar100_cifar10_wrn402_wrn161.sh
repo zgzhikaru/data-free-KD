@@ -11,6 +11,7 @@ python datafree_kd.py \
 --g_steps 1 \
 --lr_g 1e-3 \
 --z_dim 256 \
+--include_raw \
 --local 1 \
 --adv 0 \
 --T 1 \

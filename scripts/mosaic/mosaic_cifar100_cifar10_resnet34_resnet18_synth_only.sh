@@ -19,6 +19,6 @@ python datafree_kd.py \
 --ent 1 \
 --act 0 \
 --balance 10 \
---gpu 0 \
+--gpu 1 \
 --seed 0 \
 --log_tag 'synth_only'

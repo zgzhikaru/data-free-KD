@@ -1,0 +1,307 @@
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: method: mosaic
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: adv: 1.0
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: bn: 0.0
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: oh: 0.0
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: ent: 1.0
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: act: 0.0
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: balance: 10.0
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: save_dir: run/synthesis
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: cr: 1
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: cr_T: 0.5
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: cmi_init: None
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: local: 1.0
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: data_root: data
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: teacher: wrn40_2
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: student: wrn16_1
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: dataset: cifar100
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: transfer_set: cifar10
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: ood_subset: False
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: shared_normalizer: True
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: include_raw: False
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: lr: 0.1
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: lr_decay_milestones: 120,150,180
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: lr_g: 0.001
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: T: 1.0
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: z_dim: 256
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: epochs: 200
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: g_steps: 1
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: kd_steps: 5
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: ep_steps: 400
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: resume: 
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: evaluate_only: False
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: batch_size: 256
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: synthesis_batch_size: None
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: gpu: 0
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: world_size: -1
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: rank: -1
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: dist_url: tcp://224.66.41.62:23456
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: dist_backend: nccl
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: multiprocessing_distributed: False
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: fp16: False
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: seed: 0
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: log_tag: -synth_only
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: workers: 8
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: start_epoch: 0
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: momentum: 0.9
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: weight_decay: 0.0001
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: print_freq: 0
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: pretrained: False
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: distributed: False
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: ngpus_per_node: 1
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: autocast: <function dummy_ctx at 0x7643c7a48ca0>
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: logger: <Logger cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only (DEBUG)>
+[12/05 16:53:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: tb: <torch.utils.tensorboard.writer.SummaryWriter object at 0x76435408bac0>
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: method: mosaic
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: adv: 1.0
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: bn: 0.0
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: oh: 0.0
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: ent: 1.0
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: act: 0.0
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: balance: 10.0
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: save_dir: run/synthesis
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: cr: 1
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: cr_T: 0.5
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: cmi_init: None
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: local: 1.0
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: data_root: data
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: teacher: wrn40_2
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: student: wrn16_1
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: dataset: cifar100
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: transfer_set: cifar10
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: ood_subset: False
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: shared_normalizer: True
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: include_raw: False
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: lr: 0.1
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: lr_decay_milestones: 120,150,180
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: lr_g: 0.001
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: T: 1.0
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: z_dim: 256
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: epochs: 200
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: g_steps: 1
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: kd_steps: 5
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: ep_steps: 400
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: resume: 
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: evaluate_only: False
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: batch_size: 256
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: synthesis_batch_size: None
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: gpu: 0
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: world_size: -1
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: rank: -1
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: dist_url: tcp://224.66.41.62:23456
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: dist_backend: nccl
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: multiprocessing_distributed: False
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: fp16: False
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: seed: 0
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: log_tag: -synth_only
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: workers: 8
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: start_epoch: 0
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: momentum: 0.9
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: weight_decay: 0.0001
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: print_freq: 0
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: pretrained: False
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: distributed: False
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: ngpus_per_node: 1
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: autocast: <function dummy_ctx at 0x72304fa6dca0>
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: logger: <Logger cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only (DEBUG)>
+[12/05 16:56:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: tb: <torch.utils.tensorboard.writer.SummaryWriter object at 0x722fdc142e50>
+[12/05 16:56:59] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=0 Acc@1=2.2400 Acc@5=10.5400 Loss=5.2832 Lr=0.1000
+[12/05 16:57:23] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=1 Acc@1=5.4200 Acc@5=22.2400 Loss=4.3880 Lr=0.1000
+[12/05 16:57:46] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=2 Acc@1=8.8200 Acc@5=31.8900 Loss=4.0867 Lr=0.1000
+[12/05 16:58:10] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=3 Acc@1=14.1600 Acc@5=40.1900 Loss=3.6918 Lr=0.0999
+[12/05 16:58:33] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=4 Acc@1=17.4900 Acc@5=43.1900 Loss=3.6055 Lr=0.0999
+[12/05 16:58:56] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=5 Acc@1=22.5400 Acc@5=53.8300 Loss=3.1533 Lr=0.0998
+[12/05 16:59:20] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=6 Acc@1=25.0700 Acc@5=56.2200 Loss=3.0851 Lr=0.0998
+[12/05 16:59:43] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=7 Acc@1=27.0400 Acc@5=57.8000 Loss=3.0599 Lr=0.0997
+[12/05 17:00:07] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=8 Acc@1=25.6400 Acc@5=57.6900 Loss=3.0770 Lr=0.0996
+[12/05 17:00:31] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=9 Acc@1=30.5900 Acc@5=64.1500 Loss=2.7356 Lr=0.0995
+[12/05 17:00:54] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=10 Acc@1=31.6900 Acc@5=64.1100 Loss=2.7195 Lr=0.0994
+[12/05 17:01:18] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=11 Acc@1=32.8600 Acc@5=65.9900 Loss=2.6274 Lr=0.0993
+[12/05 17:01:41] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=12 Acc@1=34.7200 Acc@5=68.8400 Loss=2.5078 Lr=0.0991
+[12/05 17:02:05] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=13 Acc@1=36.2500 Acc@5=70.4500 Loss=2.4284 Lr=0.0990
+[12/05 17:02:28] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=14 Acc@1=31.0600 Acc@5=65.5600 Loss=2.7119 Lr=0.0988
+[12/05 17:02:52] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=15 Acc@1=37.7300 Acc@5=71.9200 Loss=2.3542 Lr=0.0986
+[12/05 17:03:15] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=16 Acc@1=36.8300 Acc@5=71.5400 Loss=2.4046 Lr=0.0984
+[12/05 17:03:39] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=17 Acc@1=36.7600 Acc@5=70.6700 Loss=2.3929 Lr=0.0982
+[12/05 17:04:02] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=18 Acc@1=37.8900 Acc@5=73.2900 Loss=2.3331 Lr=0.0980
+[12/05 17:04:26] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=19 Acc@1=38.4200 Acc@5=73.6000 Loss=2.3056 Lr=0.0978
+[12/05 17:04:50] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=20 Acc@1=38.8700 Acc@5=73.4000 Loss=2.3160 Lr=0.0976
+[12/05 17:05:14] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=21 Acc@1=37.5500 Acc@5=73.0400 Loss=2.3615 Lr=0.0973
+[12/05 17:05:38] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=22 Acc@1=39.2100 Acc@5=74.0500 Loss=2.2864 Lr=0.0970
+[12/05 17:06:02] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=23 Acc@1=41.0500 Acc@5=75.4600 Loss=2.2156 Lr=0.0968
+[12/05 17:06:27] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=24 Acc@1=41.9000 Acc@5=75.6900 Loss=2.1894 Lr=0.0965
+[12/05 17:06:51] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=25 Acc@1=40.8200 Acc@5=74.6800 Loss=2.2415 Lr=0.0962
+[12/05 17:07:15] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=26 Acc@1=41.9600 Acc@5=76.1700 Loss=2.1639 Lr=0.0959
+[12/05 17:07:39] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=27 Acc@1=43.5100 Acc@5=76.8700 Loss=2.0971 Lr=0.0956
+[12/05 17:08:04] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=28 Acc@1=41.3200 Acc@5=75.4700 Loss=2.1954 Lr=0.0952
+[12/05 17:08:28] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=29 Acc@1=41.8300 Acc@5=75.6400 Loss=2.1840 Lr=0.0949
+[12/05 17:08:53] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=30 Acc@1=40.3000 Acc@5=73.3200 Loss=2.2681 Lr=0.0946
+[12/05 17:09:18] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=31 Acc@1=42.8700 Acc@5=75.6100 Loss=2.1650 Lr=0.0942
+[12/05 17:09:42] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=32 Acc@1=41.5800 Acc@5=75.5700 Loss=2.1912 Lr=0.0938
+[12/05 17:10:07] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=33 Acc@1=44.0700 Acc@5=77.8500 Loss=2.0635 Lr=0.0934
+[12/05 17:10:31] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=34 Acc@1=42.2900 Acc@5=77.5600 Loss=2.1179 Lr=0.0930
+[12/05 17:10:55] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=35 Acc@1=43.1300 Acc@5=76.5700 Loss=2.1196 Lr=0.0926
+[12/05 17:11:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=36 Acc@1=42.3700 Acc@5=77.1700 Loss=2.1574 Lr=0.0922
+[12/05 17:11:42] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=37 Acc@1=43.4800 Acc@5=77.9300 Loss=2.0792 Lr=0.0918
+[12/05 17:12:06] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=38 Acc@1=43.9200 Acc@5=78.0700 Loss=2.0655 Lr=0.0914
+[12/05 17:12:29] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=39 Acc@1=42.6200 Acc@5=77.2600 Loss=2.1082 Lr=0.0909
+[12/05 17:12:53] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=40 Acc@1=44.7200 Acc@5=77.4100 Loss=2.0878 Lr=0.0905
+[12/05 17:13:16] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=41 Acc@1=43.4300 Acc@5=77.6400 Loss=2.0831 Lr=0.0900
+[12/05 17:13:39] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=42 Acc@1=45.0600 Acc@5=77.9100 Loss=2.0533 Lr=0.0895
+[12/05 17:14:03] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=43 Acc@1=46.2000 Acc@5=78.8800 Loss=1.9901 Lr=0.0890
+[12/05 17:14:26] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=44 Acc@1=46.0400 Acc@5=78.9900 Loss=1.9779 Lr=0.0885
+[12/05 17:14:50] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=45 Acc@1=45.3100 Acc@5=78.3600 Loss=2.0220 Lr=0.0880
+[12/05 17:15:13] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=46 Acc@1=47.0000 Acc@5=79.5100 Loss=1.9799 Lr=0.0875
+[12/05 17:15:37] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=47 Acc@1=47.3900 Acc@5=79.8600 Loss=1.9338 Lr=0.0870
+[12/05 17:16:00] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=48 Acc@1=45.4200 Acc@5=78.5800 Loss=2.0157 Lr=0.0864
+[12/05 17:16:24] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=49 Acc@1=44.3500 Acc@5=78.3800 Loss=2.0381 Lr=0.0859
+[12/05 17:16:47] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=50 Acc@1=46.9000 Acc@5=79.9400 Loss=1.9653 Lr=0.0854
+[12/05 17:17:11] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=51 Acc@1=47.8300 Acc@5=80.1700 Loss=1.9255 Lr=0.0848
+[12/05 17:17:34] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=52 Acc@1=46.1600 Acc@5=79.4400 Loss=1.9708 Lr=0.0842
+[12/05 17:17:58] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=53 Acc@1=46.4900 Acc@5=79.6800 Loss=1.9534 Lr=0.0837
+[12/05 17:18:21] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=54 Acc@1=46.4000 Acc@5=79.7200 Loss=1.9617 Lr=0.0831
+[12/05 17:18:45] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=55 Acc@1=48.1500 Acc@5=81.3100 Loss=1.8900 Lr=0.0825
+[12/05 17:19:08] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=56 Acc@1=48.1800 Acc@5=80.0800 Loss=1.9185 Lr=0.0819
+[12/05 17:19:31] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=57 Acc@1=46.8400 Acc@5=79.8600 Loss=1.9420 Lr=0.0813
+[12/05 17:19:55] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=58 Acc@1=47.4000 Acc@5=80.3100 Loss=1.9276 Lr=0.0806
+[12/05 17:20:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=59 Acc@1=46.4600 Acc@5=79.4500 Loss=1.9747 Lr=0.0800
+[12/05 17:20:42] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=60 Acc@1=48.1900 Acc@5=80.3900 Loss=1.9044 Lr=0.0794
+[12/05 17:21:06] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=61 Acc@1=47.3200 Acc@5=79.3000 Loss=1.9600 Lr=0.0788
+[12/05 17:21:29] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=62 Acc@1=48.2000 Acc@5=80.7200 Loss=1.9064 Lr=0.0781
+[12/05 17:21:52] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=63 Acc@1=49.3800 Acc@5=81.6400 Loss=1.8461 Lr=0.0775
+[12/05 17:22:16] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=64 Acc@1=48.8800 Acc@5=81.7000 Loss=1.8624 Lr=0.0768
+[12/05 17:22:39] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=65 Acc@1=49.1000 Acc@5=81.6600 Loss=1.8613 Lr=0.0761
+[12/05 17:23:03] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=66 Acc@1=49.2000 Acc@5=80.6200 Loss=1.8785 Lr=0.0755
+[12/05 17:23:26] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=67 Acc@1=49.5100 Acc@5=81.6600 Loss=1.8450 Lr=0.0748
+[12/05 17:23:50] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=68 Acc@1=49.7200 Acc@5=81.4000 Loss=1.8584 Lr=0.0741
+[12/05 17:24:13] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=69 Acc@1=50.1000 Acc@5=81.7900 Loss=1.8319 Lr=0.0734
+[12/05 17:24:37] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=70 Acc@1=48.4100 Acc@5=79.9300 Loss=1.8919 Lr=0.0727
+[12/05 17:25:00] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=71 Acc@1=50.3800 Acc@5=81.4800 Loss=1.8318 Lr=0.0720
+[12/05 17:25:24] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=72 Acc@1=50.4800 Acc@5=82.2700 Loss=1.8029 Lr=0.0713
+[12/05 17:25:47] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=73 Acc@1=49.6500 Acc@5=81.3700 Loss=1.8531 Lr=0.0706
+[12/05 17:26:11] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=74 Acc@1=50.7400 Acc@5=82.1800 Loss=1.8134 Lr=0.0699
+[12/05 17:26:34] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=75 Acc@1=50.7100 Acc@5=82.2900 Loss=1.7916 Lr=0.0691
+[12/05 17:26:58] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=76 Acc@1=50.0300 Acc@5=81.9900 Loss=1.8257 Lr=0.0684
+[12/05 17:27:21] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=77 Acc@1=51.6300 Acc@5=83.0200 Loss=1.7653 Lr=0.0677
+[12/05 17:27:45] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=78 Acc@1=51.0300 Acc@5=82.4300 Loss=1.7900 Lr=0.0669
+[12/05 17:28:08] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=79 Acc@1=50.7200 Acc@5=82.5000 Loss=1.7927 Lr=0.0662
+[12/05 17:28:31] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=80 Acc@1=49.0400 Acc@5=80.8800 Loss=1.8695 Lr=0.0655
+[12/05 17:28:55] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=81 Acc@1=51.1200 Acc@5=82.6000 Loss=1.7891 Lr=0.0647
+[12/05 17:29:18] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=82 Acc@1=50.7800 Acc@5=82.5600 Loss=1.7889 Lr=0.0639
+[12/05 17:29:42] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=83 Acc@1=50.6700 Acc@5=81.9100 Loss=1.8199 Lr=0.0632
+[12/05 17:30:05] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=84 Acc@1=50.6600 Acc@5=82.4000 Loss=1.7979 Lr=0.0624
+[12/05 17:30:29] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=85 Acc@1=50.4300 Acc@5=82.1200 Loss=1.8217 Lr=0.0617
+[12/05 17:30:52] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=86 Acc@1=50.8700 Acc@5=82.8700 Loss=1.7771 Lr=0.0609
+[12/05 17:31:16] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=87 Acc@1=50.7000 Acc@5=82.3600 Loss=1.7885 Lr=0.0601
+[12/05 17:31:39] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=88 Acc@1=50.7500 Acc@5=83.1100 Loss=1.7726 Lr=0.0594
+[12/05 17:32:02] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=89 Acc@1=52.4800 Acc@5=83.2500 Loss=1.7459 Lr=0.0586
+[12/05 17:32:26] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=90 Acc@1=51.5700 Acc@5=82.7600 Loss=1.7643 Lr=0.0578
+[12/05 17:32:49] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=91 Acc@1=51.9600 Acc@5=83.0700 Loss=1.7451 Lr=0.0570
+[12/05 17:33:13] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=92 Acc@1=51.2800 Acc@5=82.3300 Loss=1.8067 Lr=0.0563
+[12/05 17:33:36] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=93 Acc@1=51.3000 Acc@5=81.9400 Loss=1.7933 Lr=0.0555
+[12/05 17:34:00] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=94 Acc@1=52.0200 Acc@5=83.5200 Loss=1.7457 Lr=0.0547
+[12/05 17:34:23] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=95 Acc@1=49.9500 Acc@5=82.5400 Loss=1.8184 Lr=0.0539
+[12/05 17:34:47] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=96 Acc@1=49.9200 Acc@5=82.1400 Loss=1.8289 Lr=0.0531
+[12/05 17:35:10] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=97 Acc@1=52.9200 Acc@5=83.8500 Loss=1.7114 Lr=0.0524
+[12/05 17:35:34] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=98 Acc@1=51.7700 Acc@5=83.5400 Loss=1.7493 Lr=0.0516
+[12/05 17:35:57] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=99 Acc@1=51.8800 Acc@5=82.9600 Loss=1.7488 Lr=0.0508
+[12/05 17:36:20] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=100 Acc@1=52.1800 Acc@5=83.5100 Loss=1.7329 Lr=0.0500
+[12/05 17:36:44] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=101 Acc@1=53.6500 Acc@5=84.5600 Loss=1.6818 Lr=0.0492
+[12/05 17:37:07] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=102 Acc@1=51.7600 Acc@5=83.2000 Loss=1.7489 Lr=0.0484
+[12/05 17:37:31] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=103 Acc@1=52.1300 Acc@5=83.0200 Loss=1.7421 Lr=0.0476
+[12/05 17:37:54] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=104 Acc@1=51.6000 Acc@5=83.0900 Loss=1.7640 Lr=0.0469
+[12/05 17:38:18] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=105 Acc@1=53.7100 Acc@5=84.4300 Loss=1.6764 Lr=0.0461
+[12/05 17:38:41] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=106 Acc@1=53.3300 Acc@5=83.8800 Loss=1.6985 Lr=0.0453
+[12/05 17:39:04] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=107 Acc@1=52.6500 Acc@5=83.5100 Loss=1.7294 Lr=0.0445
+[12/05 17:39:28] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=108 Acc@1=52.4000 Acc@5=83.5100 Loss=1.7245 Lr=0.0437
+[12/05 17:39:51] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=109 Acc@1=53.1700 Acc@5=84.2200 Loss=1.6882 Lr=0.0430
+[12/05 17:40:15] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=110 Acc@1=53.2800 Acc@5=84.2100 Loss=1.6946 Lr=0.0422
+[12/05 17:40:38] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=111 Acc@1=53.0400 Acc@5=83.8400 Loss=1.6996 Lr=0.0414
+[12/05 17:41:02] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=112 Acc@1=54.7000 Acc@5=85.0000 Loss=1.6479 Lr=0.0406
+[12/05 17:41:25] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=113 Acc@1=53.1600 Acc@5=84.1100 Loss=1.6920 Lr=0.0399
+[12/05 17:41:49] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=114 Acc@1=54.3500 Acc@5=84.6700 Loss=1.6569 Lr=0.0391
+[12/05 17:42:12] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=115 Acc@1=53.6300 Acc@5=84.4500 Loss=1.6790 Lr=0.0383
+[12/05 17:42:36] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=116 Acc@1=53.9100 Acc@5=84.4700 Loss=1.6612 Lr=0.0376
+[12/05 17:42:59] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=117 Acc@1=53.7800 Acc@5=84.2200 Loss=1.6853 Lr=0.0368
+[12/05 17:43:23] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=118 Acc@1=54.1300 Acc@5=84.8500 Loss=1.6485 Lr=0.0361
+[12/05 17:43:46] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=119 Acc@1=54.2600 Acc@5=84.8200 Loss=1.6546 Lr=0.0353
+[12/05 17:44:10] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=120 Acc@1=53.5600 Acc@5=84.8100 Loss=1.6597 Lr=0.0345
+[12/05 17:44:33] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=121 Acc@1=53.6600 Acc@5=84.3500 Loss=1.6828 Lr=0.0338
+[12/05 17:44:57] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=122 Acc@1=53.8600 Acc@5=84.9800 Loss=1.6707 Lr=0.0331
+[12/05 17:45:20] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=123 Acc@1=54.6500 Acc@5=85.5200 Loss=1.6399 Lr=0.0323
+[12/05 17:45:43] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=124 Acc@1=55.3200 Acc@5=85.0000 Loss=1.6215 Lr=0.0316
+[12/05 17:46:07] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=125 Acc@1=54.7300 Acc@5=84.8700 Loss=1.6294 Lr=0.0309
+[12/05 17:46:30] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=126 Acc@1=54.1400 Acc@5=84.9700 Loss=1.6409 Lr=0.0301
+[12/05 17:46:54] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=127 Acc@1=53.9300 Acc@5=84.7300 Loss=1.6593 Lr=0.0294
+[12/05 17:47:17] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=128 Acc@1=53.7000 Acc@5=84.5600 Loss=1.6594 Lr=0.0287
+[12/05 17:47:41] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=129 Acc@1=55.4700 Acc@5=85.6800 Loss=1.6122 Lr=0.0280
+[12/05 17:48:04] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=130 Acc@1=54.5800 Acc@5=85.4600 Loss=1.6274 Lr=0.0273
+[12/05 17:48:28] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=131 Acc@1=55.6400 Acc@5=85.2500 Loss=1.6152 Lr=0.0266
+[12/05 17:48:51] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=132 Acc@1=55.5800 Acc@5=85.1200 Loss=1.6115 Lr=0.0259
+[12/05 17:49:15] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=133 Acc@1=53.8800 Acc@5=84.3800 Loss=1.6573 Lr=0.0252
+[12/05 17:49:38] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=134 Acc@1=54.6600 Acc@5=85.4900 Loss=1.6149 Lr=0.0245
+[12/05 17:50:02] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=135 Acc@1=55.5500 Acc@5=85.5000 Loss=1.6047 Lr=0.0239
+[12/05 17:50:25] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=136 Acc@1=55.9900 Acc@5=85.9100 Loss=1.5866 Lr=0.0232
+[12/05 17:50:49] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=137 Acc@1=55.4200 Acc@5=85.9000 Loss=1.5973 Lr=0.0225
+[12/05 17:51:12] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=138 Acc@1=55.5700 Acc@5=85.7400 Loss=1.5840 Lr=0.0219
+[12/05 17:51:36] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=139 Acc@1=55.6100 Acc@5=85.7200 Loss=1.5858 Lr=0.0212
+[12/05 17:51:59] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=140 Acc@1=55.8500 Acc@5=85.6700 Loss=1.5835 Lr=0.0206
+[12/05 17:52:22] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=141 Acc@1=55.2400 Acc@5=85.8100 Loss=1.5980 Lr=0.0200
+[12/05 17:52:46] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=142 Acc@1=56.0100 Acc@5=86.1800 Loss=1.5722 Lr=0.0194
+[12/05 17:53:09] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=143 Acc@1=56.6100 Acc@5=86.2200 Loss=1.5619 Lr=0.0187
+[12/05 17:53:33] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=144 Acc@1=55.6600 Acc@5=85.6100 Loss=1.5879 Lr=0.0181
+[12/05 17:53:56] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=145 Acc@1=55.9100 Acc@5=85.9600 Loss=1.5817 Lr=0.0175
+[12/05 17:54:20] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=146 Acc@1=56.4100 Acc@5=86.2600 Loss=1.5739 Lr=0.0169
+[12/05 17:54:43] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=147 Acc@1=55.7900 Acc@5=86.1900 Loss=1.5793 Lr=0.0163
+[12/05 17:55:07] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=148 Acc@1=57.4100 Acc@5=87.0600 Loss=1.5388 Lr=0.0158
+[12/05 17:55:30] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=149 Acc@1=56.7100 Acc@5=86.5200 Loss=1.5535 Lr=0.0152
+[12/05 17:55:54] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=150 Acc@1=56.9600 Acc@5=86.4400 Loss=1.5432 Lr=0.0146
+[12/05 17:56:17] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=151 Acc@1=56.8800 Acc@5=86.4900 Loss=1.5495 Lr=0.0141
+[12/05 17:56:41] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=152 Acc@1=55.9000 Acc@5=86.1000 Loss=1.5686 Lr=0.0136
+[12/05 17:57:04] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=153 Acc@1=56.2100 Acc@5=86.0700 Loss=1.5622 Lr=0.0130
+[12/05 17:57:27] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=154 Acc@1=56.5200 Acc@5=86.2600 Loss=1.5563 Lr=0.0125
+[12/05 17:57:51] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=155 Acc@1=56.8700 Acc@5=86.5600 Loss=1.5296 Lr=0.0120
+[12/05 17:58:14] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=156 Acc@1=57.3500 Acc@5=86.8900 Loss=1.5231 Lr=0.0115
+[12/05 17:58:38] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=157 Acc@1=57.6300 Acc@5=86.8400 Loss=1.5200 Lr=0.0110
+[12/05 17:59:01] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=158 Acc@1=56.6700 Acc@5=86.9000 Loss=1.5290 Lr=0.0105
+[12/05 17:59:25] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=159 Acc@1=57.9300 Acc@5=87.0700 Loss=1.5000 Lr=0.0100
+[12/05 17:59:48] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=160 Acc@1=57.4600 Acc@5=86.9200 Loss=1.5165 Lr=0.0095
+[12/05 18:00:12] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=161 Acc@1=57.2000 Acc@5=86.7300 Loss=1.5336 Lr=0.0091
+[12/05 18:00:35] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=162 Acc@1=57.7400 Acc@5=86.8700 Loss=1.5109 Lr=0.0086
+[12/05 18:00:59] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=163 Acc@1=58.2200 Acc@5=87.3800 Loss=1.4985 Lr=0.0082
+[12/05 18:01:22] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=164 Acc@1=57.8500 Acc@5=87.0100 Loss=1.5033 Lr=0.0078
+[12/05 18:01:45] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=165 Acc@1=58.3300 Acc@5=87.1900 Loss=1.4925 Lr=0.0074
+[12/05 18:02:09] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=166 Acc@1=57.5600 Acc@5=87.1500 Loss=1.5192 Lr=0.0070
+[12/05 18:02:32] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=167 Acc@1=58.2400 Acc@5=87.2200 Loss=1.4983 Lr=0.0066
+[12/05 18:02:56] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=168 Acc@1=58.0400 Acc@5=87.1400 Loss=1.5003 Lr=0.0062
+[12/05 18:03:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=169 Acc@1=58.1400 Acc@5=87.1300 Loss=1.4946 Lr=0.0058
+[12/05 18:03:43] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=170 Acc@1=58.4300 Acc@5=87.5200 Loss=1.4867 Lr=0.0054
+[12/05 18:04:06] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=171 Acc@1=58.3300 Acc@5=87.4400 Loss=1.4913 Lr=0.0051
+[12/05 18:04:29] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=172 Acc@1=58.6800 Acc@5=87.8300 Loss=1.4782 Lr=0.0048
+[12/05 18:04:52] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=173 Acc@1=58.3000 Acc@5=87.1900 Loss=1.4908 Lr=0.0044
+[12/05 18:05:16] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=174 Acc@1=58.2000 Acc@5=87.5000 Loss=1.4877 Lr=0.0041
+[12/05 18:05:39] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=175 Acc@1=58.2100 Acc@5=87.4100 Loss=1.4872 Lr=0.0038
+[12/05 18:06:02] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=176 Acc@1=58.1800 Acc@5=87.5300 Loss=1.4878 Lr=0.0035
+[12/05 18:06:25] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=177 Acc@1=58.4800 Acc@5=87.5300 Loss=1.4699 Lr=0.0032
+[12/05 18:06:48] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=178 Acc@1=58.6300 Acc@5=87.7900 Loss=1.4726 Lr=0.0030
+[12/05 18:07:11] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=179 Acc@1=58.7700 Acc@5=87.7100 Loss=1.4718 Lr=0.0027
+[12/05 18:07:34] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=180 Acc@1=58.6900 Acc@5=87.6800 Loss=1.4690 Lr=0.0024
+[12/05 18:07:57] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=181 Acc@1=58.9100 Acc@5=87.7700 Loss=1.4587 Lr=0.0022
+[12/05 18:08:20] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=182 Acc@1=59.1400 Acc@5=88.0200 Loss=1.4593 Lr=0.0020
+[12/05 18:08:43] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=183 Acc@1=58.7700 Acc@5=87.8200 Loss=1.4662 Lr=0.0018
+[12/05 18:09:06] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=184 Acc@1=58.9600 Acc@5=87.7900 Loss=1.4634 Lr=0.0016
+[12/05 18:09:29] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=185 Acc@1=58.8100 Acc@5=87.9000 Loss=1.4598 Lr=0.0014
+[12/05 18:09:52] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=186 Acc@1=59.2500 Acc@5=87.7800 Loss=1.4537 Lr=0.0012
+[12/05 18:10:15] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=187 Acc@1=59.2300 Acc@5=87.8800 Loss=1.4521 Lr=0.0010
+[12/05 18:10:38] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=188 Acc@1=59.0400 Acc@5=87.9100 Loss=1.4561 Lr=0.0009
+[12/05 18:11:01] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=189 Acc@1=59.1700 Acc@5=88.0200 Loss=1.4514 Lr=0.0007
+[12/05 18:11:24] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=190 Acc@1=59.1800 Acc@5=88.0000 Loss=1.4524 Lr=0.0006
+[12/05 18:11:47] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=191 Acc@1=58.9700 Acc@5=87.9200 Loss=1.4551 Lr=0.0005
+[12/05 18:12:10] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=192 Acc@1=59.3500 Acc@5=87.9400 Loss=1.4523 Lr=0.0004
+[12/05 18:12:33] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=193 Acc@1=59.1200 Acc@5=87.9900 Loss=1.4501 Lr=0.0003
+[12/05 18:12:56] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=194 Acc@1=59.3600 Acc@5=87.9400 Loss=1.4440 Lr=0.0002
+[12/05 18:13:20] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=195 Acc@1=59.0800 Acc@5=87.7400 Loss=1.4524 Lr=0.0002
+[12/05 18:13:43] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=196 Acc@1=59.2600 Acc@5=88.0600 Loss=1.4455 Lr=0.0001
+[12/05 18:14:06] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=197 Acc@1=59.1300 Acc@5=87.9600 Loss=1.4489 Lr=0.0001
+[12/05 18:14:29] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=198 Acc@1=59.1300 Acc@5=87.8700 Loss=1.4497 Lr=0.0000
+[12/05 18:14:52] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: [Eval] Epoch=199 Acc@1=59.3400 Acc@5=87.8300 Loss=1.4495 Lr=0.0000
+[12/05 18:14:52] cifar100-cifar10-wrn40_2-wrn16_1-mosaic-synth_only INFO: Best: 59.3600
