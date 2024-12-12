@@ -11,6 +11,7 @@ from tqdm import tqdm
 import registry
 import datafree
 from datafree.criterions import kldiv
+from datafree.utils import AverageMeter
 
 import torch
 import torch.nn as nn
@@ -102,11 +103,11 @@ parser.add_argument('--synthesis_batch_size', default=None, type=int,
 parser.add_argument('--gpu', default=0, type=int,
                     help='GPU id to use.')
 # TODO: Distributed and FP-16 training 
-parser.add_argument('--world_size', default=-1, type=int,
+parser.add_argument('--world_size', default=1, type=int,
                     help='number of nodes for distributed training')
-parser.add_argument('--rank', default=-1, type=int,
+parser.add_argument('--rank', default=0, type=int,
                     help='node rank for distributed training')
-parser.add_argument('--dist_url', default='tcp://224.66.41.62:23456', type=str,
+parser.add_argument('--dist_url', default='tcp://127.0.0.1:23456', type=str,
                     help='url used to set up distributed training')
 parser.add_argument('--dist_backend', default='nccl', type=str,
                     help='distributed backend')
@@ -122,7 +123,7 @@ parser.add_argument('--fp16', action='store_true',
 parser.add_argument('--seed', default=None, type=int,
                     help='seed for initializing training.')
 parser.add_argument('--log_tag', default='')
-parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
+parser.add_argument('-j', '--workers', default=12, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--start_epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
@@ -202,7 +203,7 @@ def main_worker(gpu, ngpus_per_node, args):
                                 world_size=args.world_size, rank=args.rank)
     if args.fp16:
         from torch.cuda.amp import autocast, GradScaler
-        args.scaler = GradScaler() if args.fp16 else None 
+        args.scaler_s = GradScaler() if args.fp16 else None 
         args.autocast = autocast
     else:
         args.autocast = datafree.utils.dummy_ctx
@@ -316,6 +317,7 @@ def main_worker(gpu, ngpus_per_node, args):
         generator = prepare_model(generator)
 
         discriminator = None
+        encoder = None
         if args.method == 'degan':
             discriminator = datafree.models.generator.Discriminator(nc=3, img_size=32)
             discriminator = prepare_model(discriminator)
@@ -424,9 +426,9 @@ def main_worker(gpu, ngpus_per_node, args):
         (acc1, acc5), val_loss = eval_results['Acc'], eval_results['Loss']
         args.logger.info('[Eval] Epoch={current_epoch} Acc@1={acc1:.4f} Acc@5={acc5:.4f} Loss={loss:.4f} Lr={lr:.4f}'
                 .format(current_epoch=args.current_epoch, acc1=acc1, acc5=acc5, loss=val_loss, lr=optimizer.param_groups[0]['lr']))
-        args.tb.add_scalar('Acc@1', acc1, epoch)
-        args.tb.add_scalar('Acc@5', acc5, epoch)
-        args.tb.add_scalar('Loss', val_loss, epoch)
+        args.tb.add_scalar('eval/Acc@1', acc1, epoch)
+        args.tb.add_scalar('eval/Acc@5', acc5, epoch)
+        args.tb.add_scalar('eval/Loss', val_loss, epoch)
 
         scheduler.step()
         is_best = acc1 > best_acc1
