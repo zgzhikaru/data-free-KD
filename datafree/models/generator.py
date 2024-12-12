@@ -103,6 +103,38 @@ class Encoder(nn.Module):
         log_var = self.log_var(out)
         return z, log_var
 
+# 函数对应判别器中，卷积同时改通道的图像大小
+class Encoder_V2(nn.Module):
+    def __init__(self, nz=100, ndf=64, img_size=32, nc=3):
+        super(Encoder, self).__init__()
+        self.init_size = img_size // 4
+
+        
+        self.conv_blocks = nn.Sequential(
+            # torch.logit,
+            nn.Conv2d(nc, ndf, 3, stride=1, padding=1),
+            nn.LeakyReLU(0.2, inplace=True),
+            nn.BatchNorm2d(ndf),
+
+            nn.Conv2d(ndf, ndf * 2, 3, stride=1, padding=1, bias=False),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.LeakyReLU(0.2, inplace=True),
+            nn.BatchNorm2d(ndf * 2),
+            
+            nn.Conv2d(ndf * 2, ndf * 4, 3, stride=1, padding=1, bias=False),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.BatchNorm2d(ndf * 4),
+        )
+
+        self.l1 = nn.Sequential(nn.Linear(ndf * 4 * self.init_size ** 2, nz))
+        self.log_var = nn.Sequential(nn.Linear(ndf * 4 * self.init_size ** 2, nz))
+    def forward(self, img):
+        out = self.conv_blocks(img)
+        out = out.view(out.shape[0], -1)
+        z = self.l1(out)
+        log_var = self.log_var(out)
+        return z, log_var
+
 class DCGAN_Generator(nn.Module):
     """ Generator from DCGAN: https://arxiv.org/abs/1511.06434
     """
@@ -266,20 +298,27 @@ class PatchDiscriminator(nn.Module):
     def __init__(self, nc=3, ndf=128, output_stride=1):
         super(PatchDiscriminator, self).__init__()
         self.output_stride = output_stride
-        self.main = nn.Sequential(
+        self.main1 = nn.Sequential(
             # input is (nc) x 32 x 32
             nn.Conv2d(nc, ndf, 4, 2, 1),
             nn.LeakyReLU(0.2, inplace=True),
             # state size. (ndf) x 16 x 16
-
+        )
+        self.main2 = nn.Sequential(
             nn.Conv2d(ndf, ndf * 2, 4, 2, 1, bias=False),
             nn.BatchNorm2d(ndf * 2),
             nn.LeakyReLU(0.2, inplace=True),
-
+        )
+        self.main3 = nn.Sequential(
             # state size. (ndf*4) x 8 x 8
             nn.Conv2d(ndf * 2, 1, 1, 1, 0, bias=False),
             nn.Sigmoid()
         )
-    
-    def forward(self, input):
-        return self.main(input)[:, :, ::self.output_stride, ::self.output_stride]
+
+    def forward(self, input, return_features=False):
+        batch = input.shape[0]
+        out = self.main1(input)
+        out = self.main2(out)
+        if return_features:
+            return out.view(batch,-1)
+        return self.main3(out)[:, :, ::self.output_stride, ::self.output_stride]

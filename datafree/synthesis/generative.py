@@ -117,11 +117,11 @@ class GenerativeSynthesizer(BaseSynthesis):
                 mu, log_var = self.encoder(data)
                 z_enc, _ = self._sample_gauss(mu, log_var)
                 
-                score_r = self.discriminator(data.detach())
-                score_enc = self.discriminator(self.ulb_normalizer(self.generator(z_enc)).detach())
+                score_r = self.discriminator(data.detach(), return_features=True)
+                score_enc = self.discriminator(self.ulb_normalizer(self.generator(z_enc)).detach(), return_features=True)
 
-                # KLD = -0.5 * torch.sum(1 + log_var - mu.pow(2) - log_var.exp(), dim=-1)
-                # KLD = KLD.mean(dim=0)
+                KLD = -0.5 * torch.sum(1 + log_var - mu.pow(2) - log_var.exp(), dim=-1)
+                KLD = KLD.mean(dim=0)
                 loss_recon = 0.5 * F.mse_loss(score_r.reshape(synthesis_batch_size, -1), \
                                               score_enc.reshape(synthesis_batch_size, -1), \
                                                 reduction="none").sum(dim=-1)
@@ -134,6 +134,7 @@ class GenerativeSynthesizer(BaseSynthesis):
                 loss_enc.backward()
                 self.optimizer_e.step()
 
+                args.tb.add_scalar('train/loss_KLD', KLD.data.item(), args.n_iter)
                 args.tb.add_scalar('train/loss_recon', loss_recon.data.item(), args.n_iter)
                 args.tb.add_scalar('train/loss_enc', loss_enc.data.item(), args.n_iter)
                 
@@ -176,8 +177,8 @@ class GenerativeSynthesizer(BaseSynthesis):
             loss = self.local * loss_g + loss_tc 
             
             if self.encoder is not None:
-                score_r = self.discriminator(data.detach())
-                score_enc = self.discriminator(self.ulb_normalizer(self.generator(z_enc)).detach())
+                score_r = self.discriminator(data.detach(), return_features=True)
+                score_enc = self.discriminator(self.ulb_normalizer(self.generator(z_enc)).detach(), return_features=True)
 
                 # KLD = -0.5 * torch.sum(1 + log_var - mu.pow(2) - log_var.exp(), dim=-1)
                 # KLD = KLD.mean(dim=0)
