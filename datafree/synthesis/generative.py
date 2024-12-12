@@ -81,7 +81,7 @@ class GenerativeSynthesizer(BaseSynthesis):
         #if data is not None:
         #data_batch_size = data.shape[0]
         z = torch.randn( size=(self.synthesis_batch_size, self.nz), device=self.device )
-        data_batch_size = data.shape[0]
+        data_batch_size = args.batch_size
         synthesis_batch_size = self.synthesis_batch_size
         
         # 判别器的更新
