@@ -107,27 +107,24 @@ class Encoder(nn.Module):
 class Encoder_V2(nn.Module):
     def __init__(self, nz=100, ndf=64, img_size=32, nc=3):
         super(Encoder, self).__init__()
-        self.init_size = img_size // 4
+
+        def encoder_block(in_filters, out_filters, bn=True):
+            block = [nn.Conv2d(in_filters, out_filters, 3, 2, 1), nn.LeakyReLU(0.2, inplace=True), nn.Dropout2d(0.25)]
+            if bn:
+                block.append(nn.BatchNorm2d(out_filters, 0.8))
+            return block
 
         
         self.conv_blocks = nn.Sequential(
-            # torch.logit,
-            nn.Conv2d(nc, ndf, 3, stride=1, padding=1),
-            nn.LeakyReLU(0.2, inplace=True),
-            nn.BatchNorm2d(ndf),
-
-            nn.Conv2d(ndf, ndf * 2, 3, stride=1, padding=1, bias=False),
-            nn.MaxPool2d(kernel_size=2, stride=2),
-            nn.LeakyReLU(0.2, inplace=True),
-            nn.BatchNorm2d(ndf * 2),
-            
-            nn.Conv2d(ndf * 2, ndf * 4, 3, stride=1, padding=1, bias=False),
-            nn.MaxPool2d(kernel_size=2, stride=2),
-            nn.BatchNorm2d(ndf * 4),
+            *encoder_block(nc, ndf, bn=False),
+            *encoder_block(ndf, ndf*2),
+            *encoder_block(ndf*2, ndf*4),
+            *encoder_block(ndf*4, ndf*8),
         )
+        self.init_size = img_size // 2 ** 4
 
-        self.l1 = nn.Sequential(nn.Linear(ndf * 4 * self.init_size ** 2, nz))
-        self.log_var = nn.Sequential(nn.Linear(ndf * 4 * self.init_size ** 2, nz))
+        self.l1 = nn.Sequential(nn.Linear(ndf * 8 * self.init_size ** 2, nz))
+        self.log_var = nn.Sequential(nn.Linear(ndf * 8 * self.init_size ** 2, nz))
     def forward(self, img):
         out = self.conv_blocks(img)
         out = out.view(out.shape[0], -1)
