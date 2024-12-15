@@ -389,7 +389,7 @@ def main_worker(gpu, ngpus_per_node, args):
         eval_results = evaluator(teacher, device=args.gpu)
         (acc1, acc5), val_loss = eval_results['Acc'], eval_results['Loss']
         print('[Eval] Acc@1={acc1:.4f} Acc@5={acc5:.4f} Loss={loss:.4f}'.format(acc1=acc1, acc5=acc5, loss=val_loss))
-        args.logger.info('[Eval_Teacher] Acc={acc:.4f}'.format(acc=eval_results['Acc']))
+        args.logger.info('[Eval_Teacher] Acc={acc:.4f}'.format(acc=acc1))
 
 
     ############################################
