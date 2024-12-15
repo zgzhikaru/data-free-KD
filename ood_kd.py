@@ -11,7 +11,7 @@ from tqdm import tqdm
 import registry
 import datafree
 from datafree.criterions import kldiv
-from datafree.utils import AverageMeter
+# from datafree.utils import AverageMeter
 
 import torch
 import torch.nn as nn
@@ -379,8 +379,8 @@ def main_worker(gpu, ngpus_per_node, args):
     # Evaluate
     ############################################
     if args.evaluate_only:
-        student.eval()
-        eval_results = evaluator(student, device=args.gpu)
+        teacher.eval()
+        eval_results = evaluator(teacher, device=args.gpu)
         (acc1, acc5), val_loss = eval_results['Acc'], eval_results['Loss']
         print('[Eval] Acc@1={acc1:.4f} Acc@5={acc5:.4f} Loss={loss:.4f}'.format(acc1=acc1, acc5=acc5, loss=val_loss))
         return
