@@ -103,9 +103,9 @@ parser.add_argument('--synthesis_batch_size', default=None, type=int,
 parser.add_argument('--gpu', default=0, type=int,
                     help='GPU id to use.')
 # TODO: Distributed and FP-16 training 
-parser.add_argument('--world_size', default=1, type=int,
+parser.add_argument('--world_size', default=-1, type=int,
                     help='number of nodes for distributed training')
-parser.add_argument('--rank', default=0, type=int,
+parser.add_argument('--rank', default=-1, type=int,
                     help='node rank for distributed training')
 parser.add_argument('--dist_url', default='tcp://127.0.0.1:23456', type=str,
                     help='url used to set up distributed training')
