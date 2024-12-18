@@ -179,8 +179,8 @@ class GenerativeSynthesizer(BaseSynthesis):
                     mean_ood, var_ood = all_mean_ood[l], all_var_ood[l]
                     gt_mean, gt_var = all_gt_mean[l], all_gt_var[l]
 
-                    dist_syn2gt = self.norm(mean_synth - gt_mean, 2)/gt_var
-                    dist_syn2ood = self.norm(mean_synth - mean_ood, 2)/var_ood
+                    dist_syn2gt = torch.norm(mean_synth - gt_mean, 2)/gt_var
+                    dist_syn2ood = torch.norm(mean_synth - mean_ood, 2)/var_ood
 
                     weight = (dist_syn2ood - dist_syn2gt).exp()     # (,C)
                     all_weights.append(weight)

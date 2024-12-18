@@ -123,7 +123,7 @@ parser.add_argument('--fp16', action='store_true',
 parser.add_argument('--seed', default=None, type=int,
                     help='seed for initializing training.')
 parser.add_argument('--log_tag', default='')
-parser.add_argument('-j', '--workers', default=12, type=int, metavar='N',
+parser.add_argument('-j', '--workers', default=8, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--start_epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
