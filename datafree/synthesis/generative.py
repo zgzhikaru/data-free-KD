@@ -171,7 +171,7 @@ class GenerativeSynthesizer(BaseSynthesis):
             p = pyx.mean(0)
             loss_balance = (p * torch.log(p)).sum() # maximization
             loss_tc = self.bn * loss_bn + self.oh * loss_oh + self.entropy * loss_ent \
-                + self.adv * loss_adv + self.balance * loss_balance + self.act * loss_act \
+                + self.adv * loss_adv + self.balance * loss_balance + self.act * loss_act 
                 
             
             loss = self.local * loss_g + loss_tc 
