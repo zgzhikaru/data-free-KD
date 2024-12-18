@@ -293,12 +293,12 @@ def main_worker(gpu, ngpus_per_node, args):
 
     train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset) if args.distributed else None
     train_loader = torch.utils.data.DataLoader(
-        train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None),
+        train_dataset, batch_size=args.batch_size, shuffle=(not args.distributed),
         num_workers=args.workers, pin_memory=True, sampler=train_sampler)
     
     raw_sampler = torch.utils.data.distributed.DistributedSampler(raw_dataset) if args.distributed else None
     raw_loader = torch.utils.data.DataLoader(
-        raw_dataset, batch_size=args.batch_size, shuffle=(raw_sampler is None),
+        raw_dataset, batch_size=args.batch_size, shuffle=(not args.distributed),
         num_workers=args.workers, pin_memory=True, sampler=raw_sampler)
     
     print("ori_dataset", ori_dataset)
@@ -338,7 +338,7 @@ def main_worker(gpu, ngpus_per_node, args):
                  teacher=teacher, student=student, generator=generator, nz=nz, discriminator=discriminator,
                  img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g, recon=args.recon, encoder=encoder,
                  synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, entropy=args.entropy,
-                 adv=args.adv, bn=args.bn, oh=args.oh, act=args.act, balance=args.balance, criterion=criterion,
+                 adv=args.adv, bn=args.bn, oh=args.oh, act=args.act, balance=args.balance, criterion=criterion,local=args.local,
                  normalizer=args.normalizer, ulb_normalizer=args.ulb_normalizer, device=args.gpu)
     else: raise NotImplementedError
         
