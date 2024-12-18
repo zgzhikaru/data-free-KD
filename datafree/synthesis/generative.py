@@ -14,6 +14,7 @@ class GenerativeSynthesizer(BaseSynthesis):
                  adv=0, bn=0, oh=0, act=0, balance=0, criterion=None, encoder = None,
                  entropy=0, discriminator=None, local=0, total_steps=None, 
                  normalizer=None, ulb_normalizer=None, device='cpu',
+                 feat_loss_w=0, apply_weight=False, eps=1e-3,
                  # TODO: FP16 and distributed training 
                  autocast=None, use_fp16=False, distributed=False):
         super(GenerativeSynthesizer, self).__init__(teacher, student)
@@ -39,6 +40,10 @@ class GenerativeSynthesizer(BaseSynthesis):
         self.entropy = entropy
         self.local = local
         self.recon = recon
+        self.apply_weight = apply_weight
+        self.feat_loss_w = feat_loss_w
+
+        self.eps = eps
 
 
         #if discriminator is not None:
@@ -159,28 +164,28 @@ class GenerativeSynthesizer(BaseSynthesis):
             all_mean_synth = [h.mean for h in self.hooks]   # (L, C)
             all_feat_synth = [h.feat_mean for h in self.hooks]    # (L, C, H, W)
             
-            num_channels = [len(h.mean) for h in self.hooks]
+            num_channels = [len(h.mean) for h in self.hooks] # (L)
             num_layers = len(num_channels)
 
             apply_weight = True
             if apply_weight:
-                all_gt_mean = [h.module.running_mean.data for h in self.hooks]     # (,C)
-                all_gt_var = [h.module.running_var.data for h in self.hooks]       # (,C)
+                all_gt_mean = [h.module.running_mean.data for h in self.hooks]     # (L,C)
+                all_gt_var = [h.module.running_var.data for h in self.hooks]       # (L,C)
 
                 self.teacher(data)
-                all_mean_ood = [h.mean for h in self.hooks]   # (,C)
-                all_var_ood = [h.var for h in self.hooks]     # (,C)
-                feat_ood = [h.feat_mean for h in self.hooks]  # (,C,H,W)
-            
+                all_mean_ood = [h.mean for h in self.hooks]   # (L,C)
+                all_var_ood = [h.var for h in self.hooks]     # (L,C)
+                feat_ood = [h.feat_mean for h in self.hooks]  # (L,C,H,W)
+
             
                 all_weights = []
                 for l in range(num_layers):
-                    mean_synth, feat_synth = all_mean_synth[l], all_feat_synth[l]
-                    mean_ood, var_ood = all_mean_ood[l], all_var_ood[l]
-                    gt_mean, gt_var = all_gt_mean[l], all_gt_var[l]
+                    mean_synth, feat_synth = all_mean_synth[l], all_feat_synth[l] # (C), (C,H,W)
+                    mean_ood, var_ood = all_mean_ood[l], all_var_ood[l] # (C), (C)
+                    gt_mean, gt_var = all_gt_mean[l], all_gt_var[l] # (C), (C)
 
-                    dist_syn2gt = torch.norm(mean_synth - gt_mean, 2)/gt_var
-                    dist_syn2ood = torch.norm(mean_synth - mean_ood, 2)/var_ood
+                    dist_syn2gt = torch.norm(mean_synth - gt_mean, 2)/(1 + self.eps) # (C)
+                    dist_syn2ood = torch.norm(mean_synth - mean_ood, 2)/(1 + self.eps) # (C)
 
                     weight = (dist_syn2ood - dist_syn2gt).exp()     # (,C)
                     all_weights.append(weight)
@@ -189,11 +194,12 @@ class GenerativeSynthesizer(BaseSynthesis):
        
             loss_feat = 0
             for l in range(num_layers):
-                weight = all_weights[l].detach()
+                weight = all_weights[l].detach() # (C)
                 
-                res_feat = (feat_synth - feat_ood).mean(dim=(-1,-2))        # (,C, H, W) -> (,C)
-                res_mean = feat_synth.mean(dim=(-1,-2)) - feat_ood.mean(dim=(-1,-2))        # (,C)
-                res_std = feat_synth.std(dim=(-1,-2)) - feat_ood.std(dim=(-1,-2))        # (,C)
+                # res_feat = (feat_synth - feat_ood).mean(dim=(-1,-2))        # (,C, H, W) -> (,C)
+                res_feat = (all_feat_synth[l] - feat_ood[l]).mean(dim=(-1,-2))        # (,C)
+                # res_mean = feat_synth.mean(dim=(-1,-2)) - feat_ood.mean(dim=(-1,-2))        # (,C)
+                # res_std = feat_synth.std(dim=(-1,-2)) - feat_ood.std(dim=(-1,-2))        # (,C)
                 
                 res = res_feat
                 loss_feat += (res * weight).sum()
@@ -217,7 +223,7 @@ class GenerativeSynthesizer(BaseSynthesis):
                 + self.adv * loss_adv + self.balance * loss_balance + self.act * loss_act 
                 
             
-            loss = self.local * loss_g + loss_tc 
+            loss = self.local * loss_g + loss_tc + self.feat_loss_w * loss_feat
             
             if self.encoder is not None:
                 score_r = self.discriminator(data.detach(), return_features=True)

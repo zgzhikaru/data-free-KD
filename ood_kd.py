@@ -43,6 +43,10 @@ parser.add_argument('--recon', default=0, type=float, help='scaling factor for e
 
 parser.add_argument('--entropy', default=0, type=float, help='scaling factor for entropy loss')
 parser.add_argument('--local', default=0, type=float, help='scaling factor for discriminator loss')
+parser.add_argument('--apply_weight', action='store_true', help='apply weight to the feat_loss loss')
+parser.add_argument('--feat_loss_w', default=0, type=float, help='scaling factor for feature loss')
+
+
 parser.add_argument('--save_dir', default='run/synthesis', type=str)
 
 # parser.add_argument('--cr', default=1, type=float, help='scaling factor for contrastive model inversion')
@@ -338,7 +342,7 @@ def main_worker(gpu, ngpus_per_node, args):
                  teacher=teacher, student=student, generator=generator, nz=nz, discriminator=discriminator,
                  img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g, recon=args.recon, encoder=encoder,
                  synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, entropy=args.entropy,
-                 adv=args.adv, bn=args.bn, oh=args.oh, act=args.act, balance=args.balance, criterion=criterion,local=args.local,
+                 adv=args.adv, bn=args.bn, oh=args.oh, act=args.act, balance=args.balance, criterion=criterion, local=args.local, feat_loss_w=args.feat_loss_w,
                  normalizer=args.normalizer, ulb_normalizer=args.ulb_normalizer, device=args.gpu)
     else: raise NotImplementedError
         
