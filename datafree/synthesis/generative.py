@@ -156,6 +156,49 @@ class GenerativeSynthesizer(BaseSynthesis):
             inputs = self.normalizer(output_g)
             t_out, t_feat = self.teacher(inputs, return_features=True)
 
+            all_mean_synth = [h.mean for h in self.hooks]   # (L, C)
+            all_feat_synth = [h.feat_mean for h in self.hooks]    # (L, C, H, W)
+            
+            num_channels = [len(h.mean) for h in self.hooks]
+            num_layers = len(num_channels)
+
+            apply_weight = True
+            if apply_weight:
+                all_gt_mean = [h.module.running_mean.data for h in self.hooks]     # (,C)
+                all_gt_var = [h.module.running_var.data for h in self.hooks]       # (,C)
+
+                self.teacher(data)
+                all_mean_ood = [h.mean for h in self.hooks]   # (,C)
+                all_var_ood = [h.var for h in self.hooks]     # (,C)
+                feat_ood = [h.feat_mean for h in self.hooks]  # (,C,H,W)
+            
+            
+                all_weights = []
+                for l in range(num_layers):
+                    mean_synth, feat_synth = all_mean_synth[l], all_feat_synth[l]
+                    mean_ood, var_ood = all_mean_ood[l], all_var_ood[l]
+                    gt_mean, gt_var = all_gt_mean[l], all_gt_var[l]
+
+                    dist_syn2gt = self.norm(mean_synth - gt_mean, 2)/gt_var
+                    dist_syn2ood = self.norm(mean_synth - mean_ood, 2)/var_ood
+
+                    weight = (dist_syn2ood - dist_syn2gt).exp()     # (,C)
+                    all_weights.append(weight)
+            else:
+                all_weights = [torch.ones_like(m) for m in all_mean_synth]
+       
+            loss_feat = 0
+            for l in range(num_layers):
+                weight = all_weights[l].detach()
+                
+                res_feat = (feat_synth - feat_ood).mean(dim=(-1,-2))        # (,C, H, W) -> (,C)
+                res_mean = feat_synth.mean(dim=(-1,-2)) - feat_ood.mean(dim=(-1,-2))        # (,C)
+                res_std = feat_synth.std(dim=(-1,-2)) - feat_ood.std(dim=(-1,-2))        # (,C)
+                
+                res = res_feat
+                loss_feat += (res * weight).sum()
+                #losses.append(loss_feat)
+
             pyx = F.softmax(t_out, dim=1) # p(y|G(z)
             log_softmax_pyx = F.log_softmax(t_out, dim=1)
             loss_ent = -(pyx * log_softmax_pyx).sum(1).mean()
