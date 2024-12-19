@@ -161,57 +161,60 @@ class GenerativeSynthesizer(BaseSynthesis):
             inputs = self.normalizer(output_g)
             t_out, t_feat = self.teacher(inputs, return_features=True)
 
-            all_mean_synth = [h.mean for h in self.hooks]   # (L, C)
-            all_feat_synth = [h.feat_mean for h in self.hooks]    # (L, C, H, W)
-            
-            num_channels = [len(h.mean) for h in self.hooks] # (L)
-            num_layers = len(num_channels)
+            if self.feat_loss_w > 0:
+                all_mean_synth = [h.mean for h in self.hooks]   # (L, C)
+                all_feat_synth = [h.feat_mean for h in self.hooks]    # (L, C, H, W)
+                
+                num_channels = [len(h.mean) for h in self.hooks] # (L)
+                num_layers = len(num_channels)
 
-            apply_weight = True
-            if apply_weight:
-                all_gt_mean = [h.module.running_mean.data for h in self.hooks]     # (L,C)
-                all_gt_var = [h.module.running_var.data for h in self.hooks]       # (L,C)
+                apply_weight = True
+                if apply_weight:
+                    all_gt_mean = [h.module.running_mean.data for h in self.hooks]     # (L,C)
+                    all_gt_var = [h.module.running_var.data for h in self.hooks]       # (L,C)
 
-                self.teacher(data)
-                all_mean_ood = [h.mean for h in self.hooks]   # (L,C)
-                all_var_ood = [h.var for h in self.hooks]     # (L,C)
-                feat_ood = [h.feat_mean for h in self.hooks]  # (L,C,H,W)
+                    self.teacher(data)
+                    all_mean_ood = [h.mean for h in self.hooks]   # (L,C)
+                    all_var_ood = [h.var for h in self.hooks]     # (L,C)
+                    feat_ood = [h.feat_mean for h in self.hooks]  # (L,C,H,W)
 
-            
-                all_weights = []
+                
+                    all_weights = []
+                    for l in range(num_layers):
+                        mean_synth, feat_synth = all_mean_synth[l], all_feat_synth[l] # (C), (C,H,W)
+                        mean_ood, var_ood = all_mean_ood[l], all_var_ood[l] # (C), (C)
+                        gt_mean, gt_var = all_gt_mean[l], all_gt_var[l] # (C), (C)
+
+                        dist_syn2gt = torch.norm(mean_synth - gt_mean, 2)/(1 + self.eps) # (C)
+                        dist_syn2ood = torch.norm(mean_synth - mean_ood, 2)/(1 + self.eps) # (C)
+
+                        weight = (dist_syn2ood - dist_syn2gt).exp()     # (,C)
+                        all_weights.append(weight)
+                else:
+                    all_weights = [torch.ones_like(m) for m in all_mean_synth]
+        
+                loss_feat = 0
                 for l in range(num_layers):
-                    mean_synth, feat_synth = all_mean_synth[l], all_feat_synth[l] # (C), (C,H,W)
-                    mean_ood, var_ood = all_mean_ood[l], all_var_ood[l] # (C), (C)
-                    gt_mean, gt_var = all_gt_mean[l], all_gt_var[l] # (C), (C)
-
-                    dist_syn2gt = torch.norm(mean_synth - gt_mean, 2)/(1 + self.eps) # (C)
-                    dist_syn2ood = torch.norm(mean_synth - mean_ood, 2)/(1 + self.eps) # (C)
-
-                    weight = (dist_syn2ood - dist_syn2gt).exp()     # (,C)
-                    all_weights.append(weight)
+                    weight = all_weights[l].detach() # (C)
+                    
+                    # res_feat = (feat_synth - feat_ood).mean(dim=(-1,-2))        # (,C, H, W) -> (,C)
+                    res_feat = (all_feat_synth[l] - feat_ood[l]).mean(dim=(-1,-2))        # (,C)
+                    # res_mean = feat_synth.mean(dim=(-1,-2)) - feat_ood.mean(dim=(-1,-2))        # (,C)
+                    # res_std = feat_synth.std(dim=(-1,-2)) - feat_ood.std(dim=(-1,-2))        # (,C)
+                    
+                    res = res_feat
+                    loss_feat += (res * weight).sum()
+                    #losses.append(loss_feat)
             else:
-                all_weights = [torch.ones_like(m) for m in all_mean_synth]
-       
-            loss_feat = 0
-            for l in range(num_layers):
-                weight = all_weights[l].detach() # (C)
-                
-                # res_feat = (feat_synth - feat_ood).mean(dim=(-1,-2))        # (,C, H, W) -> (,C)
-                res_feat = (all_feat_synth[l] - feat_ood[l]).mean(dim=(-1,-2))        # (,C)
-                # res_mean = feat_synth.mean(dim=(-1,-2)) - feat_ood.mean(dim=(-1,-2))        # (,C)
-                # res_std = feat_synth.std(dim=(-1,-2)) - feat_ood.std(dim=(-1,-2))        # (,C)
-                
-                res = res_feat
-                loss_feat += (res * weight).sum()
-                #losses.append(loss_feat)
+                loss_feat = 0
 
             pyx = F.softmax(t_out, dim=1) # p(y|G(z)
             log_softmax_pyx = F.log_softmax(t_out, dim=1)
             loss_ent = -(pyx * log_softmax_pyx).sum(1).mean()
 
-            loss_bn = sum([h.r_feature for h in self.hooks])
-            loss_oh = F.cross_entropy( t_out, t_out.max(1)[1] )
-            loss_act = - t_feat.abs().mean()
+            loss_bn = sum([h.r_feature for h in self.hooks]) if self.bn > 0 else 0
+            loss_oh = F.cross_entropy( t_out, t_out.max(1)[1] ) if self.oh > 0 else 0
+            loss_act = - t_feat.abs().mean() if self.act > 0 else 0
             if self.adv>0:
                 s_out = self.student(inputs)
                 loss_adv = -self.criterion(s_out, t_out)
