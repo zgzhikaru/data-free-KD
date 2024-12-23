@@ -246,13 +246,20 @@ class GenerativeSynthesizer(BaseSynthesis):
             self.optimizer.step()
                 
 
-            
-        args.tb.add_scalar('train/loss_g', loss_g.data.item(), args.n_iter)
-        args.tb.add_scalar('train/loss_oh', loss_oh.data.item(), args.n_iter)
-        args.tb.add_scalar('train/loss_ent', loss_ent.data.item(), args.n_iter)
-        args.tb.add_scalar('train/loss_balance', loss_balance.data.item(), args.n_iter)
-        args.tb.add_scalar('train/loss_adv', loss_adv.data.item(), args.n_iter)
-        args.tb.add_scalar('train/loss_bn', loss_bn.data.item(), args.n_iter)
+        if self.local > 0:
+            args.tb.add_scalar('train/loss_g', loss_g.data.item(), args.n_iter)
+        if self.oh > 0:
+            args.tb.add_scalar('train/loss_oh', loss_oh.data.item(), args.n_iter)
+        if self.entropy > 0:
+            args.tb.add_scalar('train/loss_ent', loss_ent.data.item(), args.n_iter)
+        if self.balance > 0:
+            args.tb.add_scalar('train/loss_balance', loss_balance.data.item(), args.n_iter)
+        if self.adv > 0:
+            args.tb.add_scalar('train/loss_adv', loss_adv.data.item(), args.n_iter)
+        if self.bn > 0:
+            args.tb.add_scalar('train/loss_bn', loss_bn.data.item(), args.n_iter)
+        if self.feat_loss_w > 0:
+            args.tb.add_scalar('train/loss_feat', loss_feat.data.item(), args.n_iter)
         args.tb.add_scalar('train/loss_tc', loss_tc.data.item(), args.n_iter)
         if self.encoder is not None:
             
