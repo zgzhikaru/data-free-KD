@@ -342,7 +342,7 @@ def main_worker(gpu, ngpus_per_node, args):
                  teacher=teacher, student=student, generator=generator, nz=nz, discriminator=discriminator,
                  img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g, recon=args.recon, encoder=encoder,
                  synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, entropy=args.entropy,
-                 adv=args.adv, bn=args.bn, oh=args.oh, act=args.act, balance=args.balance, criterion=criterion, local=args.local, feat_loss_w=args.feat_loss_w,
+                 adv=args.adv, bn=args.bn, oh=args.oh, act=args.act, balance=args.balance, criterion=criterion, local=args.local, feat_loss_w=args.feat_loss_w, apply_weight=args.apply_weight,
                  normalizer=args.normalizer, ulb_normalizer=args.ulb_normalizer, device=args.gpu)
     else: raise NotImplementedError
         

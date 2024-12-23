@@ -168,8 +168,8 @@ class GenerativeSynthesizer(BaseSynthesis):
                 num_channels = [len(h.mean) for h in self.hooks] # (L)
                 num_layers = len(num_channels)
 
-                apply_weight = True
-                if apply_weight:
+                # apply_weight = True
+                if self.apply_weight:
                     all_gt_mean = [h.module.running_mean.data for h in self.hooks]     # (L,C)
                     all_gt_var = [h.module.running_var.data for h in self.hooks]       # (L,C)
 
