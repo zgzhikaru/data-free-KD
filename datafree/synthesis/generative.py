@@ -65,6 +65,7 @@ class GenerativeSynthesizer(BaseSynthesis):
         self.use_fp16 = use_fp16
         self.autocast = autocast # for FP16
         self.device = device
+        
 
         # hooks for deepinversion regularization
         self.hooks = []
@@ -168,6 +169,7 @@ class GenerativeSynthesizer(BaseSynthesis):
                 num_channels = [len(h.mean) for h in self.hooks] # (L)
                 num_layers = len(num_channels)
 
+                feat_ood = [h.feat_mean for h in self.hooks]  # (L,C,H,W)
                 # apply_weight = True
                 if self.apply_weight:
                     all_gt_mean = [h.module.running_mean.data for h in self.hooks]     # (L,C)
@@ -176,7 +178,7 @@ class GenerativeSynthesizer(BaseSynthesis):
                     self.teacher(data)
                     all_mean_ood = [h.mean for h in self.hooks]   # (L,C)
                     all_var_ood = [h.var for h in self.hooks]     # (L,C)
-                    feat_ood = [h.feat_mean for h in self.hooks]  # (L,C,H,W)
+                    
 
                 
                     all_weights = []
