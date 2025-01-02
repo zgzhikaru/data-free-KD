@@ -39,6 +39,7 @@ parser.add_argument('--oh', default=0, type=float, help='scaling factor for one 
 parser.add_argument('--ent', default=0, type=float, help='scaling factor for entropy loss')
 parser.add_argument('--act', default=0, type=float, help='scaling factor for activation loss used in DAFL')
 parser.add_argument('--balance', default=0, type=float, help='scaling factor for class balance')
+parser.add_argument('--style', default=0, type=float, help='scaling factor for style matching loss')
 parser.add_argument('--save_dir', default='run/synthesis', type=str)
 
 parser.add_argument('--cr', default=1, type=float, help='scaling factor for contrastive model inversion')
@@ -52,7 +53,7 @@ parser.add_argument('--data_root', default='data')
 parser.add_argument('--teacher', default='wrn40_2')
 parser.add_argument('--student', default='wrn16_1')
 parser.add_argument('--dataset', default='cifar100')
-parser.add_argument('--transfer_set', default='cifar10')
+parser.add_argument('--transfer_set', default=None)
 parser.add_argument('--ood_subset', action='store_true',
                     help='use ood subset')
 parser.add_argument('--shared_normalizer', default=True,
@@ -142,7 +143,7 @@ def unwrap(data):
         return data
 
 def get_data(iterator, args):
-    return unwrap(next(iterator)).cuda(args.gpu) if args.transfer_set else None
+    return unwrap(next(iterator)).cuda(args.gpu) if iterator else None
 
 
 def main():
@@ -281,7 +282,7 @@ def main_worker(gpu, ngpus_per_node, args):
     ############################################
     # Setup dataset
     ############################################
-    
+    cudnn.benchmark = True
     if args.transfer_set:
 
         if os.path.isdir(args.transfer_set):
@@ -306,9 +307,6 @@ def main_worker(gpu, ngpus_per_node, args):
             #train_dataset = torch.utils.data.Subset(train_dataset, ood_index)
             #raw_dataset = torch.utils.data.Subset(raw_dataset, ood_index)
         
-        cudnn.benchmark = True
-
-
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset) if args.distributed else None
         train_loader = torch.utils.data.DataLoader(
             train_dataset, batch_size=args.batch_size, shuffle=(not args.distributed),
@@ -446,18 +444,17 @@ def main_worker(gpu, ngpus_per_node, args):
             train_iter = iter(train_loader)
             #if args.include_raw:
             raw_iter = iter(raw_loader)
+        else:
+            train_iter = None
+            raw_iter = None
         #for _ in range( args.ep_steps//args.kd_steps ): # total kd_steps < ep_steps
         for it in tqdm(range( args.ep_steps )): # total kd_steps < ep_steps
-            # 0. Learn representations from transfer dataset
             # 1. Data synthesis
-            #vis_results = synthesizer.synthesize() # g_steps
             args.n_iter = epoch * args.ep_steps + it
 
-            #data = unwrap(next(train_iter)).cuda(args.gpu) if args.transfer_set else None
             data = get_data(train_iter, args)
             vis_results = synthesizer.synthesize(data, args) # g_steps
             # 2. Knowledge distillation
-            #data = unwrap(next(raw_iter)).cuda(args.gpu) if args.transfer_set and args.include_raw else None
             data = get_data(raw_iter, args) if args.include_raw else None
             train( synthesizer, [student, teacher], criterion, optimizer, data=data, args=args) # # kd_steps
 

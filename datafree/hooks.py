@@ -91,8 +91,8 @@ class DeepInversionHook():
         self.input = input[0]
         self.mean, self.var = mean, var
 
-        self.feat_mean = input[0].mean([0]) # (C,H,W)
-        self.feat_var = input[0].permute(1, 0, 2, 3).contiguous().view([nch, -1]).var(1, unbiased=False)    # (C,H,W)
+        #self.feat_mean = input[0].mean([0]) # (C,H,W)
+        #self.feat_var = input[0].permute(1, 0, 2, 3).contiguous().view([nch, -1]).var(1, unbiased=False)    # (C,H,W)
         #forcing mean and variance to match between two distributions
         #other ways might work better, i.g. KL divergence
         

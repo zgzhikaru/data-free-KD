@@ -252,3 +252,114 @@
 [12/08 01:46:39] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: [Eval] Epoch=198 Acc@1=61.1600 Acc@5=89.2200 Loss=1.3557 Lr=0.0000
 [12/08 01:47:18] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: [Eval] Epoch=199 Acc@1=61.0100 Acc@5=89.0900 Loss=1.3633 Lr=0.0000
 [12/08 01:47:18] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: Best: 61.6100
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: method: mosaic
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: adv: 1.0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: bn: 0.0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: oh: 0.0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: ent: 1.0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: act: 0.0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: balance: 10.0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: style: 0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: save_dir: run/synthesis
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: cr: 1
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: cr_T: 0.5
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: cmi_init: None
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: local: 1.0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: data_root: data
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: teacher: wrn40_2
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: student: wrn16_1
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: dataset: cifar100
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: transfer_set: cifar10
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: ood_subset: False
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: shared_normalizer: True
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: include_raw: True
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: lr: 0.1
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: lr_decay_milestones: 120,150,180
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: lr_g: 0.001
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: T: 1.0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: z_dim: 256
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: epochs: 200
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: g_steps: 1
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: kd_steps: 5
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: ep_steps: 400
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: resume: 
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: evaluate_only: False
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: batch_size: 256
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: synthesis_batch_size: None
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: gpu: 0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: world_size: -1
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: rank: -1
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: dist_url: tcp://224.66.41.62:23456
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: dist_backend: nccl
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: multiprocessing_distributed: False
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: fp16: False
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: seed: 0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: log_tag: 
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: workers: 8
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: start_epoch: 0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: momentum: 0.9
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: weight_decay: 0.0001
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: print_freq: 0
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: pretrained: False
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: distributed: False
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: ngpus_per_node: 2
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: autocast: <function dummy_ctx at 0x784782a36d30>
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: logger: <Logger cifar100-cifar10-wrn40_2-wrn16_1-mosaic (DEBUG)>
+[12/26 23:22:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: tb: <torch.utils.tensorboard.writer.SummaryWriter object at 0x78477e5a9730>
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: method: mosaic
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: adv: 1.0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: bn: 0.0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: oh: 0.0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: ent: 1.0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: act: 0.0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: balance: 10.0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: style: 0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: save_dir: run/synthesis
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: cr: 1
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: cr_T: 0.5
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: cmi_init: None
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: local: 1.0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: data_root: data
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: teacher: wrn40_2
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: student: wrn16_1
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: dataset: cifar100
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: transfer_set: cifar10
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: ood_subset: False
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: shared_normalizer: True
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: include_raw: True
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: lr: 0.1
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: lr_decay_milestones: 120,150,180
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: lr_g: 0.001
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: T: 1.0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: z_dim: 256
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: epochs: 200
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: g_steps: 1
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: kd_steps: 5
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: ep_steps: 400
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: resume: 
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: evaluate_only: False
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: batch_size: 256
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: synthesis_batch_size: None
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: gpu: 0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: world_size: -1
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: rank: -1
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: dist_url: tcp://224.66.41.62:23456
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: dist_backend: nccl
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: multiprocessing_distributed: False
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: fp16: False
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: seed: 0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: log_tag: 
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: workers: 8
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: start_epoch: 0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: momentum: 0.9
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: weight_decay: 0.0001
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: print_freq: 0
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: pretrained: False
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: distributed: False
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: ngpus_per_node: 2
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: autocast: <function dummy_ctx at 0x78d243032d30>
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: logger: <Logger cifar100-cifar10-wrn40_2-wrn16_1-mosaic (DEBUG)>
+[12/26 23:23:19] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: tb: <torch.utils.tensorboard.writer.SummaryWriter object at 0x78d23a1a8790>
+[12/26 23:24:03] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: [Eval] Epoch=0 Acc@1=6.8500 Acc@5=21.9300 Loss=4.3996 Lr=0.1000
+[12/26 23:24:44] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: [Eval] Epoch=1 Acc@1=12.5900 Acc@5=36.9100 Loss=3.7847 Lr=0.1000
+[12/26 23:25:24] cifar100-cifar10-wrn40_2-wrn16_1-mosaic INFO: [Eval] Epoch=2 Acc@1=18.8800 Acc@5=47.1500 Loss=3.3333 Lr=0.1000
