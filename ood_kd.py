@@ -305,9 +305,9 @@ def main_worker(gpu, ngpus_per_node, args):
         raw_dataset, batch_size=args.batch_size, shuffle=(not args.distributed),
         num_workers=args.workers, pin_memory=True, sampler=raw_sampler)
     
-    print("ori_dataset", ori_dataset)
-    print("train_dataset", train_dataset)
-    print("raw_dataset", raw_dataset)
+    # print("ori_dataset", ori_dataset)
+    # print("train_dataset", train_dataset)
+    # print("raw_dataset", raw_dataset)
 
     
     

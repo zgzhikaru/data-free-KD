@@ -182,7 +182,6 @@ class GenerativeSynthesizer(BaseSynthesis):
                 num_layers = len(num_channels)
                 # print(f"num_layers: {num_layers}")
 
-                feat_ood = [h.feat_mean for h in self.hooks]  # (L,C,H,W)
                 # apply_weight = True
                 if self.apply_weight:
                     all_gt_mean = [h.module.running_mean.data for h in self.hooks]     # (L,C)
@@ -191,6 +190,8 @@ class GenerativeSynthesizer(BaseSynthesis):
                     self.teacher(data)
                     all_mean_ood = [h.mean for h in self.hooks]   # (L,C)
                     all_var_ood = [h.var for h in self.hooks]     # (L,C)
+
+                    all_feat_ood = [h.feat_mean for h in self.hooks]   # (L,C,H,W)
                     
                     # 计算weights
                     all_weights = []
@@ -198,43 +199,59 @@ class GenerativeSynthesizer(BaseSynthesis):
                         mean_synth, feat_synth = all_mean_synth[l], all_feat_synth[l] # (C), (C,H,W)
 
                         mean_ood, var_ood = all_mean_ood[l], all_var_ood[l] # (C), (C)
+                        gt_mean, gt_var = all_gt_mean[l], all_gt_var[l] # (C), (C)
 
+                        feat_ood = all_feat_ood[l] # (C,H,W)
 
                         # new_mean = torch.add(self.all_mean_ood_ema[l] * 0.9 ,  mean_ood * 0.1)
                         # new_var = torch.add(self.all_var_ood_ema[l] * 0.9 ,  var_ood * 0.1)
                         with torch.no_grad():
-                            new_mean = self.all_mean_ood_ema[l] * 0.9 + mean_ood * 0.1 if self.all_mean_ood_ema[l] is not None else mean_ood
-                            new_var = self.all_var_ood_ema[l] * 0.9 + var_ood * 0.1 if self.all_var_ood_ema[l] is not None else var_ood
+                            new_mean = self.all_mean_ood_ema[l] * 0.9 + mean_ood * 0.1 if self.all_mean_ood_ema[l] is not None else gt_mean
+                            
+                            new_var = self.all_var_ood_ema[l] * 0.9 + var_ood * 0.1 if self.all_var_ood_ema[l] is not None else gt_var
+
                             self.all_mean_ood_ema[l] = new_mean
                             self.all_var_ood_ema[l] = new_var
 
                         mean_ood, var_ood = self.all_mean_ood_ema[l], self.all_var_ood_ema[l] # (C), (C)
-                        gt_mean, gt_var = all_gt_mean[l], all_gt_var[l] # (C), (C)
+                        
+                        # print(feat_ood.shape, gt_mean.shape, gt_var.shape)
 
                         # dist_syn2gt = torch.norm(mean_synth - gt_mean, 2)/(gt_var + self.eps) # (C)
                         # dist_syn2ood = torch.norm(mean_synth - mean_ood, 2)/(var_ood + self.eps) # (C)
-                        dist_syn2gt = torch.norm(mean_synth - gt_mean, 2)/(1 + self.eps) # (C)
-                        dist_syn2ood = torch.norm(mean_synth - mean_ood, 2)/(1 + self.eps) # (C)
+                        # temp = torch.norm(feat_ood - gt_mean.view(-1,1,1), 2)
+                        # print(temp.shape)
+                        # dist2gt = torch.norm(feat_ood - gt_mean.view(-1,1,1), 2, dim=(-1,-2)).mean(dim=(-1,-2)) / gt_var    # (C, H, W) -> (C)
+                        # dist2ood = torch.norm(feat_ood - mean_ood.view(-1,1,1), 2, dim=(-1,-2)).mean(dim=(-1,-2))/var_ood   # (C, H, W) -> (C)
+                        dist2gt = torch.sqrt((feat_ood - gt_mean.view(-1,1,1))**2).mean(dim=(-1,-2)) / (gt_var + self.eps)   # (C, H, W) -> (C)
+                        dist2ood = torch.sqrt((feat_ood - mean_ood.view(-1,1,1))**2).mean(dim=(-1,-2))/(var_ood + self.eps)   # (C, H, W) -> (C)
 
-                        weight = (dist_syn2ood - dist_syn2gt).exp()     # (,C)
+                        # weight = (dist_syn2ood - dist_syn2gt).exp()     # (,C)
+                        weight = (dist2gt - dist2ood).exp()
                         all_weights.append(weight)
                 else:
                     all_weights = [torch.ones_like(m) for m in all_mean_synth]
                 # 计算loss_feat
                 loss_feat = 0
                 for l in range(num_layers):
-                    mean_synth, feat_synth = all_mean_synth[l], all_feat_synth[l]
+                    mean_synth, feat_synth = all_mean_synth[l], all_feat_synth[l]  # (C), (C,H,W)
+
                     # 1. Compute synthetic sample statistics
                     synth_mean = feat_synth.mean(dim=(-1,-2)).squeeze(0)     # (1, C)
-                    synth_std = feat_synth.std(dim=(-1,-2)).squeeze(0)     # (1, C)
-                    synth_prod_mean = (feat_synth * feat_synth).mean(dim=(-1,-2)).squeeze(0)
+                    # synth_std = feat_synth.std(dim=(-1,-2)).squeeze(0)     # (1, C)
+                    synth_prod_mean = (feat_synth * feat_synth).mean(dim=(-1,-2)).squeeze(0) # (C)
+
                     # 2. Compute distance to proxy samples
                     #feat_ood = bn_feats[l].mean(dim=(-1,-2))   # (N, C, H, W) -> (N, C)
                     #dist_mean = torch.norm(feat_ood - synth_mean, pow=2)   # (N, C)
-                    feat_ood = bn_feats[l]   # (N, C, H, W) 
-                    feat_prod_ood = feat_ood * feat_ood   # (N, C, H, W) 
-                    dist_mean = torch.norm(feat_ood - synth_mean, pow=2).mean(dim=(-1,-2))   # (N, C, H, W) -> (N, C)
-                    dist_var = torch.norm(feat_prod_ood - synth_prod_mean, pow=2).mean(dim=(-1,-2))    # (N, C)
+                    # feat_ood = bn_feats[l]   # (N, C, H, W) 
+
+                    feat_ood = all_feat_ood[l] # (C,H,W)
+                    feat_prod_ood = feat_ood * feat_ood   # (C, H, W) 
+                    # dist_mean = torch.norm(feat_ood - synth_mean.view(-1,1,1), pow=2, dim=(-1,-2)).mean(dim=(-1,-2))   # (C, H, W) -> (C)
+                    # dist_var = torch.norm(feat_prod_ood - synth_prod_mean.view(-1,1,1), pow=2, dim=(-1,-2)).mean(dim=(-1,-2))  # (C)
+                    dist_mean = torch.sqrt((feat_ood - synth_mean.view(-1,1,1))**2).mean(dim=(-1,-2))   # (C, H, W) -> (C)
+                    dist_var = torch.sqrt((feat_prod_ood - synth_prod_mean.view(-1,1,1))**2).mean(dim=(-1,-2))  # (C)
                     # 3. Weight and sum the distance sample-wise
                     weight = all_weights[l].detach()    # (N, C)
                     loss_mean = (weight * dist_mean).sum(dim=0).mean()  #.sum() # (C) # TODO: Design choice for sum or mean over channel
