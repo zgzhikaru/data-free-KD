@@ -200,15 +200,18 @@ class GenerativeSynthesizer(BaseSynthesis):
 
                         mean_ood, var_ood = all_mean_ood[l], all_var_ood[l] # (C), (C)
                         gt_mean, gt_var = all_gt_mean[l], all_gt_var[l] # (C), (C)
+                        if self.all_mean_ood_ema[l] is None:
+                            self.all_mean_ood_ema[l] = gt_mean
+                            self.all_var_ood_ema[l] = gt_var
 
                         feat_ood = all_feat_ood[l] # (C,H,W)
 
                         # new_mean = torch.add(self.all_mean_ood_ema[l] * 0.9 ,  mean_ood * 0.1)
                         # new_var = torch.add(self.all_var_ood_ema[l] * 0.9 ,  var_ood * 0.1)
                         with torch.no_grad():
-                            new_mean = self.all_mean_ood_ema[l] * 0.9 + mean_ood * 0.1 if self.all_mean_ood_ema[l] is not None else gt_mean
+                            new_mean = self.all_mean_ood_ema[l] * 0.9 + mean_ood * 0.1# if self.all_mean_ood_ema[l] is not None else gt_mean
                             
-                            new_var = self.all_var_ood_ema[l] * 0.9 + var_ood * 0.1 if self.all_var_ood_ema[l] is not None else gt_var
+                            new_var = self.all_var_ood_ema[l] * 0.9 + var_ood * 0.1 #if self.all_var_ood_ema[l] is not None else gt_var
 
                             self.all_mean_ood_ema[l] = new_mean
                             self.all_var_ood_ema[l] = new_var
@@ -254,8 +257,8 @@ class GenerativeSynthesizer(BaseSynthesis):
                     dist_var = torch.sqrt((feat_prod_ood - synth_prod_mean.view(-1,1,1))**2).mean(dim=(-1,-2))  # (C)
                     # 3. Weight and sum the distance sample-wise
                     weight = all_weights[l].detach()    # (N, C)
-                    loss_mean = (weight * dist_mean).sum(dim=0).mean()  #.sum() # (C) # TODO: Design choice for sum or mean over channel
-                    loss_var = (weight * dist_var).sum(dim=0).mean()          # (C)
+                    loss_mean = (weight * dist_mean).sum(dim=0)#.mean()  #.sum() # (C) # TODO: Design choice for sum or mean over channel
+                    loss_var = (weight * dist_var).sum(dim=0)#.mean()          # (C)
                     loss_feat += loss_mean
                     #loss_feat += loss_var  # Ablation choice
             else:
