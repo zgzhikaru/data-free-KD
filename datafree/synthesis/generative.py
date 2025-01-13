@@ -27,6 +27,8 @@ class GenerativeSynthesizer(BaseSynthesis):
         self.criterion = criterion
         self.normalizer = normalizer
         self.ulb_normalizer = ulb_normalizer
+        if self.ulb_normalizer is None:
+            self.ulb_normalizer = self.normalizer
         self.synthesis_batch_size = synthesis_batch_size
         self.sample_batch_size = sample_batch_size
 
@@ -103,7 +105,8 @@ class GenerativeSynthesizer(BaseSynthesis):
         synthesis_batch_size = self.synthesis_batch_size
         
         # 判别器的更新
-        if self.discriminator is not None:
+        # self.discriminator = None
+        if not (self.discriminator is None or data is None):
             # Discriminator update
             self.discriminator.train()
             for it in range(self.iterations):
@@ -168,7 +171,7 @@ class GenerativeSynthesizer(BaseSynthesis):
                 loss_g = F.binary_cross_entropy(score, torch.ones_like(score), reduction='sum')/synthesis_batch_size
                 #loss_g = F.binary_cross_entropy_with_logits(score, torch.ones_like(score), reduction='sum') / len(score)
             else:
-                loss_g = 0
+                loss_g = torch.zeros(1).to(self.device)
                 
 
             inputs = self.normalizer(output_g)
@@ -224,10 +227,11 @@ class GenerativeSynthesizer(BaseSynthesis):
                         # dist_syn2ood = torch.norm(mean_synth - mean_ood, 2)/(var_ood + self.eps) # (C)
                         # temp = torch.norm(feat_ood - gt_mean.view(-1,1,1), 2)
                         # print(temp.shape)
-                        # dist2gt = torch.norm(feat_ood - gt_mean.view(-1,1,1), 2, dim=(-1,-2)).mean(dim=(-1,-2)) / gt_var    # (C, H, W) -> (C)
-                        # dist2ood = torch.norm(feat_ood - mean_ood.view(-1,1,1), 2, dim=(-1,-2)).mean(dim=(-1,-2))/var_ood   # (C, H, W) -> (C)
-                        dist2gt = torch.sqrt((feat_ood - gt_mean.view(-1,1,1))**2).mean(dim=(-1,-2)) / (gt_var + self.eps)   # (C, H, W) -> (C)
-                        dist2ood = torch.sqrt((feat_ood - mean_ood.view(-1,1,1))**2).mean(dim=(-1,-2))/(var_ood + self.eps)   # (C, H, W) -> (C)
+                        dist2gt = torch.norm(feat_ood - gt_mean.view(-1,1,1), 2, dim=(-1,-2)) / (1 + self.eps)    # (C, H, W) -> (C)
+                        dist2ood = torch.norm(feat_ood - mean_ood.view(-1,1,1), 2, dim=(-1,-2)) / (1 + self.eps)   # (C, H, W) -> (C)
+                        # dist2gt = torch.sqrt((feat_ood - gt_mean.view(-1,1,1))**2).mean(dim=(-1,-2)) / (1 + self.eps)   # (C, H, W) -> (C)
+                        # dist2gt = (feat_ood - gt_mean.view(-1,1,1)).mean(dim=(-1,-2)) / (gt_var + self.eps)   # (C, H, W) -> (C)
+                        # dist2ood = (feat_ood - mean_ood.view(-1,1,1)).mean(dim=(-1,-2))/(var_ood + self.eps)   # (C, H, W) -> (C)
 
                         # weight = (dist_syn2ood - dist_syn2gt).exp()     # (,C)
                         weight = (dist2gt - dist2ood).exp()
@@ -251,14 +255,15 @@ class GenerativeSynthesizer(BaseSynthesis):
 
                     feat_ood = all_feat_ood[l] # (C,H,W)
                     feat_prod_ood = feat_ood * feat_ood   # (C, H, W) 
-                    # dist_mean = torch.norm(feat_ood - synth_mean.view(-1,1,1), pow=2, dim=(-1,-2)).mean(dim=(-1,-2))   # (C, H, W) -> (C)
+                    dist_mean = torch.norm(feat_ood - synth_mean.view(-1,1,1), 2, dim=(-1,-2))#.mean(dim=(-1,-2))   # (C, H, W) -> (C)
                     # dist_var = torch.norm(feat_prod_ood - synth_prod_mean.view(-1,1,1), pow=2, dim=(-1,-2)).mean(dim=(-1,-2))  # (C)
-                    dist_mean = torch.sqrt((feat_ood - synth_mean.view(-1,1,1))**2).mean(dim=(-1,-2))   # (C, H, W) -> (C)
-                    dist_var = torch.sqrt((feat_prod_ood - synth_prod_mean.view(-1,1,1))**2).mean(dim=(-1,-2))  # (C)
+                    # dist_mean = (feat_ood - synth_mean.view(-1,1,1)).mean(dim=(-1,-2))   # (C, H, W) -> (C)
+                    # dist_var = (feat_prod_ood - synth_prod_mean.view(-1,1,1)).mean(dim=(-1,-2))  # (C)
                     # 3. Weight and sum the distance sample-wise
                     weight = all_weights[l].detach()    # (N, C)
-                    loss_mean = (weight * dist_mean).sum(dim=0)#.mean()  #.sum() # (C) # TODO: Design choice for sum or mean over channel
-                    loss_var = (weight * dist_var).sum(dim=0)#.mean()          # (C)
+                    # loss_mean = (weight * dist_mean).sum(dim=0)#.mean()  #.sum() # (C) # TODO: Design choice for sum or mean over channel
+                    loss_mean = (weight * dist_mean).mean()          # (C)
+                    # loss_var = (weight * dist_var).sum(dim=0)#.mean()          # (C)
                     loss_feat += loss_mean
                     #loss_feat += loss_var  # Ablation choice
             else:
@@ -321,13 +326,14 @@ class GenerativeSynthesizer(BaseSynthesis):
             
             lr_e = self.optimizer_e.param_groups[0]['lr']
             args.tb.add_scalar('train/lr_e', lr_e, args.n_iter)
-
-        lr_g = self.optimizer.param_groups[0]['lr']
-        lr_d = self.optimizer_d.param_groups[0]['lr']
         
-
+        if self.discriminator is not None:
+            lr_d = self.optimizer_d.param_groups[0]['lr']
+            args.tb.add_scalar('train/lr_d', lr_d, args.n_iter)
+            
+        lr_g = self.optimizer.param_groups[0]['lr']
         args.tb.add_scalar('train/lr_g', lr_g, args.n_iter)
-        args.tb.add_scalar('train/lr_d', lr_d, args.n_iter)
+        
         
 
         return { 'synthetic': self.normalizer(inputs.detach(), reverse=True) }
