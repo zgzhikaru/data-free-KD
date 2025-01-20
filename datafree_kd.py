@@ -363,7 +363,7 @@ def main_worker(gpu, ngpus_per_node, args):
                  synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, 
                  adv=args.adv, bn=args.bn, oh=args.oh, ent=args.ent, act=args.act, balance=args.balance, local=args.local, 
                  criterion=criterion, normalizer=args.normalizer, ulb_normalizer=args.ulb_normalizer, 
-                 total_steps=args.epochs * args.ep_steps, 
+                 total_steps=args.epochs * args.ep_steps, style=args.style, 
                  device=args.gpu)
         
     elif args.method=='cmi':

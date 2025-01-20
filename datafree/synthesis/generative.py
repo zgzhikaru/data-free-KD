@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import random
+import copy
 
 from .base import BaseSynthesis
 from datafree.hooks import DeepInversionHook
@@ -12,7 +13,7 @@ class GenerativeSynthesizer(BaseSynthesis):
     def __init__(self, teacher, student, generator, nz, img_size, iterations=1,
                  lr_g=1e-3, synthesis_batch_size=128, sample_batch_size=128, 
                  adv=0, bn=0, oh=0, ent=0, act=0, balance=0, criterion=None,
-                 discriminator=None, local=0, total_steps=None, 
+                 discriminator=None, local=0, total_steps=None, style=0, 
                  normalizer=None, ulb_normalizer=None, device='cpu',
                  # TODO: FP16 and distributed training 
                  autocast=None, use_fp16=False, distributed=False):
@@ -40,6 +41,8 @@ class GenerativeSynthesizer(BaseSynthesis):
         self.act = act
         self.local = local
 
+        self.style = style
+
         #if discriminator is not None:
         self.discriminator = discriminator
         if self.discriminator is not None:
@@ -63,11 +66,21 @@ class GenerativeSynthesizer(BaseSynthesis):
             if isinstance(m, nn.BatchNorm2d):
                 self.hooks.append( DeepInversionHook(m) )
 
+        # Make a copy for teacher and set to train mode for style weighting loss
+        if self.style:
+            self.ood_encoder = copy.deepcopy(self.teacher)
+            self.ood_encoder.train()    # Keep track of feature statistics of inputs
+
+            self.hooks_ood = []
+            for m in self.ood_encoder.modules():
+                if isinstance(m, nn.BatchNorm2d):
+                    self.hooks_ood.append( DeepInversionHook(m) )
+
+
     def synthesize(self, data, args):
         self.student.eval()
         self.generator.train()
         self.teacher.eval()
-
         
         output_g = None
         #if data is not None:
@@ -123,68 +136,60 @@ class GenerativeSynthesizer(BaseSynthesis):
                 loss_g = 0
 
             
-            inputs = self.normalizer(output_g)
-            t_out, t_feat = self.teacher(inputs, return_features=True)
+            if data is not None and args.style:
 
-            if args.style:
-                all_mean_synth = [h.mean for h in self.hooks]   # (L, C)
-                all_feat_synth = [h.feat_mean for h in self.hooks]    # (L, C, H, W)
-                bn_feats = [h.feat for h in self.hooks]    # (L, N, C, H, W)  # TODO: Set option to obtain bn_feats from forward
-                
                 num_channels = [len(h.mean) for h in self.hooks]
                 num_layers = len(num_channels)
+                
+                data_normed = self.normalizer(data)     # NOTE: Consider ulb_normalizer
+                t_out = self.teacher(data_normed)
+                ood_out = self.ood_encoder(data_normed)
+
+                normed_gt = [h.normed_feat for h in self.hooks]     # (,C,H,W)
+                normed_ood = [h.normed_feat for h in self.hooks_ood]     # (,C,H,W)
 
                 apply_weight = True
-                all_gt_mean = [h.module.running_mean.data for h in self.hooks]     # (,C)
-                all_gt_var = [h.module.running_var.data for h in self.hooks]       # (,C)
-                bn_feats = self.teacher(data, return_bn_feat=True)
-
                 if apply_weight:
-                    all_mean_ood = [h.mean for h in self.hooks]   # (,C)    # TODO: Obtain from pre-computed over whole dataset
-                    all_var_ood = [h.var for h in self.hooks]     # (,C)
-                    #feat_ood = [h.feat_mean for h in self.hooks]  # (,C,H,W)
-                
                     all_weights = []
                     for l in range(num_layers):
-                        feat_ood = bn_feats[l]#.mean(dim=(-1,-2))   # (N, C, H, W) -> (N, C)
-                        mean_synth, feat_synth = all_mean_synth[l], all_feat_synth[l]
-                        mean_ood, var_ood = all_mean_ood[l].unsqueeze(0), all_var_ood[l].unsqueeze(0)     # (1, C, H, W)
-                        gt_mean, gt_var = all_gt_mean[l].unsqueeze(0), all_gt_var[l].unsqueeze(0)     # (1, C)
+                        dist2gt = normed_gt.mean(dim=(-1,-2))       # (N, C, H, W) -> (N, C)
+                        dist2ood = normed_ood.mean(dim=(-1,-2))     # (N, C, H, W) -> (N, C)
+                        # TODO: Alternatively, keep all dim and apply to (subset of) individual samples
 
-                        #dist2gt = torch.norm(feat_ood - gt_mean, 2)/gt_var   # (N, C, H)    # TODO Option: Move mean(H,W) after norm; Better interpretation 
-                        #dist2ood = torch.norm(feat_ood - mean_ood, 2)/var_ood
-                        dist2gt = torch.norm(feat_ood - gt_mean, 2).mean(dim=(-1,-2))/gt_var        # (N, C, H, W) -> (N, C)
-                        dist2ood = torch.norm(feat_ood - mean_ood, 2).mean(dim=(-1,-2))/var_ood     # (N, C, H, W) -> (N, C)
-
-                        weight = (dist2gt - dist2ood).exp()     # (N, C)
+                        weight = (dist2ood - dist2gt).exp()     # (N, C)
                         all_weights.append(weight)
                 else:
-                    all_weights = [torch.ones_like(m) for m in all_mean_synth]  # TODO: Squeeze (N)-dim
-        
+                    all_weights = [torch.ones_like(m) for m in normed_gt] 
+
+
+                inputs = self.normalizer(output_g)
+                t_out, t_feat = self.teacher(inputs, return_features=True)
+
+                all_mean_synth = [h.mean for h in self.hooks]   # (L, C)
+                all_feat_synth = [h.input for h in self.hooks]   # (L, C)
+                all_feat_ood = [h.input for h in self.hooks_ood]   # (L, C, H, W)
+
                 loss_feat = 0
                 for l in range(num_layers):
-                    mean_synth, feat_synth = all_mean_synth[l], all_feat_synth[l]
-                    # 1. Compute synthetic sample statistics
-                    synth_mean = feat_synth.mean(dim=(-1,-2)).squeeze(0)     # (1, C)
-                    synth_std = feat_synth.std(dim=(-1,-2)).squeeze(0)     # (1, C)
-                    synth_prod_mean = (feat_synth * feat_synth).mean(dim=(-1,-2)).squeeze(0)
+                    weight = all_weights[l].detach()   # (,C) 
+                    mean_synth = all_mean_synth[l]  # (,C)
+                    feat_ood, feat_synth = all_feat_ood[l], all_feat_synth[l]      # (,C, H, W)
 
-                    # 2. Compute distance to proxy samples
-                    #feat_ood = bn_feats[l].mean(dim=(-1,-2))   # (N, C, H, W) -> (N, C)
-                    #dist_mean = torch.norm(feat_ood - synth_mean, pow=2)   # (N, C)
-                    feat_ood = bn_feats[l]   # (N, C, H, W) 
-                    feat_prod_ood = feat_ood * feat_ood   # (N, C, H, W) 
-                    dist_mean = torch.norm(feat_ood - synth_mean, pow=2).mean(dim=(-1,-2))   # (N, C, H, W) -> (N, C)
-                    dist_var = torch.norm(feat_prod_ood - synth_prod_mean, pow=2).mean(dim=(-1,-2))    # (N, C)
+                    res_ood = torch.norm(feat_ood - mean_synth, 2)    # (,C, H, W)
+                    #loss_mean = (weight * res_ood).mean(dim=(-1,-2))   # NOTE: Alternative sampling-based formulation
+                    loss_mean = (weight * res_ood.mean(dim=(-1,-2)))    # (,C)
 
-                    # 3. Weight and sum the distance sample-wise
-                    weight = all_weights[l].detach()    # (N, C)
-                    loss_mean = (weight * dist_mean).sum(dim=0).mean()  #.sum() # (C) # TODO: Design choice for sum or mean over channel
-                    loss_var = (weight * dist_var).sum(dim=0).mean()          # (C)
+                    mean_sq_synth = (feat_synth * feat_synth).mean(dim=(-1,-2)) # (,C)
+                    feat_sq_ood = feat_ood * feat_ood
 
-                    loss_feat += loss_mean
-                    #loss_feat += loss_var  # Ablation choice
+                    res_sq_ood = torch.norm(feat_sq_ood - mean_sq_synth, 2)    # (,C, H, W)
+                    loss_var = (weight * res_sq_ood).mean(dim=(-1,-2))
+
+                    loss_feat += loss_mean.mean()
+                    #loss_feat += loss_var.mean()  # NOTE: Ablation choice
             
+            inputs = self.normalizer(output_g)
+            t_out, t_feat = self.teacher(inputs, return_features=True)
 
             pyx = F.softmax(t_out, dim=1) # p(y|G(z)
             log_softmax_pyx = F.log_softmax(t_out, dim=1)
@@ -203,7 +208,7 @@ class GenerativeSynthesizer(BaseSynthesis):
             loss_balance = (p * torch.log(p)).sum() # maximization
 
             loss_tc = self.bn * loss_bn + self.oh * loss_oh + self.ent * loss_ent \
-                + self.adv * loss_adv + self.balance * loss_balance + self.act * loss_act
+                + self.adv * loss_adv + self.balance * loss_balance + self.act * loss_act + self.style * loss_feat
             
             loss = self.local * loss_g + loss_tc
 

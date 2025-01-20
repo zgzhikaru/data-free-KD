@@ -84,17 +84,21 @@ class DeepInversionHook():
 
     def hook_fn(self, module, input, output):
         # hook co compute deepinversion's feature distribution regularization
-        nch = input[0].shape[1]
-        mean = input[0].mean([0, 2, 3])     # (C)
-        var = input[0].permute(1, 0, 2, 3).contiguous().view([nch, -1]).var(1, unbiased=False)  # (C)
-
         self.input = input[0]
+        nch = self.input.shape[1]
+        mean = self.input.mean([0, 2, 3])     # (C)
+        var = self.input.permute(1, 0, 2, 3).contiguous().view([nch, -1]).var(1, unbiased=False)  # (C)
+
         self.mean, self.var = mean, var
 
         #self.feat_mean = input[0].mean([0]) # (C,H,W)
         #self.feat_var = input[0].permute(1, 0, 2, 3).contiguous().view([nch, -1]).var(1, unbiased=False)    # (C,H,W)
         #forcing mean and variance to match between two distributions
         #other ways might work better, i.g. KL divergence
+
+        self.r_feat = torch.norm(module.running_mean.data - self.input, 2)  # (C, H, W)
+        self.normed_feat = self.r_feat/self.var.sqrt()
+        #self.r_feat = torch.norm(module.running_var.data - var, 2)
         
         self.r_feat_mean = torch.norm(module.running_mean.data - mean, 2)
         self.r_feat_var = torch.norm(module.running_var.data - var, 2)
