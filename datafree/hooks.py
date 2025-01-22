@@ -97,8 +97,10 @@ class DeepInversionHook():
         # NOTE: Since output = normalize(input; running_mean, running_std)
         #self.normed_feat = torch.sum(output * output, dim=(-1,-2))
   
-        self.r_feat_mean = torch.norm(module.running_mean.data - mean, 2)
-        self.r_feat_var = torch.norm(module.running_var.data - var, 2)
+        self.r_feat_mean = F.mse_loss(mean.view(-1), module.running_mean.data)
+        self.r_feat_var = F.mse_loss(var.view(-1), module.running_var.data)
+        #self.r_feat_mean = torch.norm(module.running_mean.data - mean, 2)
+        #self.r_feat_var = torch.norm(module.running_var.data - var, 2)
         self.r_feature = self.r_feat_mean + self.r_feat_var
         #r_feature = torch.norm(module.running_var.data - var, 2) + torch.norm(
         #    module.running_mean.data - mean, 2)

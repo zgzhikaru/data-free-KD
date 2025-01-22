@@ -1,7 +1,7 @@
 #!/bin/bash
 
-bash scripts/degan/degan_cifar100_cifar10_wrn402_wrn161_adv.sh
-bash scripts/degan/degan_cifar100_cifar10_wrn402_wrn161_adv_synth_only.sh
+bash scripts/dfq/style_cifar100_wrn402_wrn161.sh
 
-bash scripts/degan/degan_cifar100_cifar10_resnet34_resnet18_adv.sh
-bash scripts/degan/degan_cifar100_cifar10_resnet34_resnet18_adv_synth_only.sh
+bash scripts/dfq/style_cifar100_im32_wrn402_wrn161.sh
+
+bash scripts/dfq/style_cifar100_res34_res18.sh

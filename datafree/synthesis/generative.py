@@ -136,6 +136,7 @@ class GenerativeSynthesizer(BaseSynthesis):
                 loss_g = 0
 
             
+            loss_feat = 0
             if data is not None and args.style:
                 data_normed = self.normalizer(data)     # NOTE: Consider ulb_normalizer
                 t_out = self.teacher(data_normed)
@@ -143,6 +144,7 @@ class GenerativeSynthesizer(BaseSynthesis):
 
                 num_channels = [len(h.mean) for h in self.hooks]
                 num_layers = len(num_channels) - 1
+                num_layers = 5
 
                 #normed_gt = [h.normed_feat for h in self.hooks]     # (,C,H,W)
                 #normed_ood = [h.normed_feat for h in self.hooks_ood]     # (,C,H,W) 
@@ -177,7 +179,7 @@ class GenerativeSynthesizer(BaseSynthesis):
                 all_feat_synth = [h.input for h in self.hooks]   # (L, C)   # NOTE: synth samples can use only .mean over .input
                 all_feat_ood = [h.input for h in self.hooks_ood]   # (L, C, H, W)
 
-                loss_feat = 0
+                
                 for l in range(num_layers):
                     weight = all_weights[l].detach()   # (,C) 
                     mean_synth = all_mean_synth[l]  # (,C)
@@ -200,6 +202,7 @@ class GenerativeSynthesizer(BaseSynthesis):
                     loss_feat += loss_mean.mean()
                     #loss_feat += loss_var.mean()  # NOTE: Ablation choice
                 
+                #loss_feat = loss_feat/num_layers
                 if loss_feat.isnan():
                     print("NaN encountered")
                     exit()
@@ -226,9 +229,9 @@ class GenerativeSynthesizer(BaseSynthesis):
             loss_balance = (p * torch.log(p)).sum() # maximization
 
             loss_tc = self.bn * loss_bn + self.oh * loss_oh + self.ent * loss_ent \
-                + self.adv * loss_adv + self.balance * loss_balance + self.act * loss_act + self.style * loss_feat
-            
-            loss = self.local * loss_g + loss_tc
+                + self.adv * loss_adv + self.balance * loss_balance + self.act * loss_act
+
+            loss = loss_tc + self.local * loss_g + self.style * loss_feat
 
             self.optimizer.zero_grad()
             loss.backward()
