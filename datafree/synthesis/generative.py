@@ -137,56 +137,74 @@ class GenerativeSynthesizer(BaseSynthesis):
 
             
             if data is not None and args.style:
-
-                num_channels = [len(h.mean) for h in self.hooks]
-                num_layers = len(num_channels)
-                
                 data_normed = self.normalizer(data)     # NOTE: Consider ulb_normalizer
                 t_out = self.teacher(data_normed)
                 ood_out = self.ood_encoder(data_normed)
 
-                normed_gt = [h.normed_feat for h in self.hooks]     # (,C,H,W)
-                normed_ood = [h.normed_feat for h in self.hooks_ood]     # (,C,H,W)
+                num_channels = [len(h.mean) for h in self.hooks]
+                num_layers = len(num_channels) - 1
+
+                #normed_gt = [h.normed_feat for h in self.hooks]     # (,C,H,W)
+                #normed_ood = [h.normed_feat for h in self.hooks_ood]     # (,C,H,W) 
+                all_normed_gt = [h.output**2 for h in self.hooks]     # (,C,H,W)
+                all_normed_ood = [h.output**2 for h in self.hooks_ood]     # (,C,H,W) 
 
                 apply_weight = True
                 if apply_weight:
                     all_weights = []
                     for l in range(num_layers):
+                        normed_gt, normed_ood = all_normed_gt[l], all_normed_ood[l]
                         dist2gt = normed_gt.mean(dim=(-1,-2))       # (N, C, H, W) -> (N, C)
                         dist2ood = normed_ood.mean(dim=(-1,-2))     # (N, C, H, W) -> (N, C)
+                        
+                        #dist2gt = normed_gt.sum(dim=(-1,-2))       # (N, C, H, W) -> (N, C)
+                        #dist2ood = normed_ood.sum(dim=(-1,-2))     # (N, C, H, W) -> (N, C)
                         # TODO: Alternatively, keep all dim and apply to (subset of) individual samples
 
-                        weight = (dist2ood - dist2gt).exp()     # (N, C)
+                        diff = (dist2ood - dist2gt) #.clip(max=10)
+                        weight = diff.exp()     # (N, C)
                         all_weights.append(weight)
-                else:
-                    all_weights = [torch.ones_like(m) for m in normed_gt] 
 
+                        #print("diff range: ", (diff.min().data.item(), diff.max().data.item()))
+                else:
+                    all_weights = [torch.ones_like(m) for m in input] 
+                #exit()
 
                 inputs = self.normalizer(output_g)
                 t_out, t_feat = self.teacher(inputs, return_features=True)
 
                 all_mean_synth = [h.mean for h in self.hooks]   # (L, C)
-                all_feat_synth = [h.input for h in self.hooks]   # (L, C)
+                all_feat_synth = [h.input for h in self.hooks]   # (L, C)   # NOTE: synth samples can use only .mean over .input
                 all_feat_ood = [h.input for h in self.hooks_ood]   # (L, C, H, W)
 
                 loss_feat = 0
                 for l in range(num_layers):
                     weight = all_weights[l].detach()   # (,C) 
                     mean_synth = all_mean_synth[l]  # (,C)
-                    feat_ood, feat_synth = all_feat_ood[l], all_feat_synth[l]      # (,C, H, W)
+                    feat_ood, feat_synth = all_feat_ood[l].detach(), all_feat_synth[l]      # (,C, H, W)
 
-                    res_ood = torch.norm(feat_ood - mean_synth, 2)    # (,C, H, W)
-                    #loss_mean = (weight * res_ood).mean(dim=(-1,-2))   # NOTE: Alternative sampling-based formulation
-                    loss_mean = (weight * res_ood.mean(dim=(-1,-2)))    # (,C)
+                    # 1st order moment matching
+                    res_ood = (feat_ood - mean_synth)**2    # (N, C, H, W)
+                    loss_mean = weight * res_ood.mean(dim=(-1,-2))    # (,C) # NOTE: Alternative sampling-based formulation
 
-                    mean_sq_synth = (feat_synth * feat_synth).mean(dim=(-1,-2)) # (,C)
-                    feat_sq_ood = feat_ood * feat_ood
+                    # 2nd order moment matching
+                    mean_sq_synth = (feat_synth**2).mean(dim=(-1,-2), keepdim=True).mean(0) # (,C,1,1)
+                    feat_sq_ood = feat_ood**2
 
-                    res_sq_ood = torch.norm(feat_sq_ood - mean_sq_synth, 2)    # (,C, H, W)
-                    loss_var = (weight * res_sq_ood).mean(dim=(-1,-2))
+                    res_sq_ood = (feat_sq_ood - mean_sq_synth)**2 
+                    loss_var = weight * res_sq_ood.mean(dim=(-1,-2))
+
+                    #print("weight range: ", (weight.min().data.item(), weight.max().data.item()))
+                    #print("res_ood range: ", (res_ood.mean(dim=(-1,-2)).min().data.item(), res_ood.mean(dim=(-1,-2)).max().data.item()))
 
                     loss_feat += loss_mean.mean()
                     #loss_feat += loss_var.mean()  # NOTE: Ablation choice
+                
+                if loss_feat.isnan():
+                    print("NaN encountered")
+                    exit()
+
+                args.tb.add_scalar('train/loss_feat', loss_feat.data.item(), args.n_iter)
             
             inputs = self.normalizer(output_g)
             t_out, t_feat = self.teacher(inputs, return_features=True)
