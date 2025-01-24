@@ -20,4 +20,4 @@ python datafree_kd.py \
 --style 1 \
 --gpu 0 \
 --seed 0  \
---log_tag "Style_Match"
+--log_tag "BN_block3_channel_wise"
